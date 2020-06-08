@@ -1,38 +1,291 @@
-.App {
-  text-align: center;
+body {
+background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  margin-top : 100px;
+  /* background-color: ; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  display: flex;
+  justify-content: center;
+  /* z-index: 0; */
+background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+header {
+  display: flex;
+  align-content: center;
+  z-index: 1;
+  width: 100%;
+  padding: 0px 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#leftBtn {
+  float: left;
+}
+
+#rightBtn button{
+  margin-right: 20px;
+}
+
+#rightBtn button:hover{
+  color: orange;
+}
+
+#rightBtn {
+  float: right;
+  right: 0;
+  position: absolute;
+}
+
+#App {
+  padding: 50px;
+}
+
+.card {
+  overflow: auto;
+}
+
+#heading1 {
+  font-size: 1.8em;
+  color: white;
+}
+
+#container1 {
+  height: 300px;
+  width: 250px;   
+  transition: 0.7s ease;
+}
+
+#container1:hover {
+  height: 725px;
+  width: 450px;
+  padding: 20px;
+  z-index: 1;
+}
+
+#App:hover {
+  z-index: 1;
+}
+
+#hoverId {
+  transition: 0.8s ease-in;
+  height: 300px;
+}
+
+.card-body {
+  z-index: 0;
+  color: white;
+}
+
+.card-title {
+  color: white;
+}
+
+#ImagesDiv {
+  margin: 30px;
+}
+
+.imageBack {
+  position: relative;
+}
+
+
+#newIdImg {
+  z-index: 1;
+  position: absolute;
+  margin-top: 410px;
+  background-color: grey ;
+  width: 378px;
+  padding-bottom: 20px;
+}
+
+#titCon {
+  height: 200px;
+  overflow: auto;
+  max-width: 360px;
+  padding: 0px 30px;
+  white-space: initial;
+  word-wrap: break-word;
+  color: white;
+  font-size: 20px;
+  margin-left: -118px;
+  background-color: rgba(0,0,0,0.5);
+  border: 1 px solid black;
+  border-radius: 15px;
+}
+
+#heading {
+  top: 0;
+  color: white;
+  position: absolute;
+  margin-top: 200px;
+  margin-left: 40px;
+  font-size: 50px;
+  z-index: 1;
+}
+
+#submitBtn {
+  top: 0;
+  position: absolute;
+  margin-top: 400px;
+  margin-left: -340px;
+}
+
+#subText {
+  top: 0;
+  color: white;
+  position: absolute;
+  margin-top: 270px;
+  margin-left: 40px;
+  font-size: 20px;
+}
+
+
+#images {
+  top: 0;
+  padding-top: 300px;
+  padding-left: 40px;
+  position: absolute;
+}
+
+img {
+  margin: 0px 10px;
+}
+
+#innerContainer {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#dark {
+  left: 0;
+  position: absolute;
+  float: left;
+}
+
+#right {
+  width: 70%;
+  right: 0;
+  position: absolute;
+  float: right;
+}
+
+#thumbnail {
+  border-radius: 5px;
+  
+}
+
+#AddComment {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+input {
+  margin-top: 150px;
+  border: 2px solid black;
+  background-color: grey;
+  color: white;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 400px;
+  width: 700px;
+  padding: 20px;
+}
+
+#AddComment button {
+  margin-top: 20px;
+  width: 700px;
+}
+
+select {
+  width: 30%;
+  padding: 10px;
+}
+
+#rate {
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 50px;
+  background: rgba(0,0,0,0.9);
+}
+
+#rate button {
+  width: 38%;
+}
+
+.btn-link {
+  color: white;
+  align-self: flex-start;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-link:hover {
+  color: orange;
+  text-decoration: none;
+}
+
+#revDiv {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 50px;
+  margin-top: 20px;
+}
+
+#revBody {
+  width: 70%;
+  margin-left: 20px;
+  border-radius: 15px;
+  background-color: rgba(46, 50,50);
+  color: white;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+#userName:hover {
+  color: #9999;
+}
+
+#moreInfoContainer {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#infoRight {
+  width: 90%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#embededVid {
+  display: flex;
+  height: 700px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+li {
+  list-style: none;
+}
+
+a:hover {
+  cursor: pointer;
 }
