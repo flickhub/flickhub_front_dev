@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import App from "./App.js";
 import Watch from "./Watch.js";
 import CardInitial from "./CardInitial.js";
-import Navbar from "./Navbar.js";
 import InfoPage from "./InfoPage.js";
 
 const Hover = (props) => {
@@ -78,7 +77,7 @@ const Hover = (props) => {
 
   return (
     <div id="hoverId" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      <Navbar />
+      {/* <Navbar /> */}
       <App body={hover ? renderExpanded() : renderCollapsed()} />
     </div>
   );
