@@ -136,6 +136,7 @@ const InfoPage = (props) => {
         <input
           type="text"
           placeholder="Add Review..."
+          id="commentInput"
           ref={reviewRef}
           onChange={(e) => {
             setReview(e.target.value);
@@ -148,10 +149,6 @@ const InfoPage = (props) => {
           onClick={() => {
             const newComment = new commentsObj(review, "User21");
             setComments([newComment, ...comments]);
-            // ReactDOM.render(
-            //   <Review review={newComment.comment} user={newComment.userName} />,
-            //   commentsRef.current
-            // );
             reviewRef.current.value = "";
           }}
         >

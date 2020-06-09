@@ -22,7 +22,10 @@ const Watch = (props) => {
         zIndex: "1",
       }}
     >
-      <button type="button" className="btn btn-link card-body goToBtn">
+      <button type="button" className="btn btn-link card-body goToBtn" style={{
+        position: "absolute",
+        marginTop: "-30px", 
+      }}>
         Go to Page
       </button>
 
@@ -42,7 +45,6 @@ const Watch = (props) => {
       </h1>
 
       <iframe
-        // width="450px"
         height="250px"
         src={trailer + "?autoplay=1&mute=1&enablejsapi=1"}
         frameborder="0"

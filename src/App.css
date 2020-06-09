@@ -1,20 +1,35 @@
 body {
-background: #000000;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+background-color: #101010;
+scroll-behavior: smooth;
   margin-top : 100px;
   /* background-color: ; */
+  /* overflow-x: hidden; */
 }
 
 #root {
   display: flex;
   justify-content: center;
-  /* z-index: 0; */
-background: #000000;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color: #101010;
+  scroll-behavior: smooth;
 }
+
+.fa-chevron-circle-left {
+  opacity: 0.6;
+}
+
+.fa-chevron-circle-left:hover {
+  opacity: 1;
+}
+
+.fa-chevron-circle-right {
+  opacity: 0.6;
+}
+
+.fa-chevron-circle-right:hover {
+  opacity: 1;
+}
+
+
 
 
 header {
@@ -29,6 +44,7 @@ header {
   float: left;
 }
 
+
 #rightBtn button{
   margin-right: 20px;
 }
@@ -38,7 +54,6 @@ header {
 }
 
 #rightBtn {
-  float: right;
   right: 0;
   position: absolute;
 }
@@ -63,8 +78,8 @@ header {
 }
 
 #container1:hover {
-  height: 725px;
-  width: 450px;
+  height: 630px;
+  width: 350px;
   padding: 20px;
   z-index: 1;
 }
@@ -194,7 +209,7 @@ img {
 }
 
 
-input {
+#commentInput {
   margin-top: 150px;
   border: 2px solid black;
   background-color: grey;

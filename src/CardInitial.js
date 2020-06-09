@@ -12,8 +12,8 @@ const CardInitial = (props) => {
         borderRadius: "5px",
         overflow: "hidden",
         margin: "0px 5px",
-        maxWidth: "260px",
-        maxHeight: "350px",
+        maxWidth: "200px",
+        maxHeight: "300px",
         zIndex: "0",
       }}
     >
@@ -28,7 +28,7 @@ const CardInitial = (props) => {
           margin: "-20px",
         }}
       >
-        <img src={props.poster} height="300" width="260" />{" "}
+        <img src={props.poster} height="260" width="220" />{" "}
       </div>
       <div
         id="App"
