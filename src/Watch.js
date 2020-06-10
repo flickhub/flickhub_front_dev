@@ -25,6 +25,7 @@ const Watch = (props) => {
       <button type="button" className="btn btn-link card-body goToBtn" style={{
         position: "absolute",
         marginTop: "-30px", 
+        fontWeight: "bold"
       }}>
         Go to Page
       </button>

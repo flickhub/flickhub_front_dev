@@ -1,65 +1,108 @@
 import React from "react";
 import { titles } from "./utils/response";
 import Hover from "./Hover";
+import Cards from "./Cards";
+import FilteredResults from "./FilteredResults";
+
+const initialItemsState = {
+  netflix: null,
+  primeVideo: null,
+  hotstar: null,
+};
 
 const Filter = (props) => {
-  const [filter, setFilter] = React.useState([]);
-  const renderRef = React.useRef();
+  const [year, setYear] = React.useState();
+  const [options, setOptions] = React.useState(false);
 
-  const filterRef = React.useRef();
+  const [selected, setSelected] = React.useState(false);
+  const [filter, setFilter] = React.useState(<Cards />);
+
+  const [items, setItems] = React.useState(initialItemsState);
+
+  const itemsSetter = (key, value) => {
+    setItems({ ...initialItemsState, [key]: value });
+  };
+
+  React.useEffect(() => {
+    console.log("items", items);
+  }, [items]);
+
+  const clickStyle = (e) => {
+    selected
+      ? (e.target.style.opacity = "1")
+      : (e.target.style.opacity = "0.6");
+  };
+
+  const filterYear = () => {
+    // setFilter(
+    return titles()
+      .filter((item) => {
+        if (item.year.includes(year)) {
+          return item;
+        }
+      })
+      .map((item) => {
+        return titles().map((names) => {
+          if (names == item) {
+            return <Hover item={names} />;
+          }
+        });
+      });
+  };
 
   const filterNetflix = () => {
-    setFilter(
-      titles()
-        .filter((item) => {
-          if (item.ott.netflix != null) {
-            return item;
+    // setFilter(
+    // const array=[]
+    return titles()
+      .filter((item) => {
+        if (item.ott.netflix != null) {
+          // array.push(item)
+          // console.log("Array", array)
+          return item;
+        }
+      })
+      .map((item) => {
+        return titles().map((name) => {
+          if (JSON.stringify(name) == JSON.stringify(item)) {
+            return <Hover item={name} />;
           }
-        })
-        .map((item) => {
-          return titles().map((name) => {
-            if (JSON.stringify(name) == JSON.stringify(item)) {
-              return <Hover item={name} />;
-            }
-          });
-        })
-    );
+        });
+      });
+    // return array
   };
 
   const filterPrimeVideo = () => {
-    setFilter(
-      titles()
-        .filter((item) => {
-          if (item.ott.primeVideo != null) {
-            return item;
+    // setFilter(
+    return titles()
+      .filter((item) => {
+        if (item.ott.primeVideo != null) {
+          return item;
+        }
+      })
+      .map((item) => {
+        return titles().map((name) => {
+          if (JSON.stringify(name) == JSON.stringify(item)) {
+            return <Hover item={name} />;
           }
-        })
-        .map((item) => {
-          return titles().map((name) => {
-            if (JSON.stringify(name) == JSON.stringify(item)) {
-              return <Hover item={name} />;
-            }
-          });
-        })
-    );
+        });
+      });
   };
 
   const filterHotstar = () => {
-    setFilter(
-      titles()
-        .filter((item) => {
-          if (item.ott.hotstar != null) {
-            return item;
+    // setFilter(
+    return titles()
+      .filter((item) => {
+        if (item.ott.hotstar != null) {
+          return item;
+        }
+      })
+      .map((item) => {
+        return titles().map((name) => {
+          if (JSON.stringify(name) == JSON.stringify(item)) {
+            return <Hover item={name} />;
           }
-        })
-        .map((item) => {
-          return titles().map((name) => {
-            if (JSON.stringify(name) == JSON.stringify(item)) {
-              return <Hover item={name} />;
-            }
-          });
-        })
-    );
+        });
+      });
   };
 
   return (
@@ -69,61 +112,120 @@ const Filter = (props) => {
           backgroundColor: "rgba(255,134,20)",
           padding: "10px",
           display: "flex",
+          // flexDirection: "column",
           justifyContent: "center",
+          // top: "0",
+          // position: "fixed"
         }}
       >
         <a
-          onClick={() => {
-            filterNetflix();
-
-            filterRef.current.style.padding = "50px 80px";
+          onClick={(e) => {
+            {
+              selected ? setFilter(filterNetflix()) : setFilter(<Cards />);
+            }
+            setSelected(!selected);
+            // itemsSetter(filterNetflix().title, filterNetflix());
           }}
         >
-          <img id="thumbnail" src={props.netflixIcon} height="50px" />
+          <img
+            id="thumbnail"
+            src={props.netflixIcon}
+            height="50px"
+            onClick={(e) => {
+              {
+                clickStyle(e);
+              }
+            }}
+          />
         </a>
         <a
-          onClick={() => {
-            filterPrimeVideo();
-
-            filterRef.current.style.padding = "50px 80px";
+          onClick={(e) => {
+            {
+              selected ? setFilter(filterPrimeVideo()) : setFilter(<Cards />);
+            }
+            setSelected(!selected);
+            // itemsSetter("primeVideo", filter);
           }}
         >
-          <img id="thumbnail" src={props.primeVideoIcon} height="50px" />
+          <img
+            onClick={(e) => {
+              {
+                clickStyle(e);
+              }
+            }}
+            id="thumbnail"
+            src={props.primeVideoIcon}
+            height="50px"
+          />
         </a>
         <a
-          onClick={() => {
-            filterHotstar();
-            filterRef.current.style.padding = "50px 80px";
+          onClick={(e) => {
+            {
+              selected ? setFilter(filterHotstar()) : setFilter(<Cards />);
+            }
+            setSelected(!selected);
+            // itemsSetter("hotstar", filter);
           }}
         >
-          <img id="thumbnail" src={props.hotstarIcon} height="50px" />
+          <img
+            onClick={(e) => {
+              {
+                clickStyle(e);
+              }
+            }}
+            id="thumbnail"
+            src={props.hotstarIcon}
+            height="50px"
+          />
         </a>
-      </div>
-      <div
-        ref={filterRef}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          // background: "white",
-          // padding: "0px",
-          transition: "all 0.5s ease",
-        }}
-      >
         <button
-          type="button"
-          className="btn btn-link"
-          style={{
-            alignSelf: "flex-start",
-          }}
+          className="btn btn-light"
           onClick={() => {
-            setFilter(null);
+            setOptions(!options);
           }}
         >
-          X
+          Year
         </button>
-        {filter}
+        <div></div>
       </div>
+      {options
+        ? titles().map((item) => {
+            return (
+              <button
+                className="btn btn-danger"
+                style={{ margin: "10px" }}
+                onClick={(e) => {
+                  setYear(item.year);
+                  {
+                    clickStyle(e);
+                    selected ? setFilter(filterYear()) : setFilter(<Cards />);
+                  }
+                  setSelected(!selected);
+                }}
+              >
+                {item.year}
+              </button>
+            );
+          })
+        : null}
+      <button
+        type="button"
+        className="btn btn-link"
+        style={{
+          alignSelf: "flex-start",
+        }}
+        onClick={() => {
+          setFilter(<Cards />);
+        }}
+      >
+        Clear All
+      </button>
+
+      <FilteredResults selected={selected} results={filter} />
+
+      {/* {Object.keys(items).map((item, index) => (
+          <div key={`filtered-items-${index}`}>{item}</div>
+        ))} */}
     </div>
   );
 };
