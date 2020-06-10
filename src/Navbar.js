@@ -1,21 +1,32 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 
 import "./App.css";
 import { titles } from "./utils/response";
 import CardInitial from "./CardInitial";
+import Filter from "./Filter";
+import { icons } from "./constants/icons";
 
 const Navbar = () => {
+  const [filterPage, setFilterPage] = React.useState(false)
+
   const [search, setSearch] = React.useState(false);
   const [goToPage, setGoToPage] = React.useState(false);
+
   const [find, setFind] = React.useState("");
   const searchRef = React.useRef();
   const scrollRef = React.useRef();
 
+  const styling = {
+    fontSize: "15px",
+    fontStyle: "none"
+  }
 
   const searchBar = (
     <input
       type="text"
       placeholder="Search"
+      autoFocus={true}
       style={{
         width: "300px",
         height: "35px",
@@ -25,6 +36,7 @@ const Navbar = () => {
         padding: "10px",
         color: "white",
       }}
+      onBlur={() => setSearch(false)}
       onChange={(e) => {
         onChange(e);
       }}
@@ -38,55 +50,63 @@ const Navbar = () => {
     setFind(e.target.value);
   };
 
-  const items = titles()
-    .filter((data) => {
-      if (data.title.toLowerCase().includes(find.toLowerCase())) {
-        return data;
-      }
-    })
-    .map((data) => {
-      return (
-        <div
-          className="container"
-          style={{
-            height: "500px",
-            padding: "10px",
-            display: "flex",
-            alignItems: "center",
-            
-          }}
-        >
-          {titles().map((name) => {
-            if (JSON.stringify(data) == JSON.stringify(name)) {
-              return (
-                <div
-                  style={{
-                    padding: "0px",
-                    margin: "0px 10px",
-                    display: "block",
-                    cursor: "pointer",
-                  }}
-                  className="col"
-                  onClick={() => setGoToPage(true)}
-                >
-                  <CardInitial
-                    title={data.title}
-                    poster={data.poster}
-                    netflixLink={data.ott.netflix}
-                    netflixIcon={data.ott.icons.netflixIcon}
-                    primeVideoLink={data.ott.primeVideo}
-                    primeVideoIcon={data.ott.icons.primeVideoIcon}
-                    hotstarLink={data.ott.hotstar}
-                    hotstarIcon={data.ott.icons.hotstarIcon}
-                  />
-                  
-                </div>
-              );
-            }
-          })}
-        </div>
-      );
-    });
+  const items = () => {
+    const filteredTitles = titles()
+      .filter((data) => {
+        if (data.title.toLowerCase().includes(find.toLowerCase())) {
+          return data;
+        }
+      })
+      .map((data) => {
+        return (
+          <div
+            className="container"
+            style={{
+              height: "500px",
+              padding: "10px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {titles().map((name) => {
+              if (JSON.stringify(data) == JSON.stringify(name)) {
+                return (
+                  <div
+                    style={{
+                      padding: "0px",
+                      margin: "0px 10px",
+                      display: "block",
+                      cursor: "pointer",
+                    }}
+                    className="col"
+                    onClick={() => setGoToPage(true)}
+                  >
+                    <CardInitial
+                      title={data.title}
+                      poster={data.poster}
+                      netflixLink={data.ott.netflix}
+                      netflixIcon={data.ott.icons.netflixIcon}
+                      primeVideoLink={data.ott.primeVideo}
+                      primeVideoIcon={data.ott.icons.primeVideoIcon}
+                      hotstarLink={data.ott.hotstar}
+                      hotstarIcon={data.ott.icons.hotstarIcon}
+                    />
+                  </div>
+                );
+              }
+            })}
+          </div>
+        );
+      });
+    if (filteredTitles.length) {
+      return filteredTitles;
+    }
+    return (
+      <div>
+        <p>No matches found</p>
+      </div>
+    );
+  };
 
   return (
     <div
@@ -115,8 +135,24 @@ const Navbar = () => {
             type="button"
             className="btn btn-link fa fa-search"
             onClick={() => setSearch(!search)}
-            style={{}}
+            style={styling}
           ></button>
+          <button href="#" className="btn btn-link" onClick={() => {
+              ReactDOM.render(
+                <div>
+                  <Navbar />
+                  <Filter
+                  netflixIcon={icons.netflixIcon}
+                  primeVideoIcon={icons.primeVideoIcon}
+                  hotstarIcon={icons.hotstarIcon}
+                />
+                </div>
+                , document
+              .getElementsByTagName("body")[0]
+              );
+          }}>
+            Filtered Search
+          </button>
           <button href="#" className="btn btn-link">
             About
           </button>
@@ -152,8 +188,9 @@ const Navbar = () => {
           style={{ transition: "all 0.5s ease", display: "flex" }}
           ref={scrollRef}
         >
-          {search ? items : null}
+          {search ? items() : null}
         </div>
+
         {search ? (
           <div>
             <button
@@ -169,9 +206,7 @@ const Navbar = () => {
               onClick={() => {
                 scrollRef.current.style.transform += "translate(800px, 0)";
               }}
-            >
-              <b></b>
-            </button>
+            ></button>
 
             <button
               className="fa fa-chevron-circle-right btn btn-link"
@@ -187,9 +222,7 @@ const Navbar = () => {
               onClick={() => {
                 scrollRef.current.style.transform += "translate(-800px, 0)";
               }}
-            >
-              <b></b>
-            </button>
+            ></button>
           </div>
         ) : null}
       </div>

@@ -18,7 +18,8 @@ export const theWitcher = new responseObj(
   "https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg",
   "A family saga with a supernatural twist, set in a German town, where the disappearance of two young children exposes the relationships among four families.",
   "Creators: Baran bo Odar, Jantje Friese",
-  "Stars: Karoline Eichhorn, Louis Hofmann, Jördis Triebel"
+  "Stars: Karoline Eichhorn, Louis Hofmann, Jördis Triebel",
+  "2019"
 );
 
 export const mindHunter = new responseObj(
@@ -38,7 +39,8 @@ export const mindHunter = new responseObj(
   "https://m.media-amazon.com/images/M/MV5BNWNmYzQ1ZWUtYTQ3ZS00Y2UwLTlkMDctZThlOTJkMGJiNzBiXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg",
   " Set in the late 1970s, two FBI agents are tasked with interviewing serial killers to solve open cases. ",
   " Creator: Joe Penhall ",
-  "Stars: Jonathan Groff, Holt McCallany, Anna Torv "
+  "Stars: Jonathan Groff, Holt McCallany, Anna Torv ",
+  "2017"
 );
 
 export const twoAndAHalfMen = new responseObj(
@@ -61,7 +63,7 @@ export const twoAndAHalfMen = new responseObj(
   "https://vignette.wikia.nocookie.net/twohalfmen/images/4/40/Taahm-season9-pre.jpg/revision/latest?cb=20110818162606",
   "A hedonistic jingle writer's free-wheeling life comes to an abrupt halt when his brother and 10-year-old nephew move into his beach-front house. ",
   " Creators: Lee Aronsohn, Chuck Lorre ",
-  " Stars: Jon Cryer, Ashton Kutcher, Angus T. Jones "
+  " Stars: Jon Cryer, Ashton Kutcher, Angus T. Jones ", "2003"
 );
 
 export const tbbt = new responseObj(
@@ -86,7 +88,8 @@ export const tbbt = new responseObj(
   "https://vignette.wikia.nocookie.net/bigbangtheory/images/f/f3/Big_bang_theory_poster.jpg/revision/latest/scale-to-width-down/340?cb=20090218074507",
   " A woman who moves into an apartment across the hall from two brilliant but socially awkward physicists shows them how little they know about life outside of the laboratory. ",
   " Creators: Chuck Lorre, Bill Prady ",
-  " Stars: Johnny Galecki, Jim Parsons, Kaley Cuoco  "
+  " Stars: Johnny Galecki, Jim Parsons, Kaley Cuoco  ",
+  "2007"
 );
 
 export const brooklyn99 = new responseObj(
@@ -106,7 +109,8 @@ export const brooklyn99 = new responseObj(
   "https://vignette.wikia.nocookie.net/brooklynnine-nine/images/4/42/Season5_poster.jpg/revision/latest?cb=20170921004338",
   "Brooklyn Nine-Nine follows the exploits of hilarious Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
   "Creators: Dan Goor, Michael Schur",
-  "Stars: Andy Samberg, Stephanie Beatriz, Terry Crews"
+  "Stars: Andy Samberg, Stephanie Beatriz, Terry Crews", 
+  "2013"
 );
 
 export const theOffice = new responseObj(
@@ -128,7 +132,8 @@ export const theOffice = new responseObj(
   "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg",
   "A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.",
   "Creators: Greg Daniels, Ricky Gervais, Stephen Merchant",
-  "Stars: Steve Carell, Jenna Fischer, John Krasinski "
+  "Stars: Steve Carell, Jenna Fischer, John Krasinski ",
+  "2005"
 );
 
 export const titles = () => {
@@ -139,12 +144,12 @@ export const titles = () => {
     tbbt,
     brooklyn99,
     theOffice,
-    theWitcher,
-    mindHunter,
-    twoAndAHalfMen,
-    tbbt,
-    brooklyn99,
-    theOffice,
+    // theWitcher,
+    // mindHunter,
+    // twoAndAHalfMen,
+    // tbbt,
+    // brooklyn99,
+    // theOffice,
   ];
 
   return titlesArray;

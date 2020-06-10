@@ -16,9 +16,9 @@ const Cards = () => {
       style={{
         display: "flex",
         justifyContent: "center",
-        marginLeft: "-45px",
         minWidth: "1445px",
         zIndex: "1",
+        margin: "-45px"
       }}
     > 
       {titles().map((item, index) => {

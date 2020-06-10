@@ -2,8 +2,7 @@ body {
 background-color: #101010;
 scroll-behavior: smooth;
   margin-top : 100px;
-  /* background-color: ; */
-  /* overflow-x: hidden; */
+  margin-bottom: 100px;
 }
 
 #root {
@@ -47,6 +46,7 @@ header {
 
 #rightBtn button{
   margin-right: 20px;
+  
 }
 
 #rightBtn button:hover{
@@ -56,6 +56,7 @@ header {
 #rightBtn {
   right: 0;
   position: absolute;
+  font-weight: 0px;
 }
 
 #App {
@@ -251,7 +252,7 @@ select {
   color: white;
   align-self: flex-start;
   font-size: 20px;
-  font-weight: bold;
+  
 }
 
 .btn-link:hover {

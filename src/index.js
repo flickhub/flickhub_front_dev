@@ -1,16 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Watch from "./Watch.js";
-import CardInitial from "./CardInitial.js";
 import * as serviceWorker from "./serviceWorker";
 import Navbar from "./Navbar";
 import Cards from "./Cards";
-import Search from "./Search";
 import Filter from "./Filter";
 import "./App.css";
-import { theWitcher } from "./utils/response";
 import { icons } from "./constants/icons";
+import HoverCard2 from "./HoverCard2";
 
 ReactDOM.render(
   <div
@@ -25,7 +22,6 @@ ReactDOM.render(
     }}
   >
     <Navbar />
-    <Filter netflixIcon={icons. netflixIcon} primeVideoIcon={icons.primeVideoIcon} hotstarIcon={icons.hotstarIcon} />
     <Cards />
   </div>,
   document.getElementById("root")

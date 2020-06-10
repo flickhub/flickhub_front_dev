@@ -1,4 +1,4 @@
-export function responseObj(title, content, ott, poster, synopsis, cast, director) {
+export function responseObj(title, content, ott, poster, synopsis, cast, director, year) {
   this.title = title;
   this.content = content;
   this.ott = ott;
@@ -6,6 +6,7 @@ export function responseObj(title, content, ott, poster, synopsis, cast, directo
   this.synopsis = synopsis;
   this.cast = cast;
   this.director = director;
+  this.year = year;
 }
 
 export function commentsObj(comment, userName) {
