@@ -1,14 +1,19 @@
 import React from "react";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 
 import "./App.css";
-import { titles } from "./utils/response";
+
+import Cards from "./Cards";
 import CardInitial from "./CardInitial";
 import Filter from "./Filter";
+import Feedback from "./Feedback";
+
 import { icons } from "./constants/icons";
+import { titles } from "./utils/response";
 
 const Navbar = () => {
-  const [filterPage, setFilterPage] = React.useState(false)
+  const [filterPage, setFilterPage] = React.useState(false);
+  const [item, setItem] = React.useState(titles()[titles().length])
 
   const [search, setSearch] = React.useState(false);
   const [goToPage, setGoToPage] = React.useState(false);
@@ -16,11 +21,10 @@ const Navbar = () => {
   const [find, setFind] = React.useState("");
   const searchRef = React.useRef();
   const scrollRef = React.useRef();
-
   const styling = {
     fontSize: "15px",
-    fontStyle: "none"
-  }
+    fontStyle: "none",
+  };
 
   const searchBar = (
     <input
@@ -28,20 +32,24 @@ const Navbar = () => {
       placeholder="Search"
       autoFocus={true}
       style={{
+        transition: "all 1s linear",
         width: "300px",
-        height: "35px",
+        // height: "35px",
         background: "rgba(50,50,50)",
         border: "none",
         borderRadius: "15px",
         padding: "10px",
         color: "white",
       }}
-      onBlur={() => setSearch(false)}
+      // onFocus={() => {setSearch(true)}}
+      // onBlur={() => {
+      //   setSearch(false)
+      //   search
+      //     ? (scrollRef.current.style.display = "flex")
+      //     : (scrollRef.current.style.display = "none");
+      // }}
       onChange={(e) => {
         onChange(e);
-      }}
-      onClick={(e) => {
-        // e.target.style.transform = "translate(-100px,0px)"
       }}
     />
   );
@@ -126,10 +134,29 @@ const Navbar = () => {
           borderBottom: "3px solid rgba(255,134,20) ",
         }}
       >
-        <button id="leftBtn" className="btn btn-link" href="#">
+        <button
+          id="leftBtn"
+          className="btn btn-link"
+          href="#"
+          onClick={() => {
+            ReactDOM.render(
+              <div>
+                <Navbar />
+                <div
+                  style={{
+                    marginLeft: "30px",
+                  }}
+                >
+                  <Cards />
+                </div>
+              </div>,
+              document.getElementsByTagName("body")[0]
+            );
+          }}
+        >
           Logo
         </button>
-        <div id="rightBtn">
+        <div id="rightBtn" style={{ transition: "all 1s linear" }}>
           {search ? searchBar : null}
           <button
             type="button"
@@ -137,20 +164,23 @@ const Navbar = () => {
             onClick={() => setSearch(!search)}
             style={styling}
           ></button>
-          <button href="#" className="btn btn-link" onClick={() => {
+          <button
+            href="#"
+            className="btn btn-link"
+            onClick={() => {
               ReactDOM.render(
                 <div>
                   <Navbar />
                   <Filter
-                  netflixIcon={icons.netflixIcon}
-                  primeVideoIcon={icons.primeVideoIcon}
-                  hotstarIcon={icons.hotstarIcon}
-                />
-                </div>
-                , document
-              .getElementsByTagName("body")[0]
+                    netflixIcon={icons.netflixIcon}
+                    primeVideoIcon={icons.primeVideoIcon}
+                    hotstarIcon={icons.hotstarIcon}
+                  />
+                </div>,
+                document.getElementsByTagName("body")[0]
               );
-          }}>
+            }}
+          >
             Filtered Search
           </button>
           <button href="#" className="btn btn-link">
@@ -159,7 +189,26 @@ const Navbar = () => {
           <button href="#" className="btn btn-link">
             Contact Us
           </button>
-          <button href="#" className="btn btn-link">
+          <button
+            href="#"
+            className="btn btn-link"
+            onClick={() => {
+              ReactDOM.render(
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                  }}
+                >
+                  <Navbar />
+                  <Feedback />
+                </div>,
+                document.getElementsByTagName("body")[0]
+              );
+            }}
+          >
             Feedback
           </button>
         </div>
@@ -203,7 +252,7 @@ const Navbar = () => {
                 position: "fixed",
                 fontSize: "80px",
               }}
-              onClick={() => {
+              onClick={(e) => {
                 scrollRef.current.style.transform += "translate(800px, 0)";
               }}
             ></button>

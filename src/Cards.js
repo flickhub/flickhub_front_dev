@@ -7,8 +7,6 @@ const Cards = () => {
   const [just, setJust] = React.useState(false);
   const justifyRef = React.useRef();
 
-  
-
   return (
     <div
       ref={justifyRef}
@@ -18,15 +16,14 @@ const Cards = () => {
         justifyContent: "center",
         minWidth: "1445px",
         zIndex: "1",
-        margin: "-45px"
+        margin: "-45px",
+        transition: "all 1s linear",
       }}
-    > 
+    >
+      
       {titles().map((item, index) => {
         return (
-          <div
-            key={item}
-            style={{ marginTop: "150px" }}
-          >
+          <div key={item} style={{ marginTop: "150px" }}>
             <Hover item={item} />
           </div>
         );

@@ -1,16 +1,19 @@
 body {
 background-color: #101010;
-scroll-behavior: smooth;
+overflow-x: hidden;
   margin-top : 100px;
   margin-bottom: 100px;
 }
 
-#root {
+/* #root {
   display: flex;
   justify-content: center;
   background-color: #101010;
   scroll-behavior: smooth;
-}
+  transition: "all 1s linear";
+
+
+} */
 
 .fa-chevron-circle-left {
   opacity: 0.6;
@@ -248,17 +251,6 @@ select {
   width: 38%;
 }
 
-.btn-link {
-  color: white;
-  align-self: flex-start;
-  font-size: 20px;
-  
-}
-
-.btn-link:hover {
-  color: orange;
-  text-decoration: none;
-}
 
 #revDiv {
   font-size: 20px;
@@ -304,4 +296,47 @@ li {
 
 a:hover {
   cursor: pointer;
+}
+
+.goToBtn {
+
+  padding: 5px 10px;
+  color: black;
+}
+
+.btn-link {
+  color: white;
+  align-self: flex-start;
+  font-size: 20px;
+}
+
+.btn-link:hover {
+  color: orange;
+  text-decoration: none;
+}
+
+
+
+
+
+#divs {
+  display: flex;
+  justify-content: center;
+  background-color: #101010;
+  transition: "all 1s linear";
+  background-image: url("./flickhub.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#browseBtnDown {
+  margin-top: 500px;
+}
+
+#browseBtnUp, #browseBtnDown {
+  font-size: 50px;
+}
+
+#browseBtnDown:hover {
+  color: orange;
 }

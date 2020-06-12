@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
 
+import { icons } from "./constants/icons";
+
 
 const Watch = (props) => {
 
-  const [trailer, setTrailer] = React.useState(props.netflixLink)
+  const [trailer, setTrailer] = React.useState(icons.netflixIcon)
 
-  setTimeout(() => {setTrailer(props.youtubeLink)}, 300)
+  setTimeout(() => {setTrailer(props.youtubeLink)}, 510)
 
   const trailerRef = React.useRef()
   return (
@@ -15,18 +17,26 @@ const Watch = (props) => {
       className="card"
       style={{
         backgroundImage: "url(" + props.poster + ")",
-        backgroundSize: "cover",
+        backgroundSize: "contain",
         backgroundPosition: "center center",
         backgroundColor: "#3333",
         backgroundRepeat: "no-repeat",
         zIndex: "1",
       }}
     >
-      <button type="button" className="btn btn-link card-body goToBtn" style={{
-        position: "absolute",
-        marginTop: "-30px", 
-        fontWeight: "bold"
-      }}>
+      <button
+        type="button"
+        className="btn btn-light card-body goToBtn"
+        style={{
+          position: "absolute",
+          marginTop: "-15px",
+          alignSelf: "flex-end",
+          marginRight: "-10px",
+          width: "95%",
+          fontWeight: "bold",
+          // padding: "0px"
+        }}
+      >
         Go to Page
       </button>
 
@@ -35,10 +45,10 @@ const Watch = (props) => {
         className="card-title"
         style={{
           color: "black",
-          background: "rgba(255,134,20,0.8)",
+          background: "rgba(255,134,20,0.9)",
           borderRadius: "5px",
           padding: "10px",
-          margin: "20px",
+          margin: "25px",
           fontSize: "1.5em",
         }}
       >
@@ -52,7 +62,12 @@ const Watch = (props) => {
         allow="autoplay"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen="true"
-        style={{ padding: "0px 20px", objectFit: "contain" }}
+        style={{
+          height: trailer == props.netflixIcon ? "100px" : "250px",
+          padding: "0px 20px",
+          objectFit: "contain",
+          transition: "all 0.45s ease",
+        }}
       ></iframe>
 
       <div id="newId" className="card-body imageBack">
@@ -63,7 +78,7 @@ const Watch = (props) => {
             height: "150px",
             overflow: "auto",
             padding: "15px",
-            background: "rgba(1,1,1,0.5)",
+            background: "rgba(50,50,50,0.9)",
             borderRadius: "10px",
             scrollbarWidth: "none",
           }}

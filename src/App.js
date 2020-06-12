@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import './App.css';
 
 const App = props => {
@@ -11,7 +12,5 @@ const App = props => {
     
   );
 }
-
-
 
 export default App;
