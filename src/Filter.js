@@ -16,6 +16,10 @@ const Filter = (props) => {
 
   const [selected, setSelected] = React.useState(false);
   const [filter, setFilter] = React.useState(<Cards />);
+  const [net, setNet] = React.useState();
+  const [prim, setPrim] = React.useState();
+  const [hot, setHot] = React.useState();
+  // const [filter, setFilter] = React.useState();
 
   const [items, setItems] = React.useState(initialItemsState);
 
@@ -105,16 +109,25 @@ const Filter = (props) => {
       });
   };
 
+
   return (
-    <div style={{ transition: "all 1s ease" }}>
+    <div
+      style={{
+        transition: "all 1s ease",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
       <div
         style={{
           backgroundColor: "rgba(255,134,20)",
           padding: "10px",
           display: "flex",
-          // flexDirection: "column",
+          width: "100%",
           justifyContent: "center",
-          // top: "0",
+          marginTop: "75px",
           // position: "fixed"
         }}
       >
@@ -122,6 +135,9 @@ const Filter = (props) => {
           onClick={(e) => {
             {
               selected ? setFilter(filterNetflix()) : setFilter(<Cards />);
+            }
+            {
+              selected ? setNet(filterNetflix()) : setNet(null);
             }
             setSelected(!selected);
             // itemsSetter(filterNetflix().title, filterNetflix());
@@ -143,6 +159,9 @@ const Filter = (props) => {
             {
               selected ? setFilter(filterPrimeVideo()) : setFilter(<Cards />);
             }
+            {
+              selected ? setPrim(filterPrimeVideo()) : setPrim(null);
+            }
             setSelected(!selected);
             // itemsSetter("primeVideo", filter);
           }}
@@ -163,6 +182,10 @@ const Filter = (props) => {
             {
               selected ? setFilter(filterHotstar()) : setFilter(<Cards />);
             }
+            {
+              selected ? setHot(filterHotstar()) : setHot(null);
+            }
+
             setSelected(!selected);
             // itemsSetter("hotstar", filter);
           }}
@@ -222,6 +245,9 @@ const Filter = (props) => {
       </button>
 
       <FilteredResults selected={selected} results={filter} />
+      <FilteredResults selected={selected} results={net} />
+      <FilteredResults selected={selected} results={prim} />
+      <FilteredResults selected={selected} results={hot} />
 
       {/* {Object.keys(items).map((item, index) => (
           <div key={`filtered-items-${index}`}>{item}</div>

@@ -1,7 +1,6 @@
 import React from "react";
 import { titles } from "./utils/response";
 import Hover from "./Hover";
-import { responseObj } from "./utils/network";
 
 const Search = (props) => {
   const [find, setFind] = React.useState("");
@@ -46,7 +45,6 @@ const Search = (props) => {
 
   return (
     <div
-      // className='col-4'
       style={{
         backgroundColor: "rgba(255,134,20)",
         padding: "10px",

@@ -7,13 +7,12 @@ return (
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      background: "white",
+      background: props.selected ? "white" : "none",
       transition: "all 0.3s ease",
       overflowX: "scroll",
+      overflowY: "visible",
       padding: props.selected ? "20px" : "10px",
       marginTop: "40px",
-    //   height: "60vh"
-    // maxWidth : "0px 50px"
     }}
   >
     {/* {Object.keys(items).map((item, index) => (

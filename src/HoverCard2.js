@@ -1,7 +1,7 @@
 import React from "react";
 import HoverCard from "./HoverCard";
 
-//Not related to production
+//Not part of main flow
 
 const HoverCard2 = (props) => {
   const [hover, setHover] = React.useState(false);

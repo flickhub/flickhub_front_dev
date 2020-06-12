@@ -128,7 +128,6 @@ export const theOffice = new responseObj(
     rottenTomatoes: "https://www.rottentomatoes.com/tv/the_office",
     youtube: "https://www.youtube.com/embed/jz1omRneAGg",
   },
-
   "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg",
   "A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.",
   "Creators: Greg Daniels, Ricky Gervais, Stephen Merchant",

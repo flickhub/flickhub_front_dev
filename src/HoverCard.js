@@ -1,6 +1,6 @@
 import React from "react";
 
-//Not related to production
+//Not part of main flow
 
 const HoverCard = (props) => {
   return (

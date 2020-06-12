@@ -1,12 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom'
 
 import App from "./App.js";
 import Watch from "./Watch.js";
 import CardInitial from "./CardInitial.js";
 import InfoPage from "./InfoPage.js";
+import { Link } from "react-router-dom";
 
-const Hover = (props) => {
+
+export const Hover = (props) => {
   const { item } = props;
 
   const [hover, setHover] = React.useState(false);
@@ -55,22 +57,12 @@ const Hover = (props) => {
 
   const titlePage = (e) => {
     ReactDOM.render(
+    // <Link to="/more">
       <InfoPage
-        title={e.title}
-        poster={e.poster}
-        synopsis={e.synopsis}
-        director={e.director}
-        cast={e.cast}
-        netflixLink={e.ott.netflix}
-        netflixIcon={e.ott.icons.netflixIcon}
-        primeVideoLink={e.ott.primeVideo}
-        primeVideoIcon={e.ott.icons.primeVideoIcon}
-        imdbLink={e.ott.imdb}
-        imdbIcon={e.ott.icons.imdbIcon}
-        rottenTomatoesLink={e.ott.rottenTomatoes}
-        rottenTomatoesIcon={e.ott.icons.rottenTomatoesIcon}
-        youtubeLink={e.ott.youtube}
-      />,
+        item={e}
+      />
+      // </Link>
+      ,
       document.getElementById("root")
     );
   };
@@ -82,5 +74,7 @@ const Hover = (props) => {
     </div>
   );
 };
+
+
 
 export default Hover;
