@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { icons } from "./constants/icons";
 
 const CardInitial = (props) => {
   const AppRef = React.useRef();
+
+
 
   return (
     <div
@@ -28,7 +31,7 @@ const CardInitial = (props) => {
           margin: "-20px",
         }}
       >
-        <img src={props.poster} height="260" width="220" />{" "}
+        <img src={props.poster} height="260" width="220" />
       </div>
       <div
         id="App"
@@ -43,7 +46,6 @@ const CardInitial = (props) => {
           background: "transparent",
         }}
       >
-
         <div
           id="images1"
           className="card-body"
@@ -55,7 +57,7 @@ const CardInitial = (props) => {
             padding: "10px 10px",
             left: 0,
             bottom: 0,
-            position: "absolute"
+            position: "absolute",
           }}
         >
           <a href={props.netflixLink} target="_blank">
@@ -85,7 +87,7 @@ const CardInitial = (props) => {
         {props.title}
       </h1>
     </div>
-  );
+  ) 
 };
 
 export default CardInitial;

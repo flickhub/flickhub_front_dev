@@ -1,44 +1,3 @@
-// import React from 'react';
-// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-// import Cards from './Cards';
-// // import InfoPage from './InfoPage';
-
-// const Routers = () => {
-//     return (
-//       <Router>
-//         <div>
-//           <nav>
-//             <ul style={{ color: "white" }}>
-//               <a Link to="/">
-//                 Home
-//               </a>
-//               <a Link to="/about">
-//                 About
-//               </a>
-//               <a Link to="/moreInfo">
-//                 Users
-//               </a>
-//             </ul>
-//           </nav>
-
-//           <Switch>
-//             {/* <Route path="/about">
-//             <About />
-//           </Route> */}
-//             {/* <Route path="/moreInfo">
-//               <InfoPage />
-//             </Route> */}
-//             <Route path="/">
-//               <Cards />
-//             </Route>
-//           </Switch>
-//         </div>
-//       </Router>
-//     );
-// }
-
-// export default Routers;
-
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -50,136 +9,164 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import CardInitial from "./CardInitial";
-import Cards from "./Cards";
+import "./App.css";
+import Flickhub from "./Flickhub";
+import Feedback from "./Feedback";
 import Filter from "./Filter";
-import { titles } from "./utils/response";
-import Hover from "./Hover";
+import About from './About'
+import { icons } from "./constants/icons";
+import flickhub from './assets/images/logo3.jpg'
+import Search from "./Search";
 import InfoPage from "./InfoPage";
 
-  
+
+
+// export const RoutersGo = (props) => {
+//   return (
+//     <Router>
+//       <div style={{ zIndex: "1" }}>
+//         <Link to="/">Go</Link>
+//       </div>
+//       <Switch>
+//         <Route path="/">
+//           <InfoPage item={props.state} />
+//         </Route>
+//       </Switch>
+//     </Router>
+//   );
+// };
+
 function Routers(props) {
-  
+
+
+const [search, setSearch] = React.useState(false)
+  const [find, setFind] = React.useState("");
+
+    const searchBar = (
+      <input
+        type="text"
+        placeholder="Search"
+        autoFocus={true}
+        style={{
+          transition: "all 0.5s ease",
+          width: "0px",
+          background: "rgba(50,50,50)",
+          border: "none",
+          borderRadius: "15px",
+          padding: "10px",
+          color: "white",
+          marginLeft: "550px",
+        }}
+        onFocus={(e) => {
+          e.target.style.width = "300px";
+        }}
+        onBlur={(e) => {
+          e.target.style.width = "0px";
+          
+        }}
+        // onFocus={() => {setSearch(true)}}
+        // onBlur={() => {
+        //   setSearch(false)
+        //   search
+        //     ? (scrollRef.current.style.display = "flex")
+        //     : (scrollRef.current.style.display = "none");
+        // }}
+        onChange={(e) => {
+          onChange(e);
+        }}
+      />
+    );
+
+    const onChange = (e) => {
+      setFind(e.target.value);
+    };
+
   return (
     <Router>
-      <div>/
-        <ul>
+      <ul>
+        <li id="leftBtn" style={{ color: "white" }}>
+          <Link to="/">
+            <div style={{ display: "flex", transition: "all 1s ease" }}>
+              <img
+                src={flickhub}
+                height="45px"
+                width="45px"
+                style={{ padding: "5px" }}
+              />
+              <div style={{ transition: "all 1s ease" }}>
+                <button
+                  type="button"
+                  className="btn btn-link fa fa-search"
+                  onClick={(e) => {
+                    setSearch(!search)
+                    // e.target.style.transform = "translate(-100px,0px)";
+                  }}
+                  style={{
+                    fontSize: "18px",
+                    fontStyle: "none",
+                    position: "fixed",
+                    marginTop: "6px",
+                    marginLeft: "810px",
+                    transition: "all 1s ease",
+                  }}
+                ></button>
+                {search ? searchBar : null}
+                {search ? <Search search={search} find={find} /> : null}
+              </div>
+            </div>
+          </Link>
+        </li>
+        <li id="leftBtn" style={{ color: "white" }}></li>
+        <div id="navRight">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/search"></Link>
           </li>
           <li>
-            <Link to="/title">Card</Link>
-          </li>
-          <li>
-            <Link to="/filter">
-              <Buttons />
+            <Link to="/about">
+              <button className="btn btn-link">About</button>
             </Link>
           </li>
           <li>
-            <Link to="/more">Info Page</Link>
+            <Link to="/filter">
+              <button className="btn btn-link">Filtered Search</button>
+            </Link>
           </li>
-          <li></li>
-        </ul>
-
-        <Switch>
-          <Route
-            exact
-            path="/more"
-            render={(props) => <InfoPage item={titles()[3]} isAuthed={true} />}
-            active
-          >
-          </Route>
-          <Route path="/filter">
-            <Redirect from="/filter" to="/more" />
-          </Route>
-          <Route path="/title">
-            <GoToPage />
-          </Route>
-          <Route path="/">
-            <Cards />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
-const Buttons = () => {
-  return <button type="button"  >GO</button>
-}
-
-const GoToPage = () => {
-  const [go, setGo] = React.useState(false);
-  const [click, setClick] = React.useState();
-
-  return (
-    <div onClick={() => setGo(!go)} style={{ zIndex: "0", overflow: "auto" }}>
-      <div style={{ display: "flex" }}>
-        {titles().map((item) => {
-          return (
-            <div
-              onClick={() => {
-                setClick(item);
-                
-              }}
-            >
-              <Hover item={item} />
-            </div>
-          );
-        })}
-      </div>
-
-      {/* <div
-        style={{
-          opacity: go ? "1" : "0",
-          position: "fixed",
-          top: "0",
-          transition: "all 1s ease-out",
-
-        }}
-      >
-        {click != null ? <InfoPage item={click} /> : null}
-      </div> */}
-    </div>
-  );
-};
-
-const RenderComps = () => {
-  const match = useRouteMatch();
-  return (
-    <div>
-      <ul>
-        <li>
-          <Link to={`${match.url}/Text there`}>Text here</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/component2`}>Component 2</Link>
-        </li>
+          <li>
+            <Link to="/feedback">
+              <button className="btn btn-link">Feedback</button>
+            </Link>
+          </li>
+        </div>
       </ul>
 
       <Switch>
-        <Route path={`${match.path}/:componentsID`}>
-          <CardInitial title="This is rendered from RenderComp" />
+        <Route path="/feedback">
+          <Feedback />
         </Route>
-        <Route path={`${match.path}`}>
-          <h3>SELECTED: </h3>
+        <Route path="/filter">
+          <Filter
+            netflixIcon={icons.netflixIcon}
+            primeVideoIcon={icons.primeVideoIcon}
+            hotstarIcon={icons.hotstarIcon}
+          />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        {/* <Route path='/search'><Search /></Route> */}
+        {/* <Route to path="/more">
+          <InfoPage item={titles()[0]} />
+        </Route> */}
+        <Route path="/about">
+          <Search search={search} />
+        </Route>
+        <Route path="/">
+          <div>
+            <Flickhub />
+          </div>
         </Route>
       </Switch>
-    </div>
-  );
-};
-function Greet(props) {
-  return <h1>{props.id}</h1>;
-}
-
-function RenderComp() {
-  const { componentsID } = useParams();
-  const [state, setState] = React.useState(false);
-  return (
-    <div>
-      {state ? <Greet id={componentsID} /> : null}
-      <h1 onClick={() => setState(!state)}>SELECTED: {componentsID}</h1>
-    </div>
+    </Router>
   );
 }
 

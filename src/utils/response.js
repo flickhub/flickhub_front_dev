@@ -22,6 +22,10 @@ export const theWitcher = new responseObj(
   "2019"
 );
 
+
+
+
+
 export const mindHunter = new responseObj(
   "Mindhunter(2017-2019)",
   " Set in the late 1970s, two FBI agents are tasked with interviewing serial killers to solve open cases. ",

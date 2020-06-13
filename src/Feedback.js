@@ -51,7 +51,7 @@ const Feedback = (props) => {
         <div
           style={{
             width: selected ? "900px" : "0px",
-            transition: "all 1s linear",
+            transition: "all 0.7s linear",
             display: "flex",
             justifyContent: "center",
           }}
@@ -74,7 +74,7 @@ const Feedback = (props) => {
               marginTop: "23px",
               position: "fixed",
               color: "#999999",
-              transition: "all 0.5s ease",
+              // transition: "all 0.5s ease",
             }}
           >
             FirstName
