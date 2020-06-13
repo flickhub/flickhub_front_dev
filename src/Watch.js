@@ -1,14 +1,19 @@
 import React from "react";
 import "./App.css";
-
+import { Link, Route } from "react-router-dom";
 import { icons } from "./constants/icons";
+import InfoPage from "./InfoPage";
+import { titles } from "./utils/response";
+import CardInitial from "./CardInitial";
+import Routers from "./Routers";
 
 
 const Watch = (props) => {
 
   const [trailer, setTrailer] = React.useState(icons.netflixIcon)
 
-  setTimeout(() => {setTrailer(props.youtubeLink)}, 510)
+
+  setTimeout(() => {setTrailer(titles()[0].ott.youtube)}, 510)
 
   const trailerRef = React.useRef()
   return (
@@ -34,10 +39,9 @@ const Watch = (props) => {
           marginRight: "-10px",
           width: "95%",
           fontWeight: "bold",
-          // padding: "0px"
+          padding: "0px"
         }}
-      >
-        Go to Page
+      >Go To Page
       </button>
 
       <h1

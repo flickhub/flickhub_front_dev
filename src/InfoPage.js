@@ -1,12 +1,10 @@
 import React from "react";
-import {Link} from 'react-router-dom';
 
 import Review from "./Review.js";
-import Navbar from "./Navbar.js";
-
-import { theWitcherCommentsArray } from "./utils/response";
+import { theWitcherCommentsArray, titles } from "./utils/response";
 import { commentsObj } from "./utils/network";
 import "./App.css";
+import { icons } from "./constants/icons.js";
 
 const InfoPage = (props) => {
 
@@ -35,96 +33,94 @@ const InfoPage = (props) => {
   };
 
   return (
-       <div
-      ref={hideRef}
-      id="moreInfoContainer"
-      style={{
-        borderRadius: "5px",
-        transition: "all 0.7s ease",
-        padding: "50px",
-        zIndex: "1",
+    <div>
+      {/* <Router>
+    <Link to='/more'>Go</Link>
+      <Route path='/more'> */}
+      <div
+        ref={hideRef}
+        id="moreInfoContainer"
+        style={{
+          borderRadius: "5px",
+          transition: "all 0.7s ease",
+          padding: "50px",
+          zIndex: "1",
+        }}
+      >
 
-      }}
-    >
-     
         <div>
-          {/* <button
-            className="btn btn-link"
-            style={{
-              left: "0",
-              top: "50px",
-              position: "fixed",
-              backgroundColor: "black",
-              width: "100%",
-            }}
-            onClick={() => {
-              // hideRef.current.style.top = "300px";
-            }}
-          >
-            Hide
-          </button> */}
           <div id="innerContainer" style={{ zIndex: "0" }}>
             <img
               id="dark"
-              src={item.poster}
+              src={item.image}
               style={{ marginLeft: "50px" }}
               alt="Image Unavailable"
               height="400px"
               width="300px"
             />
             <div id="right">
-              <h1>{item.title}</h1>
+              <h1>{item.name}</h1>
               <br />
               <br />
               <div id="infoRight">
                 <p>
-                  <b>{item.synopsis}</b>
-                </p>
-                <p>
-                  <b>{item.director}</b>
+                  <b>{item.plot}</b>
                 </p>
                 <p>
                   <b>{item.cast}</b>
+                </p>
+                <p>
+                  <b>{item.rating}</b>
                 </p>
               </div>
 
               <div id="ImagesDiv" Link>
                 <b>Stream:</b>
-                <a href={item.ott.netflix} target="_blank">
+                <a 
+                // href={titles().netflix} 
+                target="_blank">
                   <img
                     id="thumbnail"
-                    src={item.ott.icons.netflixIcon}
+                    src={icons.netflixIcon}
                     height="50px"
                   />
                 </a>
-                <a href={item.ott.primeVideo} target="_blank">
+                <a 
+                // href={titles().primeVideo}
+                 target="_blank">
                   <img
                     id="thumbnail"
-                    src={item.ott.icons.primeVideoIcon}
+                    src={icons.primeVideoIcon}
                     height="50px"
                   />
                 </a>
-                <a href={item.ott.hotstar} target="_blank">
+                <a 
+                // href={titles().hotstar} 
+                target="_blank">
                   <img
                     id="thumbnail"
-                    src={item.ott.icons.hotstarIcon}
+                    src={icons.hotstarIcon}
                     height="50px"
                   />
                 </a>
               </div>
               <div id="ImagesDiv">
                 <b>Ratings:</b>
-                <a href={item.ott.imdb} target="_blank">
+                <a 
+                // href={item.ott.imdb}
+                 target="_blank">
                   <img
                     id="thumbnail"
-                    src={item.ott.icons.imdbIcon}
+                    src={icons.imdbIcon}
                     height="50px"
                   />
                 </a>
-                <a href={item.ott.rottenTomatoes} target="_blank">
+                <a 
+                // href={item.ott.rottenTomatoes}
+                 target="_blank">
                   <img
                     id="thumbnail"
-                    src={item.ott.icons.rottenTomatoesIcon}
+                    src={icons.rottenTomatoesIcon}
                     height="50px"
                   />
                 </a>
@@ -136,7 +132,7 @@ const InfoPage = (props) => {
             <iframe
               width="1000"
               height="500"
-              src={item.ott.youtube}
+              // src={item.ott.youtube}
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen="true"
@@ -218,8 +214,8 @@ const InfoPage = (props) => {
             return <Review review={item.comment} user={item.userName} />;
           })}
         </div>
-      
-      <Navbar />
+      </div>
+      {/* </Route></Router> */}
     </div>
   );
 };

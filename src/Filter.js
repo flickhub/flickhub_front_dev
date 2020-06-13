@@ -109,7 +109,6 @@ const Filter = (props) => {
       });
   };
 
-
   return (
     <div
       style={{
@@ -209,28 +208,29 @@ const Filter = (props) => {
         >
           Year
         </button>
-        <div></div>
       </div>
-      {options
-        ? titles().map((item) => {
-            return (
-              <button
-                className="btn btn-danger"
-                style={{ margin: "10px" }}
-                onClick={(e) => {
-                  setYear(item.year);
-                  {
-                    clickStyle(e);
-                    selected ? setFilter(filterYear()) : setFilter(<Cards />);
-                  }
-                  setSelected(!selected);
-                }}
-              >
-                {item.year}
-              </button>
-            );
-          })
-        : null}
+      <div style={{display: "flex",}}>
+        {options
+          ? titles().map((item) => {
+              return (
+                <button
+                  className="btn btn-danger"
+                  style={{ margin: "10px"}}
+                  onClick={(e) => {
+                    setYear(item.year);
+                    {
+                      clickStyle(e);
+                      selected ? setFilter(filterYear()) : setFilter(<Cards />);
+                    }
+                    setSelected(!selected);
+                  }}
+                >
+                  {item.year}
+                </button>
+              );
+            })
+          : null}
+      </div>
       <button
         type="button"
         className="btn btn-link"
@@ -245,13 +245,9 @@ const Filter = (props) => {
       </button>
 
       <FilteredResults selected={selected} results={filter} />
-      <FilteredResults selected={selected} results={net} />
+      {/* <FilteredResults selected={selected} results={net} />
       <FilteredResults selected={selected} results={prim} />
-      <FilteredResults selected={selected} results={hot} />
-
-      {/* {Object.keys(items).map((item, index) => (
-          <div key={`filtered-items-${index}`}>{item}</div>
-        ))} */}
+      <FilteredResults selected={selected} results={hot} /> */}
     </div>
   );
 };

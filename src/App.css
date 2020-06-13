@@ -1,19 +1,19 @@
 body {
-background-color: #101010;
-overflow-x: hidden;
-  margin-top : 100px;
-  margin-bottom: 100px;
+  overflow-x: hidden;
+  /* margin-top : 100px; */
+  /* margin-bottom: 100px; */
+  background-image: url("./assets/images/38.jpg");
+  background-size: contain;
+  height: 100vh;
 }
 
-/* #root {
+#root {
   display: flex;
   justify-content: center;
-  background-color: #101010;
-  scroll-behavior: smooth;
-  transition: "all 1s linear";
-
-
-} */
+  background-image: url("./assets/images/38.jpg");
+  background-size: contain;
+  height: 100vh;
+}
 
 .fa-chevron-circle-left {
   opacity: 0.6;
@@ -31,35 +31,36 @@ overflow-x: hidden;
   opacity: 1;
 }
 
-
-
-
-header {
+ul {
   display: flex;
-  align-content: center;
+  background-color: black;
+  min-width: 100vw;
+  top: 0;
+  left: 0;
+  position: fixed;
   z-index: 1;
-  width: 100%;
-  padding: 0px 20px;
 }
 
-#leftBtn {
-  float: left;
-}
-
-
-#rightBtn button{
-  margin-right: 20px;
-  
-}
-
-#rightBtn button:hover{
-  color: orange;
-}
-
-#rightBtn {
+#navRight {
   right: 0;
   position: absolute;
-  font-weight: 0px;
+  display: flex;
+  margin-right: 30px;
+}
+
+#navRight li {
+  margin: 0px 15px;
+}
+
+.btn-link {
+  color: white;
+  /* align-self: flex-start; */
+  font-size: 20px;
+}
+
+.btn-link:hover {
+  color: orange;
+  text-decoration: none;
 }
 
 #App {
@@ -77,7 +78,7 @@ header {
 
 #container1 {
   height: 300px;
-  width: 250px;   
+  width: 250px;
   transition: 0.7s ease;
 }
 
@@ -114,12 +115,11 @@ header {
   position: relative;
 }
 
-
 #newIdImg {
   z-index: 1;
   position: absolute;
   margin-top: 410px;
-  background-color: grey ;
+  background-color: grey;
   width: 378px;
   padding-bottom: 20px;
 }
@@ -134,7 +134,7 @@ header {
   color: white;
   font-size: 20px;
   margin-left: -118px;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border: 1 px solid black;
   border-radius: 15px;
 }
@@ -164,7 +164,6 @@ header {
   margin-left: 40px;
   font-size: 20px;
 }
-
 
 #images {
   top: 0;
@@ -201,7 +200,7 @@ img {
 
 #thumbnail {
   border-radius: 5px;
-  
+  background-color: white;
 }
 
 #AddComment {
@@ -211,7 +210,6 @@ img {
   justify-content: center;
   align-items: center;
 }
-
 
 #commentInput {
   margin-top: 150px;
@@ -244,13 +242,12 @@ select {
   border: 2px solid black;
   border-radius: 10px;
   padding: 50px;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.9);
 }
 
 #rate button {
   width: 38%;
 }
-
 
 #revDiv {
   font-size: 20px;
@@ -264,7 +261,7 @@ select {
   width: 70%;
   margin-left: 20px;
   border-radius: 15px;
-  background-color: rgba(46, 50,50);
+  background-color: rgba(46, 50, 50);
   color: white;
   padding: 20px;
   border: 1px solid black;
@@ -299,41 +296,23 @@ a:hover {
 }
 
 .goToBtn {
-
   padding: 5px 10px;
   color: black;
 }
 
-.btn-link {
-  color: white;
-  align-self: flex-start;
-  font-size: 20px;
-}
-
-.btn-link:hover {
-  color: orange;
-  text-decoration: none;
-}
-
-
-
-
-
 #divs {
   display: flex;
   justify-content: center;
-  background-color: #101010;
+  /* background-color: #101010; */
   transition: "all 1s linear";
-  background-image: url("./flickhub.png");
+  /* background-image: url("./flickhub.png"); */
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-#browseBtnDown {
-  margin-top: 500px;
-}
 
-#browseBtnUp, #browseBtnDown {
+#browseBtnUp,
+#browseBtnDown {
   font-size: 50px;
 }
 

@@ -2,31 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import * as serviceWorker from "./serviceWorker";
-import Navbar from "./Navbar";
-import Cards from "./Cards";
 
 import "./index.css";
 import "./App.css";
+import Routers, { RoutersGo } from "./Routers";
+import Search from "./Search";
+import CardInitial from "./CardInitial";
+import Cards from "./Cards";
 import Flickhub from "./Flickhub";
 
 ReactDOM.render(
-  // <div
-  //   id="mainDiv"
-  //   style={{
-  //     zIndex: "1",
-  //     paddingBottom: "450px",
-  //     paddingTop: "150px",
-  //     paddingLeft: "30px",
-  //     marginBottom: "100px",
-  //     backgroundColor: "#101010",
-  //   }}
-  // >
-  //   <Navbar />
-  //   {/* <Routers /> */}
-  //   <Cards />
-  // </div>,
 
-  <Flickhub />
+  <div>
+    <Routers />
+  </div>
+  
   ,
   document.getElementById("root")
 );
