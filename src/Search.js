@@ -2,6 +2,8 @@ import React from "react";
 import { titles } from "./utils/response";
 import CardInitial from "./CardInitial";
 import { icons } from "./constants/icons";
+import Cards from "./Cards";
+
 
 
 const Search = (props) => {
@@ -13,7 +15,7 @@ const Search = (props) => {
   const [respObj, setRespObj] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("http://085b41a4ac71.ngrok.io/submit/1920", {
+    fetch("http://localhost:8080/title", {
       header: {
         "Access-Control-Allow-Origin": "*",
       },
@@ -21,7 +23,7 @@ const Search = (props) => {
       .then((response) => {
         return response.json();
       })
-      .then((response) => setRespObj(response.data))
+      .then((response) => setRespObj(response))
       .catch((error) => console.log("error", error));
   }, []);
 
@@ -29,7 +31,7 @@ const Search = (props) => {
   const items = () => {
     const filteredTitles = respObj
       .filter((data) => {
-        if (data.name.toLowerCase().includes(props.find.toLowerCase())) {
+        if (data.response.name.toLowerCase().includes(props.find.toLowerCase())) {
           return data;
         }
       })
@@ -45,7 +47,7 @@ const Search = (props) => {
             }}
           >
             {respObj.map((name) => {
-              if (JSON.stringify(data) == JSON.stringify(name)) {
+              if (JSON.stringify(data.response) == JSON.stringify(name.response)) {
                 return (
                   <div
                     style={{
@@ -57,16 +59,37 @@ const Search = (props) => {
                     className="col"
                     onClick={() => setGoToPage(true)}
                   >
-                    <CardInitial
-                      title={data.name}
-                      poster={data.image}
-                      netflixLink={data.urlname}
-                      netflixIcon={icons.netflixIcon}
-                      primeVideoLink={data.urlname}
-                      primeVideoIcon={icons.primeVideoIcon}
-                      hotstarLink={data.urlname}
-                      hotstarIcon={icons.hotstarIcon}
-                    />
+                    {/* <CardInitial
+                      title={data.response.name}
+                      poster={data.response.image}
+                      netflixLink={
+                        data.response.ott.netflix == ""
+                          ? null
+                          : icons.netflixIcon
+                      }
+                      netflixIcon={
+                        data.response.ott.netflix == ""
+                          ? null
+                          : icons.netflixIcon
+                      }
+                      primeVideoLink={
+                        data.response.ott.primeVideo
+                      }
+                      primeVideoIcon={
+                        data.response.ott.primeVideo == ""
+                          ? null
+                          : icons.primeVideoIcon
+                      }
+                      hotstarLink={
+                        data.response.ott.hotstar
+                      }
+                      hotstarIcon={
+                        data.response.ott.hotstar == ""
+                          ? null
+                          : icons.netflixIcon
+                      }
+                    /> */}
+                    <Cards />
                   </div>
                 );
               }
@@ -109,6 +132,7 @@ const Search = (props) => {
         style={{
           transition: "all 0.5s ease",
           display: "flex",
+          marginTop: "200px"
         }}
         ref={scrollRef}
       >

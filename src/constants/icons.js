@@ -1,14 +1,23 @@
-import netflixIcon from '../assets/images/1.png'
-import primeVideoIcon from '../assets/images/2.png'
+import netflixIcon from "../assets/images/1.png";
+import primeVideoIcon from "../assets/images/2.png";
 import hotstarIcon from "../assets/images/8.png";
+import erosNowIcon from "../assets/images/3.png";
+import sonyLivIcon from "../assets/images/4.jpeg";
+import altBalajiIcon from "../assets/images/5.png";
+import zee5Icon from "../assets/images/6.jpeg";
+import vootIcon from "../assets/images/7.png";
+import viuIcon from "../assets/images/9.png";
 
 export const icons = {
-  netflixIcon:
-    netflixIcon,
-  primeVideoIcon:
-    primeVideoIcon,
-  hotstarIcon:
-    hotstarIcon,
+  netflixIcon: netflixIcon,
+  primeVideoIcon: primeVideoIcon,
+  hotstarIcon: hotstarIcon,
+  erosNowIcon: erosNowIcon,
+  sonyLivIcon: sonyLivIcon,
+  altBalajiIcon: altBalajiIcon,
+  zee5Icon: zee5Icon,
+  vootIcon: vootIcon,
+  viuIcon: viuIcon,
   imdbIcon:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/1200px-IMDB_Logo_2016.svg.png",
   rottenTomatoes:

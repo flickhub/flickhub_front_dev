@@ -1,30 +1,19 @@
-const baseUrl = "http://085b41a4ac71.ngrok.io";
+import React from "react";
 
-const httpService = async ({ url, method, body }) => {
-  let response;
-
-  const options =
-    !method || method === "GET"
-      ? {
-          header: {
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      : {
-          header: {
-            "Access-Control-Allow-Origin": "*",
-          },
-          method,
-          body: JSON.stringify(body),
-        };
-
-  await fetch(`${baseUrl}${url}`, options)
-    .then((res) => res.json())
-    .then((res) => {
-      response = res;
+const respObj = 
+  // React.useEffect(() => {
+     fetch("http://localhost:8080/title", {
+      header: {
+        "Access-Control-Allow-Origin": "*",
+      },
     })
-    .catch((error) => console.log("error", error));
-  return response;
-};
+      .then((response) => {
+        return response.json();
+      })
+      // .then((response) => setRespObj(response))
+      .then(response => console.log(response))
+      .catch((error) => console.log("error", error));
+  // }, []);
 
-export default httpService;
+
+export default respObj;

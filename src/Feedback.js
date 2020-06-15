@@ -28,7 +28,8 @@ const Feedback = (props) => {
   return (
     <div
       style={{
-        border: "2px solid #999999",
+        // border: "2px solid #999999",
+        background: "rgba(1,1,1,0.5)",
         borderRadius: "5px",
         display: "flex",
         flexDirection: "column",

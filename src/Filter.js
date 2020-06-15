@@ -3,6 +3,7 @@ import { titles } from "./utils/response";
 import Hover from "./Hover";
 import Cards from "./Cards";
 import FilteredResults from "./FilteredResults";
+import { responseObj } from "./utils/network";
 
 const initialItemsState = {
   netflix: null,
@@ -12,16 +13,19 @@ const initialItemsState = {
 
 const Filter = (props) => {
   const [year, setYear] = React.useState();
+  const [rate, setRate] = React.useState();
+
   const [options, setOptions] = React.useState(false);
 
   const [selected, setSelected] = React.useState(false);
+  const [select, setSelect] = React.useState(false)
   const [filter, setFilter] = React.useState(<Cards />);
   const [net, setNet] = React.useState();
   const [prim, setPrim] = React.useState();
   const [hot, setHot] = React.useState();
-  // const [filter, setFilter] = React.useState();
-
+  const [respObj, setRespObj] = React.useState(null)
   const [items, setItems] = React.useState(initialItemsState);
+  const [state, setState] = React.useState({netflix: null, primeVideo: null, hotstar: null})
 
   const itemsSetter = (key, value) => {
     setItems({ ...initialItemsState, [key]: value });
@@ -39,16 +43,33 @@ const Filter = (props) => {
 
   const filterYear = () => {
     // setFilter(
-    return titles()
+    return respObj
       .filter((item) => {
-        if (item.year.includes(year)) {
+        if (item.response.year.includes(year)) {
           return item;
         }
       })
       .map((item) => {
-        return titles().map((names) => {
-          if (names == item) {
-            return <Hover item={names} />;
+        return respObj.map((names) => {
+          if (names.response == item.response) {
+            return <Hover item={names.response} />;
+          }
+        });
+      });
+  };
+
+  const filterRate = () => {
+    // setFilter(
+    return respObj
+      .filter((item) => {
+        if (item.response.rate.includes(rate)) {
+          return item;
+        }
+      })
+      .map((item) => {
+        return respObj.map((names) => {
+          if (names.response == item.response) {
+            return <Hover item={names.response} />;
           }
         });
       });
@@ -57,18 +78,18 @@ const Filter = (props) => {
   const filterNetflix = () => {
     // setFilter(
     // const array=[]
-    return titles()
+    return respObj
       .filter((item) => {
-        if (item.ott.netflix != null) {
+        if (item.response.ott.netflix != null) {
           // array.push(item)
           // console.log("Array", array)
           return item;
         }
       })
       .map((item) => {
-        return titles().map((name) => {
-          if (JSON.stringify(name) == JSON.stringify(item)) {
-            return <Hover item={name} />;
+        return respObj.map((name) => {
+          if (JSON.stringify(name.response) == JSON.stringify(item.response)) {
+            return <Hover item={name.response} />;
           }
         });
       });
@@ -77,16 +98,16 @@ const Filter = (props) => {
 
   const filterPrimeVideo = () => {
     // setFilter(
-    return titles()
+    return respObj
       .filter((item) => {
-        if (item.ott.primeVideo != null) {
+        if (item.response.ott.primeVideo != null) {
           return item;
         }
       })
       .map((item) => {
-        return titles().map((name) => {
-          if (JSON.stringify(name) == JSON.stringify(item)) {
-            return <Hover item={name} />;
+        return respObj.map((name) => {
+          if (JSON.stringify(name.response) == JSON.stringify(item.response)) {
+            return <Hover item={name.response} />;
           }
         });
       });
@@ -94,22 +115,35 @@ const Filter = (props) => {
 
   const filterHotstar = () => {
     // setFilter(
-    return titles()
+    return respObj
       .filter((item) => {
-        if (item.ott.hotstar != null) {
+        if (item.response.ott.hotstar != null) {
           return item;
         }
       })
       .map((item) => {
-        return titles().map((name) => {
-          if (JSON.stringify(name) == JSON.stringify(item)) {
-            return <Hover item={name} />;
+        return respObj.map((name) => {
+          if (JSON.stringify(name.response) == JSON.stringify(item.response)) {
+            return <Hover item={name.response} />;
           }
         });
       });
   };
 
-  return (
+    React.useEffect(() => {
+      fetch("http://localhost:8080/title", {
+        header: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => setRespObj(response))
+        .catch((error) => console.log("error", error));
+    }, []);
+
+  return respObj ? (
     <div
       style={{
         transition: "all 1s ease",
@@ -209,15 +243,15 @@ const Filter = (props) => {
           Year
         </button>
       </div>
-      <div style={{display: "flex",}}>
+      <div style={{ display: "flex" }}>
         {options
-          ? titles().map((item) => {
+          ? respObj.map((item) => {
               return (
                 <button
                   className="btn btn-danger"
-                  style={{ margin: "10px"}}
+                  style={{ margin: "10px" }}
                   onClick={(e) => {
-                    setYear(item.year);
+                    setYear(item.response.year);
                     {
                       clickStyle(e);
                       selected ? setFilter(filterYear()) : setFilter(<Cards />);
@@ -225,7 +259,37 @@ const Filter = (props) => {
                     setSelected(!selected);
                   }}
                 >
-                  {item.year}
+                  {item.response.year}
+                </button>
+              );
+            })
+          : null}
+      </div>
+      <button
+        className="btn btn-light"
+        onClick={() => {
+          setSelect(!select);
+        }}
+      >
+        Rating
+      </button>
+      <div style={{ display: "flex" }}>
+        {
+         select ? respObj.map((item) => {
+              return (
+                <button
+                  className="btn btn-danger"
+                  style={{ margin: "10px" }}
+                  onClick={(e) => {
+                    setRate(item.response.rate);
+                    {
+                      clickStyle(e);
+                      selected ? setFilter(filterRate()) : setFilter(<Cards />);
+                    }
+                    setSelected(!selected);
+                  }}
+                >
+                  {item.response.rate}
                 </button>
               );
             })
@@ -245,10 +309,9 @@ const Filter = (props) => {
       </button>
 
       <FilteredResults selected={selected} results={filter} />
-      {/* <FilteredResults selected={selected} results={net} />
-      <FilteredResults selected={selected} results={prim} />
-      <FilteredResults selected={selected} results={hot} /> */}
     </div>
+  ) : (
+    <p>Loading. . .</p>
   );
 };
 

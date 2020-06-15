@@ -1,25 +1,16 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import "./App.css";
-import Flickhub from "./Flickhub";
+import Flickhub, { RoutingMainPage } from "./Flickhub";
 import Feedback from "./Feedback";
 import Filter from "./Filter";
-import About from './About'
+import About from "./About";
 import { icons } from "./constants/icons";
-import flickhub from './assets/images/logo3.jpg'
+import flickhub from "./assets/images/logo3.jpg";
 import Search from "./Search";
 import InfoPage from "./InfoPage";
-
-
+import Filter2 from "./Filter2";
 
 // export const RoutersGo = (props) => {
 //   return (
@@ -36,50 +27,53 @@ import InfoPage from "./InfoPage";
 //   );
 // };
 
+const SearchScreen = (props) => {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <p style={{ color: "#fff" }}>{props.match.params.searchString}</p>
+    </div>
+  );
+};
+
 function Routers(props) {
-
-
-const [search, setSearch] = React.useState(false)
+  const [search, setSearch] = React.useState(false);
   const [find, setFind] = React.useState("");
 
-    const searchBar = (
-      <input
-        type="text"
-        placeholder="Search"
-        autoFocus={true}
-        style={{
-          transition: "all 0.5s ease",
-          width: "0px",
-          background: "rgba(50,50,50)",
-          border: "none",
-          borderRadius: "15px",
-          padding: "10px",
-          color: "white",
-          marginLeft: "550px",
-        }}
-        onFocus={(e) => {
-          e.target.style.width = "300px";
-        }}
-        onBlur={(e) => {
-          e.target.style.width = "0px";
-          
-        }}
-        // onFocus={() => {setSearch(true)}}
-        // onBlur={() => {
-        //   setSearch(false)
-        //   search
-        //     ? (scrollRef.current.style.display = "flex")
-        //     : (scrollRef.current.style.display = "none");
-        // }}
-        onChange={(e) => {
-          onChange(e);
-        }}
-      />
-    );
+  const searchBar = (
+    <input
+      type="text"
+      placeholder="Search"
+      autoFocus={true}
+      style={{
+        transition: "all 0.5s ease",
+        width: "0px",
+        background: "rgba(50,50,50)",
+        border: "none",
+        borderRadius: "15px",
+        padding: "10px",
+        color: "white",
+        marginLeft: "550px",
+      }}
+      onFocus={(e) => {
+        e.target.style.width = "300px";
+      }}
+      onChange={(e) => {
+        onChange(e);
+      }}
+    />
+  );
 
-    const onChange = (e) => {
-      setFind(e.target.value);
-    };
+  const onChange = (e) => {
+    setFind(e.target.value);
+  };
 
   return (
     <Router>
@@ -98,7 +92,7 @@ const [search, setSearch] = React.useState(false)
                   type="button"
                   className="btn btn-link fa fa-search"
                   onClick={(e) => {
-                    setSearch(!search)
+                    setSearch(!search);
                     // e.target.style.transform = "translate(-100px,0px)";
                   }}
                   style={{
@@ -113,14 +107,12 @@ const [search, setSearch] = React.useState(false)
                 {search ? searchBar : null}
                 {search ? <Search search={search} find={find} /> : null}
               </div>
+              <li></li>
             </div>
           </Link>
         </li>
         <li id="leftBtn" style={{ color: "white" }}></li>
         <div id="navRight">
-          <li>
-            <Link to="/search"></Link>
-          </li>
           <li>
             <Link to="/about">
               <button className="btn btn-link">About</button>
@@ -144,26 +136,19 @@ const [search, setSearch] = React.useState(false)
           <Feedback />
         </Route>
         <Route path="/filter">
-          <Filter
+          {/* <Filter
             netflixIcon={icons.netflixIcon}
             primeVideoIcon={icons.primeVideoIcon}
             hotstarIcon={icons.hotstarIcon}
-          />
+          /> */}
+          <Filter2 />
         </Route>
         <Route path="/about">
           <About />
         </Route>
-        {/* <Route path='/search'><Search /></Route> */}
-        {/* <Route to path="/more">
-          <InfoPage item={titles()[0]} />
-        </Route> */}
-        <Route path="/about">
-          <Search search={search} />
-        </Route>
+        <Route path="/search/:searchString" component={SearchScreen} />
         <Route path="/">
-          <div>
-            <Flickhub />
-          </div>
+          <Flickhub />
         </Route>
       </Switch>
     </Router>
