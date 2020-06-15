@@ -26,12 +26,12 @@ export const Hover = (props) => {
     <CardInitial
       title={item.name}
       poster={item.image}
-      netflixLink={item.urlname}
-      primeVideoLink={item.urlname}
-      hotstarLink={item.urlname}
-      netflixIcon={icons.netflixIcon}
-      primeVideoIcon={icons.primeVideoIcon}
-      hotstarIcon={icons.hotstarIcon}
+      netflixLink={item.ott.netflix}
+      primeVideoLink={item.ott.primeVideo}
+      hotstarLink={item.ott.hotstar}
+      netflixIcon={item.ott.netflix == "" ? null : icons.netflixIcon}
+      primeVideoIcon={item.ott.primeVideo == "" ? null : icons.primeVideoIcon}
+      hotstarIcon={item.ott.hotstar == "" ? null : icons.hotstarIcon}
     />
   );
 
@@ -46,13 +46,13 @@ export const Hover = (props) => {
         content={item.plot}
         title={item.name}
         poster={item.image}
-        netflixLink={item.urlname}
-        primeVideoLink={item.urlname}
-        hotstarLink={item.urlname}
-        netflixIcon={icons.netflixIcon}
-        primeVideoIcon={icons.primeVideoIcon}
-        hotstarIcon={icons.hotstarIcon}
-        // youtubeLink={item.ott.youtube}
+        netflixLink={item.ott.netflix}
+        primeVideoLink={item.ott.primeVideo}
+        hotstarLink={item.ott.hotstar}
+        netflixIcon={item.ott.netflix == "" ? null : icons.netflixIcon}
+        primeVideoIcon={item.ott.primeVideo == "" ? null : icons.primeVideoIcon}
+        hotstarIcon={item.ott.hotstar == "" ? null : icons.hotstarIcon}
+        youtubeLink={item.ott.youtube}
       />
     </div>
   );

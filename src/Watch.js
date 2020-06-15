@@ -13,7 +13,7 @@ const Watch = (props) => {
   const [trailer, setTrailer] = React.useState(icons.netflixIcon)
 
 
-  setTimeout(() => {setTrailer(titles()[0].ott.youtube)}, 510)
+  setTimeout(() => {setTrailer(props.youtubeLink);}, 510)
 
   const trailerRef = React.useRef()
   return (
@@ -79,7 +79,7 @@ const Watch = (props) => {
           style={{
             display: "flex",
             justifyContent: "center",
-            height: "150px",
+            height: "100px",
             overflow: "auto",
             padding: "15px",
             background: "rgba(50,50,50,0.9)",
@@ -102,6 +102,7 @@ const Watch = (props) => {
           overflow: "scroll",
           backgroundColor: "rgba(60,60,60,0.8)",
           scrollbarWidth: "none",
+
         }}
       >
         <a href={props.netflixLink} target="_blank">

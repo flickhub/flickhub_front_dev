@@ -47,7 +47,6 @@ const InfoPage = (props) => {
           zIndex: "1",
         }}
       >
-
         <div>
           <div id="innerContainer" style={{ zIndex: "0" }}>
             <img
@@ -76,54 +75,49 @@ const InfoPage = (props) => {
 
               <div id="ImagesDiv" Link>
                 <b>Stream:</b>
-                <a 
-                // href={titles().netflix} 
-                target="_blank">
+                <a href={item.ott.netflix} target="_blank">
                   <img
                     id="thumbnail"
-                    src={icons.netflixIcon}
+                    src={item.ott.netflix == "" ? null : icons.netflixIcon}
                     height="50px"
                   />
                 </a>
-                <a 
-                // href={titles().primeVideo}
-                 target="_blank">
+                <a href={item.ott.primeVideo} target="_blank">
                   <img
                     id="thumbnail"
-                    src={icons.primeVideoIcon}
+                    src={
+                      item.ott.primeVideo == "" ? null : icons.primeVideoIcon
+                    }
                     height="50px"
                   />
                 </a>
-                <a 
-                // href={titles().hotstar} 
-                target="_blank">
+                <a href={item.ott.hotstar} target="_blank">
                   <img
                     id="thumbnail"
-                    src={icons.hotstarIcon}
+                    src={item.ott.hotstar == "" ? null : icons.hotstarIcon}
                     height="50px"
                   />
                 </a>
               </div>
               <div id="ImagesDiv">
                 <b>Ratings:</b>
-                <a 
-                // href={item.ott.imdb}
-                 target="_blank">
+                <a href={item.ott.imdb} target="_blank">
                   <img
                     id="thumbnail"
-                    src={icons.imdbIcon}
+                    src={item.ott.imdb == "" ? null : icons.imdbIcon}
                     height="50px"
                   />
                 </a>
-                <a 
-                // href={item.ott.rottenTomatoes}
-                 target="_blank">
+                {/* <a
+                  href={item.ott.rottenTomatoes}
+                  target="_blank"
+                >
                   <img
                     id="thumbnail"
-                    src={icons.rottenTomatoesIcon}
+                    src={item.ott.rottenTomatoes == "" ? null : icons.rottenTomatoes}
                     height="50px"
                   />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -132,7 +126,7 @@ const InfoPage = (props) => {
             <iframe
               width="1000"
               height="500"
-              // src={item.ott.youtube}
+              src={item.ott.youtube}
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen="true"
