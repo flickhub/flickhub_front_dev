@@ -1,17 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import App from "./App.js";
 import Watch from "./Watch.js";
 import CardInitial from "./CardInitial.js";
-import InfoPage from "./InfoPage.js";
 import { icons } from "./constants/icons.js";
 
 export const Hover = (props) => {
   const { item } = props;
 
   const [hover, setHover] = React.useState(false);
-  const [goto, setGoTo] = React.useState();
 
   const onMouseEnter = () => {
     setHover(true);
@@ -26,40 +23,32 @@ export const Hover = (props) => {
     <CardInitial
       title={item.name}
       poster={item.image}
-      netflixLink={item.ott.netflix}
-      primeVideoLink={item.ott.primeVideo}
-      hotstarLink={item.ott.hotstar}
-      netflixIcon={item.ott.netflix == "" ? null : icons.netflixIcon}
-      primeVideoIcon={item.ott.primeVideo == "" ? null : icons.primeVideoIcon}
-      hotstarIcon={item.ott.hotstar == "" ? null : icons.hotstarIcon}
+      // netflixLink={item.ott.netflix}
+      // primeVideoLink={item.ott.primeVideo}
+      // hotstarLink={item.ott.hotstar}
+      // netflixIcon={item.ott.netflix === "" ? null : icons.netflixIcon}
+      // primeVideoIcon={item.ott.primeVideo === "" ? null : icons.primeVideoIcon}
+      // hotstarIcon={item.ott.hotstar === "" ? null : icons.hotstarIcon}
     />
   );
 
   const renderExpanded = () => (
     <div
-      onClick={() => {
-        titlePage(item);
-        // setGoTo(<InfoPage item={item} />);
-      }}
     >
       <Watch
         content={item.plot}
         title={item.name}
         poster={item.image}
-        netflixLink={item.ott.netflix}
-        primeVideoLink={item.ott.primeVideo}
-        hotstarLink={item.ott.hotstar}
-        netflixIcon={item.ott.netflix == "" ? null : icons.netflixIcon}
-        primeVideoIcon={item.ott.primeVideo == "" ? null : icons.primeVideoIcon}
-        hotstarIcon={item.ott.hotstar == "" ? null : icons.hotstarIcon}
-        youtubeLink={item.ott.youtube}
+        // netflixLink={item.ott.netflix}
+        // primeVideoLink={item.ott.primeVideo}
+        // hotstarLink={item.ott.hotstar}
+        // netflixIcon={item.ott.netflix === "" ? null : icons.netflixIcon}
+        // primeVideoIcon={item.ott.primeVideo === "" ? null : icons.primeVideoIcon}
+        // hotstarIcon={item.ott.hotstar === "" ? null : icons.hotstarIcon}
+        // youtubeLink={item.ott.youtube}
       />
     </div>
   );
-
-  const titlePage = (e) => {
-    ReactDOM.render( <InfoPage item={e} />, document.getElementById('root'))
-  };
 
   return (
     <div id="hoverId" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -67,5 +56,6 @@ export const Hover = (props) => {
     </div>
   );
 };
+
 
 export default Hover;

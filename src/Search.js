@@ -1,24 +1,22 @@
 import React from "react";
-import { titles } from "./utils/response";
-import CardInitial from "./CardInitial";
-import { icons } from "./constants/icons";
-import Cards from "./Cards";
 
+import Hover from "./Hover";
+import Shimmer from "./Shimmer";
 
 
 const Search = (props) => {
   const searchRef = React.useRef();
   const scrollRef = React.useRef();
-
-  const [goToPage, setGoToPage] = React.useState(false);
-
   const [respObj, setRespObj] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/title", {
-      header: {
+    fetch("http://localhost:5000/submit", {
+      method: "POST",
+      headers: {
         "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({ mv_name: "iron man" }),
     })
       .then((response) => {
         return response.json();
@@ -29,25 +27,25 @@ const Search = (props) => {
 
   
   const items = () => {
-    const filteredTitles = respObj
+    const filteredTitles = respObj.data
       .filter((data) => {
-        if (data.response.name.toLowerCase().includes(props.find.toLowerCase())) {
+        if (data.name.toLowerCase().includes(props.find.toLowerCase())) {
           return data;
-        }
+        } else {return null}
       })
       .map((data) => {
         return (
           <div
             className="container"
             style={{
-              height: "500px",
+              height: "650px",
               padding: "10px",
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-start",
             }}
           >
-            {respObj.map((name) => {
-              if (JSON.stringify(data.response) == JSON.stringify(name.response)) {
+            {respObj.data.map((name) => {
+              if (JSON.stringify(data) === JSON.stringify(name)) {
                 return (
                   <div
                     style={{
@@ -57,42 +55,12 @@ const Search = (props) => {
                       cursor: "pointer",
                     }}
                     className="col"
-                    onClick={() => setGoToPage(true)}
+                  
                   >
-                    {/* <CardInitial
-                      title={data.response.name}
-                      poster={data.response.image}
-                      netflixLink={
-                        data.response.ott.netflix == ""
-                          ? null
-                          : icons.netflixIcon
-                      }
-                      netflixIcon={
-                        data.response.ott.netflix == ""
-                          ? null
-                          : icons.netflixIcon
-                      }
-                      primeVideoLink={
-                        data.response.ott.primeVideo
-                      }
-                      primeVideoIcon={
-                        data.response.ott.primeVideo == ""
-                          ? null
-                          : icons.primeVideoIcon
-                      }
-                      hotstarLink={
-                        data.response.ott.hotstar
-                      }
-                      hotstarIcon={
-                        data.response.ott.hotstar == ""
-                          ? null
-                          : icons.netflixIcon
-                      }
-                    /> */}
-                    <Cards />
+                    <Hover item={data} />
                   </div>
                 );
-              }
+              } else {return null}
             })}
           </div>
         );
@@ -120,7 +88,7 @@ const Search = (props) => {
         top: "0",
         margin: "50px 0px",
         background: "linear-gradient(to right, #0f0c29, #302b63, #24243e)",
-        overflow: "auto",
+        overflowX: "auto",
         borderRadius: "5px",
         marginLeft: "-85px",
         paddingLeft: "30px",
@@ -132,7 +100,6 @@ const Search = (props) => {
         style={{
           transition: "all 0.5s ease",
           display: "flex",
-          marginTop: "200px"
         }}
         ref={scrollRef}
       >
@@ -160,7 +127,6 @@ const Search = (props) => {
             className="fa fa-chevron-circle-right btn btn-link"
             style={{
               marginRight: "15px",
-              marginTop: "0px",
               right: "0",
               position: "fixed",
               fontSize: "80px",
@@ -176,7 +142,7 @@ const Search = (props) => {
     </div>
   ) : (
     <div style={{display: "flex", justifyContent: "center", alignContent: "center"}}>
-      <p style={{color: "white", fontSize: "30px"}}>Loading . . .</p>
+      <Shimmer />
     </div>
     
   )

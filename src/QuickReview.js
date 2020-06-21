@@ -16,7 +16,7 @@ const QuickReview = props => {
             className="fas fa-grin-alt"
             style={{
               fontSize: props.selected ? "75px" : "0px",
-              transition: "all 2s ease",
+              transition: "all 0.5s ease",
               color: "rgba(255,134,20)",
               padding: props.selected ? "10px" : "0px",
             }}
@@ -31,7 +31,7 @@ const QuickReview = props => {
             className="fas fa-frown"
             style={{
               fontSize: props.selected ? "75px" : "0px",
-              transition: "all 0.7s ease",
+              transition: "all 0.5s ease",
               color: "rgba(255,134,20)",
               padding: props.selected ? "10px" : "0px",
             }}
@@ -46,7 +46,7 @@ const QuickReview = props => {
             value="happy"
             style={{
               fontSize: props.selected ? "75px" : "0px",
-              transition: "all 0.7s ease",
+              transition: "all 0.5s ease",
               color: "rgba(255,134,20)",
               padding: props.selected ? "10px" : "0px",
             }}
@@ -61,7 +61,7 @@ const QuickReview = props => {
             value="thumbs-up"
             style={{
               fontSize: props.selected ? "75px" : "0px",
-              transition: "all 0.7s ease",
+              transition: "all 0.5s ease",
               color: "rgba(255,134,20)",
               padding: props.selected ? "10px" : "0px",
             }}

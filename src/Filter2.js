@@ -1,6 +1,6 @@
 import React from "react";
 import { icons } from "./constants/icons";
-import respObj from "./network/base-api";
+import Shimmer from "./Shimmer";
 
 const Filter2 = () => {
   const [selected, setSelected] = React.useState({
@@ -10,13 +10,14 @@ const Filter2 = () => {
     erosNow: false,
     sonyLiv: false,
     altBalaji: false,
-    zee5: false,
+    zee: false,
     voot: false,
     viu: false,
     year: [],
     rating: [],
     genre: [],
   });
+  
   const [respObj, setRespObj] = React.useState(null);
 
   const yearFilter = {
@@ -76,27 +77,28 @@ const Filter2 = () => {
     24: "Western",
   };
 
-  React.useEffect(() => {
-    fetch("http://localhost:8080/title", {
-      header: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => setRespObj(response))
-      .catch((error) => console.log("error", error));
-  }, []);
+  // React.useEffect(() => {
+  //   fetch("http://702017af4c17.ngrok.io/submit", {
+  //     method: "POST",
+  //     headers: {
+  //       "Access-Control-Allow-Origin": "*",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ mv_name: "iron man" }),
+  //   })
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((response) => setRespObj(response))
+  //     .catch((error) => console.log("error", error));
+  // }, []);
 
   const highlightSelected = (e) => {
     e.target.style.filter = "grayscale(0%)";
-    e.target.style.opacity = "1"
   };
 
   const unhighlightSelected = (e) => {
-    e.target.style.filter = "grayscale(100%)";
-    e.target.style.opacity = "0.6";
+    e.target.style.filter = "grayscale(80%)";
   };
 
   const selectFilter = (e) => {
@@ -107,26 +109,39 @@ const Filter2 = () => {
     e.target.style.backgroundColor = "";
   };
 
-//   React.useEffect(() => {
-//     console.log("Filters: ", selected);
-//   }, [selected]);
+  const filterValues = Object.keys(selected).map(item => {
+    return (item)
+  })
 
-  return respObj ? (
+  const sendFilters = () => {
+    const data = {
+      filterObject: {"filters": selected}
+    };
+
+    // fetch("http://localhost:8080/filter", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   // mode: "cors",
+    //   body: JSON.stringify(data),
+    // });
+  };
+
+  return(
+  //  respObj ? 
+  // (
     <div
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "flex-start",
-        margin: "75px 0px",
+        alignItems: "center",
+        marginTop: "75px",
         width: "70vw",
-        // border: "2px solid white",
+        flexDirection: "column",
         borderRadius: "5px",
-        transition: "all 1s ease",
-        paddingTop: "45px",
         background: "rgba(1,1,1,0.5)",
       }}
     >
-      <div style={{ position: "fixed", left: "100px" }}>
+      <div style={{ position: "fixed", left: "100px", top: "100px" }}>
         <button
           className="btn btn-link"
           onClick={() => {
@@ -137,7 +152,7 @@ const Filter2 = () => {
               erosNow: false,
               sonyLiv: false,
               altBalaji: false,
-              zee5: false,
+              zee: false,
               voot: false,
               viu: false,
               year: [],
@@ -150,11 +165,13 @@ const Filter2 = () => {
         </button>
       </div>
 
-      <div style={{ position: "fixed", right: "70px" }}>
+      <div style={{ position: "fixed", right: "70px", top: "100px" }}>
         <button
           className="btn btn-link"
           onClick={() => {
-            console.log("Filters: ", selected)
+            console.log("Filters: ", selected);
+            // console.log("filterValues", filterValues);
+            sendFilters();
           }}
         >
           Apply Filters
@@ -166,7 +183,7 @@ const Filter2 = () => {
           background: "rgba(255,255,255,0.2)",
           padding: "5px",
           display: "flex",
-          flexDirection: "column",
+          width: "65%",
           margin: "20px",
         }}
       >
@@ -177,13 +194,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.netflix ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.netflix ? "0.8" : "1",
             }}
             onClick={(e) => {
               setSelected({ ...selected, netflix: !selected.netflix });
-              !selected.netflix ? highlightSelected(e) : unhighlightSelected(e);
+              // !selected.netflix ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -194,15 +211,15 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.primeVideo ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.primeVideo ? "0.8" : "1",
             }}
             onClick={(e) => {
               setSelected({ ...selected, primeVideo: !selected.primeVideo });
-              !selected.primeVideo
-                ? highlightSelected(e)
-                : unhighlightSelected(e);
+              // !selected.primeVideo
+              //   ? highlightSelected(e)
+              //   : unhighlightSelected(e);
             }}
           />
         </a>
@@ -213,13 +230,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.hotstar ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.hotstar ? "0.8" : "1",
             }}
             onClick={(e) => {
               setSelected({ ...selected, hotstar: !selected.hotstar });
-              !selected.hotstar ? highlightSelected(e) : unhighlightSelected(e);
+              // !selected.hotstar ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -230,9 +247,9 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.erosNow ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.erosNow ? "0.8" : "1",
             }}
             onClick={(e) => {
               setSelected({ ...selected, erosNow: !selected.erosNow });
@@ -247,9 +264,9 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.sonyLiv ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.sonyLiv ? "0.8" : "1",
             }}
             onClick={(e) => {
               setSelected({ ...selected, sonyLiv: !selected.sonyLiv });
@@ -264,9 +281,9 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.altBalaji ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.altBalaji ? "0.8" : "1",
             }}
             onClick={(e) => {
               setSelected({ ...selected, altBalaji: !selected.altBalaji });
@@ -283,13 +300,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.zee ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.zee ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, zee5: !selected.zee5 });
-              !selected.zee5 ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, zee: !selected.zee });
+              !selected.zee ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -300,9 +317,9 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.voot ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.voot ? "0.8" : "1",
             }}
             onClick={(e) => {
               setSelected({ ...selected, voot: !selected.voot });
@@ -317,9 +334,9 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: "grayscale(100%)",
+              filter: !selected.viu ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: "0.6",
+              opacity: !selected.viu ? "0.8" : "1",
             }}
             onClick={(e) => {
               setSelected({ ...selected, viu: !selected.viu });
@@ -333,8 +350,10 @@ const Filter2 = () => {
         style={{
           backgroundColor: "rgba(255,255,255,0.2)",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          width: "65%",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          flexWrap: "wrap",
           padding: "10px",
           margin: "20px",
         }}
@@ -343,7 +362,13 @@ const Filter2 = () => {
           return (
             <button
               className="btn btn-light"
-              style={{ margin: "5px 0px", border: "none" }}
+              style={{
+                margin: "5px",
+                border: "none",
+                background: selected.year.includes(yearFilter[item])
+                  ? "rgba(255,134,20)"
+                  : "",
+              }}
               onClick={(e) => {
                 if (selected.year.includes(yearFilter[item])) {
                   setSelected({
@@ -371,8 +396,10 @@ const Filter2 = () => {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          width: "65%",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          flexWrap: "wrap",
           padding: "10px",
           backgroundColor: "rgba(255,255,255,0.2)",
           margin: "20px",
@@ -382,7 +409,13 @@ const Filter2 = () => {
           return (
             <button
               className="btn btn-light"
-              style={{ margin: "5px 0px", border: "none" }}
+              style={{
+                margin: "5px",
+                border: "none",
+                background: selected.rating.includes(ratingFilter[item])
+                  ? "rgba(255,134,20)"
+                  : "",
+              }}
               onClick={(e) => {
                 if (selected.rating.includes(ratingFilter[item])) {
                   setSelected({
@@ -410,19 +443,26 @@ const Filter2 = () => {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          width: "65%",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          flexWrap: "wrap",
           padding: "10px",
           backgroundColor: "rgba(255,255,255,0.2)",
           margin: "20px",
-          width: "15%",
         }}
       >
         {Object.keys(genreFilter).map((item) => {
           return (
             <button
               className="btn btn-light"
-              style={{ margin: "5px 0px", border: "none" }}
+              style={{
+                margin: "5px",
+                border: "none",
+                background: selected.genre.includes(genreFilter[item])
+                  ? "rgba(255,134,20)"
+                  : "",
+              }}
               onClick={(e) => {
                 if (selected.genre.includes(genreFilter[item])) {
                   setSelected({
@@ -447,9 +487,10 @@ const Filter2 = () => {
         })}
       </div>
     </div>
-  ) : (
-    <p>Loading . . .</p>
-  );
+  ) 
+  // : (
+  //   <Shimmer />
+  // );
 };
 
 export default Filter2;

@@ -1,25 +1,22 @@
 import React from "react";
 
 import Review from "./Review.js";
-import { theWitcherCommentsArray, titles } from "./utils/response";
+import { theWitcherCommentsArray } from "./utils/response";
 import { commentsObj } from "./utils/network";
 import "./App.css";
 import { icons } from "./constants/icons.js";
 
 const InfoPage = (props) => {
-
-  const {item} = props
-
+  const { item } = props;
   const [rating, setRating] = React.useState();
   const [review, setReview] = React.useState("");
+  const [comments, setComments] = React.useState(theWitcherCommentsArray());
 
   const ratingRef = React.useRef();
   const reviewRef = React.useRef();
   const commentsRef = React.useRef();
 
-  const [comments, setComments] = React.useState(theWitcherCommentsArray());
-
-  const hideRef = React.useRef()
+  const hideRef = React.useRef();
 
   const onClick = (e) => {
     setRating(ratingRef.current.value);
@@ -33,10 +30,7 @@ const InfoPage = (props) => {
   };
 
   return (
-    <div>
-      {/* <Router>
-    <Link to='/more'>Go</Link>
-      <Route path='/more'> */}
+    <div style={{ marginTop: "50px"}}>
       <div
         ref={hideRef}
         id="moreInfoContainer"
@@ -45,6 +39,7 @@ const InfoPage = (props) => {
           transition: "all 0.7s ease",
           padding: "50px",
           zIndex: "1",
+          overflow: "hidden"
         }}
       >
         <div>
@@ -52,88 +47,130 @@ const InfoPage = (props) => {
             <img
               id="dark"
               src={item.image}
-              style={{ marginLeft: "50px" }}
-              alt="Image Unavailable"
+              style={{ marginLeft: "50px", padding: "75px 50px", backgroundColor: "#202020" }}
+              alt=""
               height="400px"
               width="300px"
+              
             />
             <div id="right">
-              <h1>{item.name}</h1>
+              <div>
+                <h1>{item.name}</h1>
+                <p style={{ color: "orange" }}>{item.year}</p>
+              </div>
               <br />
               <br />
               <div id="infoRight">
                 <p>
-                  <b>{item.plot}</b>
+                  Synopsis: <b style={{ fontSize: "18px"}}>{item.plot}</b>
                 </p>
                 <p>
-                  <b>{item.cast}</b>
+                  Cast: <b style={{ fontSize: "18px" }}>{item.cast}</b>
                 </p>
-                <p>
-                  <b>{item.rating}</b>
-                </p>
+                <div style={{ display: "flex", paddingTop: "25px" }}>
+                  IMDb Rating:
+                  <p
+                    style={{
+                      color: "orange",
+                      fontSize: "20px",
+                      padding: "5px 10px",
+                      background: "rgba(50,50,50)",
+                      borderRadius: "5px",
+                      // width: "6%",
+                      marginLeft: "15px",
+                      marginTop: "-5px",
+                    }}
+                  >
+                    <b style={{ fontSize: "18px", }}>{item.rate}</b>
+                  </p>
+                </div>
               </div>
 
               <div id="ImagesDiv" Link>
-                <b>Stream:</b>
-                <a href={item.ott.netflix} target="_blank">
+                Stream:
+                <a
+                  // href={item.ott.netflix}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
+                    alt=""
                     id="thumbnail"
-                    src={item.ott.netflix == "" ? null : icons.netflixIcon}
+                    // src={item.ott.netflix === "" ? null : icons.netflixIcon}
                     height="50px"
                   />
                 </a>
-                <a href={item.ott.primeVideo} target="_blank">
+                <a
+                  // href={item.ott.primeVideo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
+                    alt=""
                     id="thumbnail"
-                    src={
-                      item.ott.primeVideo == "" ? null : icons.primeVideoIcon
-                    }
+                    // src={
+                    // item.ott.primeVideo === "" ? null : icons.primeVideoIcon
+                    // }
                     height="50px"
                   />
                 </a>
-                <a href={item.ott.hotstar} target="_blank">
+                <a
+                  // href={item.ott.hotstar}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
+                    alt=""
                     id="thumbnail"
-                    src={item.ott.hotstar == "" ? null : icons.hotstarIcon}
+                    // src={item.ott.hotstar === "" ? null : icons.hotstarIcon}
                     height="50px"
                   />
                 </a>
               </div>
               <div id="ImagesDiv">
-                <b>Ratings:</b>
-                <a href={item.ott.imdb} target="_blank">
+                IMDb page:
+                <a
+                  // href={item.ott.imdb}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
+                    alt=""
                     id="thumbnail"
-                    src={item.ott.imdb == "" ? null : icons.imdbIcon}
+                    // src={item.ott.imdb === "" ? null : icons.imdbIcon}
                     height="50px"
                   />
                 </a>
-                {/* <a
-                  href={item.ott.rottenTomatoes}
-                  target="_blank"
-                >
-                  <img
-                    id="thumbnail"
-                    src={item.ott.rottenTomatoes == "" ? null : icons.rottenTomatoes}
-                    height="50px"
-                  />
-                </a> */}
               </div>
             </div>
           </div>
 
           <div id="embededVid">
-            <iframe
+            {/* <iframe
+            title="youtubeTrailer"
               width="1000"
               height="500"
-              src={item.ott.youtube}
+              // src={item.ott.youtube}
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen="true"
-            ></iframe>
+            ></iframe> */}
+
+            {/* <div
+              style={{
+                background: "rgba(1,1,1)",
+                height: "500px",
+                width: "1000px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h1 style={{ fontSize: "100px" }}>Trailer coming soon</h1>
+            </div> */}
           </div>
 
-          <div id="AddComment">
+          {/* <div id="AddComment">
             <div id="rate">
               <h1 style={{ color: "white", fontSize: "75px" }}>Rate</h1>
               <select ref={ratingRef}>
@@ -194,8 +231,8 @@ const InfoPage = (props) => {
             >
               Submit
             </button>
-          </div>
-          <br />
+          </div> */}
+          {/* <br />
           <br />
 
           <p style={{ marginLeft: "40px", fontSize: "50px" }}>
@@ -206,10 +243,9 @@ const InfoPage = (props) => {
 
           {comments.map((item, index) => {
             return <Review review={item.comment} user={item.userName} />;
-          })}
+          })} */}
         </div>
       </div>
-      {/* </Route></Router> */}
     </div>
   );
 };

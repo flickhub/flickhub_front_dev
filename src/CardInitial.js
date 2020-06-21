@@ -1,6 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { icons } from "./constants/icons";
+
+import flickhub from "./assets/images/logo3.jpg";
 
 const CardInitial = (props) => {
   const AppRef = React.useRef();
@@ -31,7 +31,30 @@ const CardInitial = (props) => {
           margin: "-20px",
         }}
       >
-        <img src={props.poster} height="260" width="220" />
+        {props.poster ? (
+          <img src={props.poster} height="260" width="220" alt="poster" />
+        ) : (
+          <div style={{display: "inline-block"}}>
+          <img src={flickhub} height="185" width="200" alt="no-poster" style={{paddingTop: "20px"}} />
+          <h3
+            style={{
+            //   height: "260px",
+            //   width: "220px",
+            //   // backgroundColor: "black",
+            //   textAlign: "center",
+            //   paddingTop: "50px",
+            //   backgroundImage: "(url(" + flickhub + ")",
+            //   backgroundPosition: "center center",
+            //   backgroundSize: "contain",
+            //   backgroundRepeat: "no-repeat"
+                color: "white",
+                textAlign: "center"
+            }}
+          >
+            Image not available
+          </h3>
+          </div>
+        )}
       </div>
       <div
         id="App"
@@ -60,14 +83,23 @@ const CardInitial = (props) => {
             position: "absolute",
           }}
         >
-          <a href={props.netflixLink} target="_blank">
-            <img id="thumbnail" src={props.netflixIcon} height="30px" />
+          <a href={props.netflixLink} target="_blank" rel="noopener noreferrer">
+            <img id="thumbnail" src={props.netflixIcon} height="30px" alt="" />
           </a>
-          <a href={props.primeVideoLink} target="_blank">
-            <img id="thumbnail" src={props.primeVideoIcon} height="30px" />
+          <a
+            href={props.primeVideoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              id="thumbnail"
+              src={props.primeVideoIcon}
+              height="30px"
+              alt=""
+            />
           </a>
-          <a href={props.hotstarLink} target="_blank">
-            <img id="thumbnail" src={props.hotstarIcon} height="30px" />
+          <a href={props.hotstarLink} target="_blank" rel="noopener noreferrer">
+            <img id="thumbnail" src={props.hotstarIcon} height="30px" alt="" />
           </a>
         </div>
       </div>
@@ -87,7 +119,7 @@ const CardInitial = (props) => {
         {props.title}
       </h1>
     </div>
-  ) 
+  ); 
 };
 
 export default CardInitial;

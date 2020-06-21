@@ -8,7 +8,6 @@ const About = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: "1px",
         color: "white",
         marginTop: "125px"
       }}

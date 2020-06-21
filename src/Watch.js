@@ -1,21 +1,17 @@
 import React from "react";
-import "./App.css";
-import { Link, Route } from "react-router-dom";
-import { icons } from "./constants/icons";
-import InfoPage from "./InfoPage";
-import { titles } from "./utils/response";
-import CardInitial from "./CardInitial";
-import Routers from "./Routers";
 
+import "./App.css";
+import { Link } from "react-router-dom";
+import { icons } from "./constants/icons";
+import flickhub from "./assets/images/logo3.jpg";
 
 const Watch = (props) => {
+  const [trailer, setTrailer] = React.useState(props.trailer);
 
-  const [trailer, setTrailer] = React.useState(icons.netflixIcon)
+  // setTimeout(() => {setTrailer(props.youtubeLink);}, 510)
 
+  const replaceTrailer = <p>Trailer coming soon</p>;
 
-  setTimeout(() => {setTrailer(props.youtubeLink);}, 510)
-
-  const trailerRef = React.useRef()
   return (
     <div
       id="container1"
@@ -29,20 +25,23 @@ const Watch = (props) => {
         zIndex: "1",
       }}
     >
-      <button
-        type="button"
-        className="btn btn-light card-body goToBtn"
-        style={{
-          position: "absolute",
-          marginTop: "-15px",
-          alignSelf: "flex-end",
-          marginRight: "-10px",
-          width: "95%",
-          fontWeight: "bold",
-          padding: "0px"
-        }}
-      >Go To Page
-      </button>
+      <Link to="/info-page">
+        <button
+          type="button"
+          className="btn btn-light card-body goToBtn"
+          style={{
+            position: "absolute",
+            marginTop: "-15px",
+            alignSelf: "flex-end",
+            marginLeft: "-10px",
+            width: "95%",
+            fontWeight: "bold",
+            padding: "0px",
+          }}
+        >
+          Go To Page
+        </button>
+      </Link>
 
       <h1
         id="heading1"
@@ -59,20 +58,36 @@ const Watch = (props) => {
         <b>{props.title}</b>
       </h1>
 
-      <iframe
+      {/* <iframe
+        title="youtubeTrailer"
         height="250px"
         src={trailer + "?autoplay=1&mute=1&enablejsapi=1"}
         frameborder="0"
-        allow="autoplay"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen="true"
         style={{
-          height: trailer == props.netflixIcon ? "100px" : "250px",
+          height: trailer === props.netflixIcon ? "100px" : "250px",
           padding: "0px 20px",
           objectFit: "contain",
           transition: "all 0.45s ease",
         }}
-      ></iframe>
+      ></iframe> */}
+
+      <div
+        style={{
+          height: "300px",
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "center",
+          color: "white",
+          backgroundImage: "url(" + flickhub + ")",
+          backgroundSize: "contain",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <h3 style={{ display: "block", blockSize: "30px" }}>{replaceTrailer}</h3>
+      </div>
 
       <div id="newId" className="card-body imageBack">
         <div
@@ -102,17 +117,20 @@ const Watch = (props) => {
           overflow: "scroll",
           backgroundColor: "rgba(60,60,60,0.8)",
           scrollbarWidth: "none",
-
         }}
       >
-        <a href={props.netflixLink} target="_blank">
-          <img id="thumbnail" src={props.netflixIcon} height="50px" />
+        <a href={props.netflixLink} target="_blank" rel="noopener noreferrer">
+          <img id="thumbnail" src={props.netflixIcon} height="50px" alt="" />
         </a>
-        <a href={props.primeVideoLink} target="_blank">
-          <img id="thumbnail" src={props.primeVideoIcon} height="50px" />
+        <a
+          href={props.primeVideoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img id="thumbnail" src={props.primeVideoIcon} height="50px" alt="" />
         </a>
-        <a href={props.hotstarLink} target="_blank">
-          <img id="thumbnail" src={props.hotstarIcon} height="50px" />
+        <a href={props.hotstarLink} target="_blank" rel="noopener noreferrer">
+          <img id="thumbnail" src={props.hotstarIcon} height="50px" alt="" />
         </a>
       </div>
     </div>
