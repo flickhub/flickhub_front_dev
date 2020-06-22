@@ -2,7 +2,8 @@ import React from "react";
 
 import { titles } from "./utils/response";
 import Hover from "./Hover";
-import flickhub from "./assets/images/38.jpg";
+
+
 
 const Cards = () => {
   const [just, setJust] = React.useState(false);
@@ -10,10 +11,13 @@ const Cards = () => {
 
   const [respObj, setRespObj] = React.useState(null);
   React.useEffect(() => {
-    fetch("http://localhost:8080/title", {
-      header: {
+    fetch("http://localhost:5000/submit", {
+      method: "POST",
+      headers: {
         "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({ mv_name: "iron man" }),
     })
       .then((response) => {
         return response.json();
@@ -39,8 +43,8 @@ const Cards = () => {
     >
       {respObj.map((item) => {
         return (
-          <div key={item.name} style={{ marginTop: "50px" }}>
-            <Hover item={item.response} />
+          <div key={item.data.name} style={{ marginTop: "50px" }}>
+            <Hover item={item.data} />
           </div>
         );
       })}
@@ -57,5 +61,8 @@ const Cards = () => {
     </div>
   );
 };
+
+
+
 
 export default Cards;

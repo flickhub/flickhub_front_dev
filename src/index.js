@@ -5,17 +5,14 @@ import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
 import "./App.css";
-import Routers, { RoutersGo } from "./Routers";
-import Search from "./Search";
-import CardInitial from "./CardInitial";
-import Cards from "./Cards";
-import Flickhub from "./Flickhub";
+import Routers from "./Routers";
+import HoverCard2 from './HoverCard2'
+import Shimmer from "./Shimmer";
 
 ReactDOM.render(
 
   <div>
     <Routers />
-    {/* <Cards /> */}
   </div>
   
   ,

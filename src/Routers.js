@@ -2,50 +2,70 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import "./App.css";
-import Flickhub, { RoutingMainPage } from "./Flickhub";
+import Flickhub, { SearchItem } from "./Flickhub";
 import Feedback from "./Feedback";
-import Filter from "./Filter";
 import About from "./About";
-import { icons } from "./constants/icons";
 import flickhub from "./assets/images/logo3.jpg";
 import Search from "./Search";
-import InfoPage from "./InfoPage";
 import Filter2 from "./Filter2";
+import InfoPage from "./InfoPage";
+import Shimmer from "./Shimmer";
 
-// export const RoutersGo = (props) => {
-//   return (
-//     <Router>
-//       <div style={{ zIndex: "1" }}>
-//         <Link to="/">Go</Link>
-//       </div>
-//       <Switch>
-//         <Route path="/">
-//           <InfoPage item={props.state} />
-//         </Route>
-//       </Switch>
-//     </Router>
-//   );
-// };
 
 const SearchScreen = (props) => {
+  const [respObj, setRespObj] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch("http://localhost:5000/submit", {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ mv_name: "iron man" }),
+    })
+      .then((response) => response.json())
+      .then((response) => setRespObj(response))
+      .catch((error) => console.log("error", error));
+  }, []);
   return (
     <div
       style={{
-        height: "100vh",
-        width: "100vw",
+        margin: "100px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        
       }}
     >
-      <p style={{ color: "#fff" }}>{props.match.params.searchString}</p>
+      {respObj ? <SearchItem
+        searchFor={props.match.params.searchString}
+        respObj={respObj.data}
+      /> : <Shimmer />}
     </div>
-  );
+  ) 
 };
+
 
 function Routers(props) {
   const [search, setSearch] = React.useState(false);
   const [find, setFind] = React.useState("");
+  const [respObj, setRespObj] = React.useState(null)
+  
+
+    React.useEffect(() => {
+      fetch("http://localhost:5000/submit", {
+        method: "POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mv_name: "iron man" }),
+      })
+        .then((response) => response.json())
+        .then((response) => setRespObj(response))
+        .catch((error) => console.log("error", error));
+    }, []);
 
   const searchBar = (
     <input
@@ -82,6 +102,7 @@ function Routers(props) {
           <Link to="/">
             <div style={{ display: "flex", transition: "all 1s ease" }}>
               <img
+              alt=""
                 src={flickhub}
                 height="45px"
                 width="45px"
@@ -93,7 +114,6 @@ function Routers(props) {
                   className="btn btn-link fa fa-search"
                   onClick={(e) => {
                     setSearch(!search);
-                    // e.target.style.transform = "translate(-100px,0px)";
                   }}
                   style={{
                     fontSize: "18px",
@@ -107,7 +127,6 @@ function Routers(props) {
                 {search ? searchBar : null}
                 {search ? <Search search={search} find={find} /> : null}
               </div>
-              <li></li>
             </div>
           </Link>
         </li>
@@ -136,17 +155,13 @@ function Routers(props) {
           <Feedback />
         </Route>
         <Route path="/filter">
-          {/* <Filter
-            netflixIcon={icons.netflixIcon}
-            primeVideoIcon={icons.primeVideoIcon}
-            hotstarIcon={icons.hotstarIcon}
-          /> */}
           <Filter2 />
         </Route>
         <Route path="/about">
           <About />
         </Route>
-        <Route path="/search/:searchString" component={SearchScreen} />
+          <Route path="/search/:searchString" component={SearchScreen} />
+        {respObj ? <Route path="/info-page" render={() => <InfoPage item={respObj.data[0]} />} /> : <Shimmer />}
         <Route path="/">
           <Flickhub />
         </Route>

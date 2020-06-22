@@ -10,7 +10,6 @@ const Feedback = (props) => {
 
   const [selected, setSelected] = React.useState(false);
 
-  const [quickReview, setQuickReview] = React.useState();
   const [firstName, setFirstName] = React.useState();
   const [lastName, setLastName] = React.useState();
   const [email, setEmail] = React.useState();
@@ -52,7 +51,7 @@ const Feedback = (props) => {
         <div
           style={{
             width: selected ? "900px" : "0px",
-            transition: "all 0.7s linear",
+            transition: "all 0.5s linear",
             display: "flex",
             justifyContent: "center",
           }}
@@ -73,7 +72,7 @@ const Feedback = (props) => {
               fontSize: "25px",
               marginLeft: "10px",
               marginTop: "23px",
-              position: "fixed",
+              position: "absolute",
               color: "#999999",
               // transition: "all 0.5s ease",
             }}
@@ -87,6 +86,7 @@ const Feedback = (props) => {
               border: "1px solid #999999",
               padding: "10px",
               marginTop: "20px",
+              transition: "all 0.5s ease"
             }}
             onChange={(e) => {
               setFirstName(e.target.value);
@@ -100,9 +100,9 @@ const Feedback = (props) => {
               e.target.style.border = "2px solid orange";
             }}
             onBlur={(e) => {
-              if (e.target.value == "") {
+              if (e.target.value === "") {
                 textRef1.current.style.fontSize = "25px";
-                textRef1.current.style.transform = "translate(0px, 0px)";
+                textRef1.current.style.transform = "translate(-3px, 0px)";
                 textRef1.current.style.color = "#999999";
                 e.target.style.border = "1px solid #999999";
                 e.target.style.paddingTop = "10px";
@@ -120,7 +120,7 @@ const Feedback = (props) => {
               fontSize: "25px",
               marginLeft: "10px",
               marginTop: "23px",
-              position: "fixed",
+              position: "absolute",
               color: "#999999",
               transition: "all 0.5s ease",
             }}
@@ -146,7 +146,7 @@ const Feedback = (props) => {
               e.target.style.border = "2px solid orange";
             }}
             onBlur={(e) => {
-              if (e.target.value == "") {
+              if (e.target.value === "") {
                 textRef2.current.style.fontSize = "25px";
                 textRef2.current.style.transform = "translate(0px, 0px)";
                 textRef2.current.style.color = "#999999";
@@ -168,7 +168,7 @@ const Feedback = (props) => {
             fontSize: "25px",
             marginLeft: "10px",
             marginTop: "23px",
-            position: "fixed",
+            position: "absolute",
             color: "#999999",
             transition: "all 0.5s ease",
           }}
@@ -194,7 +194,7 @@ const Feedback = (props) => {
             e.target.style.border = "2px solid orange";
           }}
           onBlur={(e) => {
-            if (e.target.value == "") {
+            if (e.target.value === "") {
               textRef3.current.style.fontSize = "25px";
               textRef3.current.style.transform = "translate(0px, 0px)";
               textRef3.current.style.color = "#999999";
@@ -215,7 +215,7 @@ const Feedback = (props) => {
             fontSize: "25px",
             marginLeft: "10px",
             marginTop: "23px",
-            position: "fixed",
+            position: "absolute",
             color: "#999999",
             transition: "all 0.5s ease",
           }}
@@ -241,7 +241,7 @@ const Feedback = (props) => {
             e.target.style.border = "2px solid orange";
           }}
           onBlur={(e) => {
-            if (e.target.value == "") {
+            if (e.target.value === "") {
               textRef4.current.style.fontSize = "25px";
               textRef4.current.style.transform = "translate(0px, 0px)";
               textRef4.current.style.color = "#999999";
@@ -262,7 +262,7 @@ const Feedback = (props) => {
             fontSize: "25px",
             marginLeft: "10px",
             marginTop: "23px",
-            position: "fixed",
+            position: "absolute",
             color: "#999999",
             transition: "all 0.5s ease",
           }}
@@ -289,7 +289,7 @@ const Feedback = (props) => {
             e.target.style.border = "2px solid orange";
           }}
           onBlur={(e) => {
-            if (e.target.value == "") {
+            if (e.target.value === "") {
               textRef5.current.style.fontSize = "25px";
               textRef5.current.style.transform = "translate(0px, 0px)";
               textRef5.current.style.color = "#999999";
@@ -327,7 +327,7 @@ const Feedback = (props) => {
           zIndex: "1",
           //   top: "310px",
           left: "300px",
-          position: "fixed",
+          position: "absolute",
           border: "1px solid white",
           borderRadius: "2px",
           padding: "20px 10px",

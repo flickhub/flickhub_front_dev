@@ -1,33 +1,29 @@
 import React from "react";
 
 import "./App.css";
-import Cards from "./Cards";
-import CardInitial from "./CardInitial";
-import { icons } from "./constants/icons";
-import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Search from "./Search";
+
+import { Link } from "react-router-dom";
 import Hover from "./Hover";
+import Shimmer from "./Shimmer";
 
 export const SearchBtn = (props) => {
-  const [found, setFound] = React.useState(false);
   return (
-    <Link to={`/search`}>
+    <Link to={`/search/${props.searchValue}`}>
       <button
         type="button"
         className="btn btn-light"
         style={{
-          backgroundColor: "rgba(255,134,20)",
+          backgroundColor: "orange",
           color: "white",
           border: "none",
           marginLeft: "10px",
-          marginTop: "-5px",
-          height: "60px",
+          height: "40px",
+          borderRadius: "10px",
+          padding: "0px 15px",
+          fontSize: "16px",
         }}
         disabled={true}
         ref={props.disableRef}
-        onClick={() => {
-          setFound(true);
-        }}
       >
         <b>Search</b>
       </button>
@@ -37,29 +33,29 @@ export const SearchBtn = (props) => {
 
 const Flickhub = () => {
   const [searchValue, setSearchValue] = React.useState("");
-  const [empty, setEmpty] = React.useState(false);
   const [respObj, setRespObj] = React.useState(null);
-  const [found, setFound] = React.useState(false);
 
   const appRef = React.useRef();
-  const appRef2 = React.useRef();
   const disableRef = React.useRef();
   const searchStringRef = React.useRef();
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/title", {
-      header: {
+    fetch("http://localhost:5000/submit", {
+      method: "POST",
+      headers: {
         "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
       },
+      mode: "cors",
+      body: JSON.stringify({ mv_name: "iron man" }),
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((response) => setRespObj(response))
+      .then((response) => console.log(response))
       .catch((error) => console.log("error", error));
   }, []);
 
-  return respObj ? (
+  return (
     <div
       stlye={{
         display: "flex",
@@ -90,49 +86,52 @@ const Flickhub = () => {
             width: "100%",
           }}
         >
-          <h2
-            style={{
-              fontSize: "210px",
-              color: "rgba(255,255,255)",
-              marginLeft: "320px",
-              paddingBottom: "30px",
-            }}
-          >
-            <span stlye={{}}>
-              <strong>Flick</strong>
-            </span>
-            <span style={{ color: "rgba(255,134,20)" }}>
-              <b>Hub</b>
-            </span>
-          </h2>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <h2
+              style={{
+                fontSize: "100px",
+                color: "rgba(255,255,255)",
+              }}
+            >
+              <span stlye={{}}>
+                <strong>Flick</strong>
+              </span>
+              <span style={{ color: "orange" }}>
+                <b>Hub</b>
+              </span>
+            </h2>
+          </div>
 
           <div
             style={{
+              color: "white",
               display: "flex",
               justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              width: "100vw",
+              fontSize: "30px",
+              marginTop: "-20px",
             }}
           >
-            <div>
+            <p>Nobody searches it better!</p>
+          </div>
+
+          <div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <input
-                autoFocus="true"
-                placeholder="Search"
+                autoFocus={true}
+                placeholder="Search with a keyword"
                 type="text"
                 style={{
-                  width: "760px",
-                  height: "60px",
-                  borderRadius: "5px",
-                  padding: "10px",
+                  width: "650px",
+                  height: "40px",
+                  borderRadius: "10px",
+                  padding: "5px 20px",
                   border: "none",
-                  marginLeft: "50px",
-                  fontSize: "20px",
+                  fontSize: "16px",
                 }}
                 ref={searchStringRef}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
-                  e.target.value != ""
+                  e.target.value !== ""
                     ? (disableRef.current.disabled = false)
                     : (disableRef.current.disabled = true);
                 }}
@@ -140,23 +139,28 @@ const Flickhub = () => {
               <SearchBtn searchValue={searchValue} disableRef={disableRef} />
             </div>
 
-            <p
-              style={{
-                fontSize: "24px",
-                color: "white",
-                width: "875px",
-                marginTop: "30px",
-                marginLeft: "55px",
-                textAlign: "center",
-              }}
-            >
-              Want to watch that popular flick? Not sure, which online streaming
-              platform it is available on? Worry no more! FlickHub has got your
-              back! Tap tap and away!
-            </p>
-            <div style={{ marginTop: "50px" }}>
-              <SearchItem searchFor={searchValue} respObj={respObj} />}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <p
+                style={{
+                  fontSize: "24px",
+                  color: "white",
+                  // width: "875px",
+                  marginTop: "30px",
+                  // marginLeft: "55px",
+                  textAlign: "center",
+                  fontStyle: "italic",
+                }}
+              >
+                Want to watch that popular flick? Not sure, which online
+                streaming
+                <br />
+                platform it is available on? Worry no more! FlickHub has got
+                your back!
+                <br />
+                Tap tap and away!
+              </p>
             </div>
+            <div style={{ marginTop: "50px" }}></div>
           </div>
         </div>
         {/* <button
@@ -210,39 +214,39 @@ const Flickhub = () => {
         </div>
       </div> */}
     </div>
-  ) : (
-    <p>Loading ...</p>
-  );
+  ) 
 };
 
 export const SearchItem = (props) => {
   const items = () => {
     return props.respObj
-      .filter((data) => {
+      .filter((item) => {
         if (
-          data.response.name
-            .toLowerCase()
-            .includes(props.searchFor.toLowerCase())
+          item.name.toLowerCase().includes(props.searchFor.toLowerCase())
         ) {
-          return data;
+          return item;
+        } else {
+          return null;
         }
       })
-      .map((data) => {
+      .map((item) => {
         return props.respObj.map((name) => {
-          if (data == name) {
+          if (item === name) {
             return (
-              <Route path={`/search`}>
-                <Hover item={data.response} />
-              </Route>
+              <div style={{ marginTop: "20px" }}>
+                <Hover item={item} key={"search-result" + name} />
+              </div>
             );
+          } else {
+            return null;
           }
         });
       });
   };
   return props.respObj ? (
-    <div style={{ display: "flex" }}>{items()}</div>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", width: "100vw" }}>{items()}</div>
   ) : (
-    <div>Loading . . .</div>
+    <p>Loading . . .</p>
   );
 };
 
