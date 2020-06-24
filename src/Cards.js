@@ -41,10 +41,11 @@ const Cards = () => {
         height: "100vh",
       }}
     >
-      {respObj.map((item) => {
+      
+      {respObj.data.map((item) => {
         return (
-          <div key={item.data.name} style={{ marginTop: "50px" }}>
-            <Hover item={item.data} />
+          <div key={`title: ${item.name}`} style={{ marginTop: "50px" }}>
+            <Hover item={item} />
           </div>
         );
       })}

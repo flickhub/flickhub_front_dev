@@ -1,19 +1,22 @@
 body {
   overflow-x: hidden;
-  /* margin-top : 100px; */
-  /* margin-bottom: 100px; */
-  /* height: 100vh; */
-  background: url("https://cutewallpaper.org/21/hd-website-backgrounds/4k-Webpage-Background-Hd-Website-Backgrounds-Teriz-.jpg");
-  background-size: contain;
+  /* background: url("https://cutewallpaper.org/21/hd-website-backgrounds/4k-Webpage-Background-Hd-Website-Backgrounds-Teriz-.jpg");
+  background-size: cover;
+  background-attachment: fixed; */
+  height: 100%;
+  background: rgba(30, 30, 30);
+  background-image: radial-gradient( circle farthest-corner at -8.9% 51.2%,  rgba(255,124,0,1) 0%, rgba(255,124,0,1) 15.9%, rgba(255,163,77,1) 15.9%, rgba(255,163,77,1) 24.4%, rgba(19,30,37,1) 24.5%, rgba(19,30,37,1) 66% );
   background-attachment: fixed;
 }
 
 #root {
   display: flex;
   justify-content: center;
-  height: 100vh;
-  background: url("https://cutewallpaper.org/21/hd-website-backgrounds/4k-Webpage-Background-Hd-Website-Backgrounds-Teriz-.jpg");
-  background-size: contain;
+  height: 100%;
+  /* background: url("https://cutewallpaper.org/21/hd-website-backgrounds/4k-Webpage-Background-Hd-Website-Backgrounds-Teriz-.jpg");
+  background-size: cover;
+  background-attachment: fixed; */
+  background-image: radial-gradient( circle farthest-corner at -8.9% 51.2%,  rgba(255,124,0,1) 0%, rgba(255,124,0,1) 15.9%, rgba(255,163,77,1) 15.9%, rgba(255,163,77,1) 24.4%, rgba(19,30,37,1) 24.5%, rgba(19,30,37,1) 66% );
   background-attachment: fixed;
 }
 
@@ -35,12 +38,12 @@ body {
 
 ul {
   display: flex;
-  background-color: #151515;
+  background-color: #000;
   min-width: 100vw;
   top: 0;
   left: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
 }
 
 #navRight {
@@ -88,7 +91,8 @@ ul {
   height: 630px;
   width: 350px;
   padding: 20px;
-  z-index: 1;
+  /* position: absolute; */
+  /* z-index: 1; */
 }
 
 #App:hover {
@@ -377,3 +381,4 @@ a:hover {
   justify-content: center;
   align-items: center;
 }
+

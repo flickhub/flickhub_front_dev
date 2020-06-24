@@ -74,7 +74,7 @@ const Feedback = (props) => {
               marginTop: "23px",
               position: "absolute",
               color: "#999999",
-              // transition: "all 0.5s ease",
+              transition: "all 0.5s ease",
             }}
           >
             FirstName
@@ -86,7 +86,7 @@ const Feedback = (props) => {
               border: "1px solid #999999",
               padding: "10px",
               marginTop: "20px",
-              transition: "all 0.5s ease"
+              transition: "all 0.5s ease",
             }}
             onChange={(e) => {
               setFirstName(e.target.value);
@@ -134,6 +134,7 @@ const Feedback = (props) => {
               border: "1px solid #999999",
               padding: "10px",
               marginTop: "20px",
+              transition: "all 0.5s ease",
             }}
             onChange={(e) => {
               setLastName(e.target.value);
@@ -182,6 +183,7 @@ const Feedback = (props) => {
             border: "1px solid #999999",
             padding: "10px",
             marginTop: "20px",
+            transition: "all 0.5s ease",
           }}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -229,6 +231,7 @@ const Feedback = (props) => {
             border: "1px solid #999999",
             padding: "10px",
             marginTop: "20px",
+            transition: "all 0.5s ease",
           }}
           onChange={(e) => {
             setQuestion(e.target.value);
@@ -276,6 +279,7 @@ const Feedback = (props) => {
             border: "1px solid #999999",
             padding: "10px",
             marginTop: "20px",
+            transition: "all 0.5s ease",
           }}
           onChange={(e) => {
             setFeedback(e.target.value);
@@ -308,7 +312,11 @@ const Feedback = (props) => {
         onClick={() => {
           getFeedback();
           if (
-            firstName !=null && lastName !=null &&email !=null &&question !=null &&feedback !=null
+            firstName != null &&
+            lastName != null &&
+            email != null &&
+            question != null &&
+            feedback != null
           ) {
             alert("Your feedback has been submitted.");
           } else {
@@ -324,8 +332,9 @@ const Feedback = (props) => {
         style={{
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           zIndex: "1",
-          //   top: "310px",
           left: "300px",
           position: "absolute",
           border: "1px solid white",

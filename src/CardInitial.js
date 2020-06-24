@@ -1,11 +1,10 @@
 import React from "react";
 
 import flickhub from "./assets/images/logo3.jpg";
+import { icons } from "./constants/icons";
 
 const CardInitial = (props) => {
   const AppRef = React.useRef();
-
-
 
   return (
     <div
@@ -17,7 +16,7 @@ const CardInitial = (props) => {
         margin: "0px 5px",
         maxWidth: "200px",
         maxHeight: "300px",
-        zIndex: "0",
+        zIndex: "1",
       }}
     >
       <div
@@ -32,27 +31,24 @@ const CardInitial = (props) => {
         }}
       >
         {props.poster ? (
-          <img src={props.poster} height="260" width="220" alt="poster" />
+          <img src={props.poster} height="260" width="220" alt="poster" style={{opacity: "0.7"}} />
         ) : (
-          <div style={{display: "inline-block"}}>
-          <img src={flickhub} height="185" width="200" alt="no-poster" style={{paddingTop: "20px"}} />
-          <h3
-            style={{
-            //   height: "260px",
-            //   width: "220px",
-            //   // backgroundColor: "black",
-            //   textAlign: "center",
-            //   paddingTop: "50px",
-            //   backgroundImage: "(url(" + flickhub + ")",
-            //   backgroundPosition: "center center",
-            //   backgroundSize: "contain",
-            //   backgroundRepeat: "no-repeat"
+          <div style={{ display: "inline-block" }}>
+            <img
+              src={flickhub}
+              height="185"
+              width="200"
+              alt="no-poster"
+              style={{ paddingTop: "20px", opacity: "0.7" }}
+            />
+            <h3
+              style={{
                 color: "white",
-                textAlign: "center"
-            }}
-          >
-            Image not available
-          </h3>
+                textAlign: "center",
+              }}
+            >
+              Image not available
+            </h3>
           </div>
         )}
       </div>
@@ -83,23 +79,45 @@ const CardInitial = (props) => {
             position: "absolute",
           }}
         >
-          <a href={props.netflixLink} target="_blank" rel="noopener noreferrer">
-            <img id="thumbnail" src={props.netflixIcon} height="30px" alt="" />
-          </a>
           <a
-            href={props.primeVideoLink}
+            href={props.urlname.includes("netflix") ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
               id="thumbnail"
-              src={props.primeVideoIcon}
+              src={props.urlname.includes("netflix") ? icons.netflixIcon : null}
               height="30px"
               alt=""
             />
           </a>
-          <a href={props.hotstarLink} target="_blank" rel="noopener noreferrer">
-            <img id="thumbnail" src={props.hotstarIcon} height="30px" alt="" />
+          <a
+            href={props.urlname.includes("primevideo") ? props.urlname : null}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              id="thumbnail"
+              src={
+                props.urlname.includes("primevideo")
+                  ? icons.primeVideoIcon
+                  : null
+              }
+              height="30px"
+              alt=""
+            />
+          </a>
+          <a
+            href={props.urlname.includes("hotstar") ? props.urlname : null}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              id="thumbnail"
+              src={props.urlname.includes("hotstar") ? icons.hotstarIcon : null}
+              height="30px"
+              alt=""
+            />
           </a>
         </div>
       </div>
@@ -119,7 +137,7 @@ const CardInitial = (props) => {
         {props.title}
       </h1>
     </div>
-  ); 
+  );
 };
 
 export default CardInitial;

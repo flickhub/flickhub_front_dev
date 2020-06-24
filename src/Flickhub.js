@@ -4,7 +4,8 @@ import "./App.css";
 
 import { Link } from "react-router-dom";
 import Hover from "./Hover";
-import Shimmer from "./Shimmer";
+import $ from "jquery";
+
 
 export const SearchBtn = (props) => {
   return (
@@ -46,14 +47,14 @@ const Flickhub = () => {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      mode: "cors",
+      // mode: "cors",
       body: JSON.stringify({ mv_name: "iron man" }),
     })
       .then((response) => response.json())
       .then((response) => setRespObj(response))
-      .then((response) => console.log(response))
       .catch((error) => console.log("error", error));
   }, []);
+  
 
   return (
     <div
@@ -129,6 +130,11 @@ const Flickhub = () => {
                   fontSize: "16px",
                 }}
                 ref={searchStringRef}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    window.location = `/search/${searchValue}`;
+                  }
+                }}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
                   e.target.value !== ""
@@ -144,9 +150,8 @@ const Flickhub = () => {
                 style={{
                   fontSize: "24px",
                   color: "white",
-                  // width: "875px",
                   marginTop: "30px",
-                  // marginLeft: "55px",
+
                   textAlign: "center",
                   fontStyle: "italic",
                 }}
@@ -214,16 +219,14 @@ const Flickhub = () => {
         </div>
       </div> */}
     </div>
-  ) 
+  );
 };
 
 export const SearchItem = (props) => {
   const items = () => {
     return props.respObj
       .filter((item) => {
-        if (
-          item.name.toLowerCase().includes(props.searchFor.toLowerCase())
-        ) {
+        if (item.name.toLowerCase().includes(props.searchFor.toLowerCase())) {
           return item;
         } else {
           return null;
@@ -234,7 +237,7 @@ export const SearchItem = (props) => {
           if (item === name) {
             return (
               <div style={{ marginTop: "20px" }}>
-                <Hover item={item} key={"search-result" + name} />
+                <Hover item={item} key={`search-result-${name}`} />
               </div>
             );
           } else {
@@ -244,7 +247,17 @@ export const SearchItem = (props) => {
       });
   };
   return props.respObj ? (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", width: "100vw" }}>{items()}</div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexWrap: "wrap",
+        width: "100vw",
+      }}
+    >
+      {items()}
+    </div>
   ) : (
     <p>Loading . . .</p>
   );

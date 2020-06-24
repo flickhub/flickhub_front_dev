@@ -6,13 +6,12 @@ import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 import "./App.css";
 import Routers from "./Routers";
-import HoverCard2 from './HoverCard2'
-import Shimmer from "./Shimmer";
+import Resize from "./Resize"
 
 ReactDOM.render(
 
   <div>
-    <Routers />
+    <Resize />
   </div>
   
   ,
