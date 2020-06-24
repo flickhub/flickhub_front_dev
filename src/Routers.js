@@ -11,7 +11,6 @@ import Filter2 from "./Filter2";
 import InfoPage from "./InfoPage";
 import Shimmer from "./Shimmer";
 
-
 const SearchScreen = (props) => {
   const [respObj, setRespObj] = React.useState(null);
 
@@ -22,7 +21,8 @@ const SearchScreen = (props) => {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ mv_name: "iron man" }),
+      // mode: "cors",
+      body: JSON.stringify({ mv_name: props.match.params.searchString }),
     })
       .then((response) => response.json())
       .then((response) => setRespObj(response))
@@ -41,7 +41,7 @@ const SearchScreen = (props) => {
       {respObj ? <SearchItem
         searchFor={props.match.params.searchString}
         respObj={respObj.data}
-      /> : <Shimmer />}
+      /> : <div><Shimmer /></div>}
     </div>
   ) 
 };
@@ -108,25 +108,6 @@ function Routers(props) {
                 width="45px"
                 style={{ padding: "5px" }}
               />
-              <div style={{ transition: "all 1s ease" }}>
-                <button
-                  type="button"
-                  className="btn btn-link fa fa-search"
-                  onClick={(e) => {
-                    setSearch(!search);
-                  }}
-                  style={{
-                    fontSize: "18px",
-                    fontStyle: "none",
-                    position: "fixed",
-                    marginTop: "6px",
-                    marginLeft: "810px",
-                    transition: "all 1s ease",
-                  }}
-                ></button>
-                {search ? searchBar : null}
-                {search ? <Search search={search} find={find} /> : null}
-              </div>
             </div>
           </Link>
         </li>
@@ -161,9 +142,11 @@ function Routers(props) {
           <About />
         </Route>
           <Route path="/search/:searchString" component={SearchScreen} />
-        {respObj ? <Route path="/info-page" render={() => <InfoPage item={respObj.data[0]} />} /> : <Shimmer />}
+          {respObj ? respObj.data.map((item,index) => {
+            return <Route path={`/title/${item.name}`} exact key={`title-number-${index}`} render={() => <InfoPage item={item} />} /> 
+          }) : <div style={{marginTop: "75px"}}><Shimmer /> </div>}
         <Route path="/">
-          <Flickhub />
+            <Flickhub />
         </Route>
       </Switch>
     </Router>

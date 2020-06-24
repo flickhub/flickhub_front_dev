@@ -33,9 +33,10 @@ const Search = (props) => {
           return data;
         } else {return null}
       })
-      .map((data) => {
+      .map((data,ind) => {
         return (
           <div
+          key={`return-items-array-${ind}`}
             className="container"
             style={{
               height: "650px",
@@ -44,10 +45,11 @@ const Search = (props) => {
               alignItems: "flex-start",
             }}
           >
-            {respObj.data.map((name) => {
+            {respObj.data.map((name, index) => {
               if (JSON.stringify(data) === JSON.stringify(name)) {
                 return (
                   <div
+                  key={`search-item-${index}`} 
                     style={{
                       padding: "0px",
                       margin: "0px 10px",
@@ -57,7 +59,7 @@ const Search = (props) => {
                     className="col"
                   
                   >
-                    <Hover item={data} />
+                    <Hover item={data} key={`search-result-${data}`} />
                   </div>
                 );
               } else {return null}

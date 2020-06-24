@@ -18,7 +18,6 @@ const Filter2 = () => {
     genre: [],
   });
   
-  const [respObj, setRespObj] = React.useState(null);
 
   const yearFilter = {
     1: "1950-1955",
@@ -77,22 +76,6 @@ const Filter2 = () => {
     24: "Western",
   };
 
-  // React.useEffect(() => {
-  //   fetch("http://702017af4c17.ngrok.io/submit", {
-  //     method: "POST",
-  //     headers: {
-  //       "Access-Control-Allow-Origin": "*",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ mv_name: "iron man" }),
-  //   })
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((response) => setRespObj(response))
-  //     .catch((error) => console.log("error", error));
-  // }, []);
-
   const highlightSelected = (e) => {
     e.target.style.filter = "grayscale(0%)";
   };
@@ -127,8 +110,6 @@ const Filter2 = () => {
   };
 
   return(
-  //  respObj ? 
-  // (
     <div
       style={{
         display: "flex",
@@ -187,6 +168,7 @@ const Filter2 = () => {
           margin: "20px",
         }}
       >
+
         <a>
           <img
             id="thumbnail"
@@ -200,7 +182,6 @@ const Filter2 = () => {
             }}
             onClick={(e) => {
               setSelected({ ...selected, netflix: !selected.netflix });
-              // !selected.netflix ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -217,9 +198,6 @@ const Filter2 = () => {
             }}
             onClick={(e) => {
               setSelected({ ...selected, primeVideo: !selected.primeVideo });
-              // !selected.primeVideo
-              //   ? highlightSelected(e)
-              //   : unhighlightSelected(e);
             }}
           />
         </a>
@@ -236,7 +214,6 @@ const Filter2 = () => {
             }}
             onClick={(e) => {
               setSelected({ ...selected, hotstar: !selected.hotstar });
-              // !selected.hotstar ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -358,9 +335,10 @@ const Filter2 = () => {
           margin: "20px",
         }}
       >
-        {Object.keys(yearFilter).map((item) => {
+        {Object.keys(yearFilter).map((item,index) => {
           return (
             <button
+            key={"filter-button-year "+ index}
               className="btn btn-light"
               style={{
                 margin: "5px",
@@ -408,6 +386,7 @@ const Filter2 = () => {
         {Object.keys(ratingFilter).map((item) => {
           return (
             <button
+            key={"filter-button-rating" + item}
               className="btn btn-light"
               style={{
                 margin: "5px",
@@ -452,9 +431,10 @@ const Filter2 = () => {
           margin: "20px",
         }}
       >
-        {Object.keys(genreFilter).map((item) => {
+        {Object.keys(genreFilter).map((item,index) => {
           return (
             <button
+            key={"filter-button-genre"+index}
               className="btn btn-light"
               style={{
                 margin: "5px",
@@ -488,9 +468,6 @@ const Filter2 = () => {
       </div>
     </div>
   ) 
-  // : (
-  //   <Shimmer />
-  // );
 };
 
 export default Filter2;

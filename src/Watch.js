@@ -1,15 +1,18 @@
 import React from "react";
 
 import "./App.css";
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 import { icons } from "./constants/icons";
 import flickhub from "./assets/images/logo3.jpg";
+import InfoPage from "./InfoPage";
 
 const Watch = (props) => {
-  const [trailer, setTrailer] = React.useState(props.trailer);
+  const {item} = props;
+  const [trailer, setTrailer] = React.useState(item.trailer);
 
   // setTimeout(() => {setTrailer(props.youtubeLink);}, 510)
 
+  
   const replaceTrailer = <p>Trailer coming soon</p>;
 
   return (
@@ -17,15 +20,16 @@ const Watch = (props) => {
       id="container1"
       className="card"
       style={{
-        backgroundImage: "url(" + props.poster + ")",
+        backgroundImage: "url(" + item.image + ")",
         backgroundSize: "contain",
         backgroundPosition: "center center",
         backgroundColor: "#3333",
         backgroundRepeat: "no-repeat",
         zIndex: "1",
+        backgroundColor: "rgba(1,1,1)",
       }}
     >
-      <Link to="/info-page">
+      <Link to={`/title/${item.name}`}>
         <button
           type="button"
           className="btn btn-light card-body goToBtn"
@@ -43,6 +47,10 @@ const Watch = (props) => {
         </button>
       </Link>
 
+      {/* <Link to={`/info-page/${item.name}`}>
+        <InfoPage item={item} />
+      </Link> */}
+
       <h1
         id="heading1"
         className="card-title"
@@ -55,7 +63,7 @@ const Watch = (props) => {
           fontSize: "1.5em",
         }}
       >
-        <b>{props.title}</b>
+        <b>{item.name}</b>
       </h1>
 
       {/* <iframe
@@ -86,7 +94,9 @@ const Watch = (props) => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <h3 style={{ display: "block", blockSize: "30px" }}>{replaceTrailer}</h3>
+        <h3 style={{ display: "block", blockSize: "30px" }}>
+          {replaceTrailer}
+        </h3>
       </div>
 
       <div id="newId" className="card-body imageBack">
@@ -103,7 +113,7 @@ const Watch = (props) => {
           }}
         >
           <p id="titCon1" style={{ color: "white" }}>
-            <strong>{props.content}</strong>
+            <strong>{item.plot}</strong>
           </p>
         </div>
       </div>
@@ -119,18 +129,43 @@ const Watch = (props) => {
           scrollbarWidth: "none",
         }}
       >
-        <a href={props.netflixLink} target="_blank" rel="noopener noreferrer">
-          <img id="thumbnail" src={props.netflixIcon} height="50px" alt="" />
-        </a>
         <a
-          href={props.primeVideoLink}
+          href={item.urlname.includes("netflix") ? item.urlname : null}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img id="thumbnail" src={props.primeVideoIcon} height="50px" alt="" />
+          <img
+            id="thumbnail"
+            src={item.urlname.includes("netflix") ? icons.netflixIcon : null}
+            height="50px"
+            alt=""
+          />
         </a>
-        <a href={props.hotstarLink} target="_blank" rel="noopener noreferrer">
-          <img id="thumbnail" src={props.hotstarIcon} height="50px" alt="" />
+        <a
+          href={item.urlname.includes("primevideo") ? item.urlname : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={
+              item.urlname.includes("primevideo") ? icons.primeVideoIcon : null
+            }
+            height="50px"
+            alt=""
+          />
+        </a>
+        <a
+          href={item.urlname.includes("hotstar") ? item.urlname : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.includes("hotstar") ? icons.hotstarIcon : null}
+            height="50px"
+            alt=""
+          />
         </a>
       </div>
     </div>
