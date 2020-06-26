@@ -22,12 +22,6 @@ export const Hover = (props) => {
       title={item.name}
       poster={item.image}
       urlname={item.urlname}
-      // netflixLink={item.ott.netflix}
-      // primeVideoLink={item.ott.primeVideo}
-      // hotstarLink={item.ott.hotstar}
-      // netflixIcon={item.ott.netflix === "" ? null : icons.netflixIcon}
-      // primeVideoIcon={item.ott.primeVideo === "" ? null : icons.primeVideoIcon}
-      // hotstarIcon={item.ott.hotstar === "" ? null : icons.hotstarIcon}
     />
   );
 

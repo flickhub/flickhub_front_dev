@@ -23,3 +23,6 @@ export const icons = {
   rottenTomatoes:
     "https://pmcvariety.files.wordpress.com/2017/08/rotten-tomatoes-logo1.jpg?w=681&h=383&crop=1",
 };
+
+
+//  export default icons
