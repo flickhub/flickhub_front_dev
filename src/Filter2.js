@@ -17,7 +17,6 @@ const Filter2 = () => {
     rating: [],
     genre: [],
   });
-  
 
   const yearFilter = {
     1: "1950-1955",
@@ -61,16 +60,17 @@ const Filter2 = () => {
     9: "Family",
     10: "Fantasy",
     11: "Film Noir",
-    12: "History",
-    13: "Horror",
-    14: "Music",
-    15: "Musical",
-    16: "Mystery",
-    17: "Romance",
-    18: "Sci-Fi",
-    19: "Short Film",
-    20: "Sport",
-    21: "Superhero",
+    12: "Game-Show",
+    13: "History",
+    14: "Horror",
+    15: "Music",
+    16: "Musical",
+    17: "Mystery",
+    18: "Romance",
+    19: "Sci-Fi",
+    20: "Short Film",
+    21: "Sport",
+    // 21: "Superhero",
     22: "Thriller",
     23: "War",
     24: "Western",
@@ -92,24 +92,24 @@ const Filter2 = () => {
     e.target.style.backgroundColor = "";
   };
 
-  const filterValues = Object.keys(selected).map(item => {
-    return (item)
-  })
+  const filterValues = Object.keys(selected).map((item) => {
+    return item;
+  });
 
   const sendFilters = () => {
     const data = {
-      filterObject: {"filters": selected}
+      filterObject: { filters: selected },
     };
 
-    // fetch("http://localhost:8080/filter", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   // mode: "cors",
-    //   body: JSON.stringify(data),
-    // });
+    fetch("http://localhost:8080/filter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // mode: "cors",
+      body: JSON.stringify(data),
+    });
   };
 
-  return(
+  return (
     <div
       style={{
         display: "flex",
@@ -122,41 +122,49 @@ const Filter2 = () => {
         background: "rgba(1,1,1,0.5)",
       }}
     >
-      <div style={{ position: "fixed", left: "100px", top: "100px" }}>
-        <button
-          className="btn btn-link"
-          onClick={() => {
-            setSelected({
-              netflix: false,
-              primeVideo: false,
-              hotstar: false,
-              erosNow: false,
-              sonyLiv: false,
-              altBalaji: false,
-              zee: false,
-              voot: false,
-              viu: false,
-              year: [],
-              rating: [],
-              genre: [],
-            });
-          }}
-        >
-          Clear All
-        </button>
-      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "70vw",
+        }}
+      >
+        <div style={{}}>
+          <button
+            className="btn btn-link"
+            onClick={() => {
+              setSelected({
+                netflix: false,
+                primeVideo: false,
+                hotstar: false,
+                erosNow: false,
+                sonyLiv: false,
+                altBalaji: false,
+                zee: false,
+                voot: false,
+                viu: false,
+                year: [],
+                rating: [],
+                genre: [],
+              });
+            }}
+          >
+            Clear All
+          </button>
+        </div>
 
-      <div style={{ position: "fixed", right: "70px", top: "100px" }}>
-        <button
-          className="btn btn-link"
-          onClick={() => {
-            console.log("Filters: ", selected);
-            // console.log("filterValues", filterValues);
-            sendFilters();
-          }}
-        >
-          Apply Filters
-        </button>
+        <div style={{}}>
+          <button
+            className="btn btn-link"
+            onClick={() => {
+              console.log("Filters: ", selected);
+              // console.log("filterValues", filterValues);
+              sendFilters();
+            }}
+          >
+            Apply Filters
+          </button>
+        </div>
       </div>
 
       <div
@@ -166,9 +174,9 @@ const Filter2 = () => {
           display: "flex",
           width: "65%",
           margin: "20px",
+          overflow: "auto",
         }}
       >
-
         <a>
           <img
             id="thumbnail"
@@ -335,10 +343,10 @@ const Filter2 = () => {
           margin: "20px",
         }}
       >
-        {Object.keys(yearFilter).map((item,index) => {
+        {Object.keys(yearFilter).map((item, index) => {
           return (
             <button
-            key={"filter-button-year "+ index}
+              key={"filter-button-year " + index}
               className="btn btn-light"
               style={{
                 margin: "5px",
@@ -386,7 +394,7 @@ const Filter2 = () => {
         {Object.keys(ratingFilter).map((item) => {
           return (
             <button
-            key={"filter-button-rating" + item}
+              key={"filter-button-rating" + item}
               className="btn btn-light"
               style={{
                 margin: "5px",
@@ -431,10 +439,10 @@ const Filter2 = () => {
           margin: "20px",
         }}
       >
-        {Object.keys(genreFilter).map((item,index) => {
+        {Object.keys(genreFilter).map((item, index) => {
           return (
             <button
-            key={"filter-button-genre"+index}
+              key={"filter-button-genre" + index}
               className="btn btn-light"
               style={{
                 margin: "5px",
@@ -467,7 +475,7 @@ const Filter2 = () => {
         })}
       </div>
     </div>
-  ) 
+  );
 };
 
 export default Filter2;

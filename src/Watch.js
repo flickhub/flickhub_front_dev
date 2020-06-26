@@ -5,12 +5,13 @@ import { Link, BrowserRouter as Router } from "react-router-dom";
 import { icons } from "./constants/icons";
 import flickhub from "./assets/images/logo3.jpg";
 import InfoPage from "./InfoPage";
+import Shimmer from "./Shimmer";
 
 const Watch = (props) => {
   const {item} = props;
-  const [trailer, setTrailer] = React.useState(item.trailer);
+  const [trailer, setTrailer] = React.useState();
 
-  // setTimeout(() => {setTrailer(props.youtubeLink);}, 510)
+  setTimeout(() => {setTrailer("https://youtube.com/embed/EErSKhC0CZs")}, 510)
 
   
   const replaceTrailer = <p>Trailer coming soon</p>;
@@ -47,10 +48,6 @@ const Watch = (props) => {
         </button>
       </Link>
 
-      {/* <Link to={`/info-page/${item.name}`}>
-        <InfoPage item={item} />
-      </Link> */}
-
       <h1
         id="heading1"
         className="card-title"
@@ -66,7 +63,7 @@ const Watch = (props) => {
         <b>{item.name}</b>
       </h1>
 
-      {/* <iframe
+      {/* {trailer ? (<iframe
         title="youtubeTrailer"
         height="250px"
         src={trailer + "?autoplay=1&mute=1&enablejsapi=1"}
@@ -79,7 +76,7 @@ const Watch = (props) => {
           objectFit: "contain",
           transition: "all 0.45s ease",
         }}
-      ></iframe> */}
+      ></iframe>) : <p>Loading . . .</p>} */}
 
       <div
         style={{

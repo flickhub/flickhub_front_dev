@@ -14,8 +14,8 @@ const CardInitial = (props) => {
         borderRadius: "5px",
         overflow: "hidden",
         margin: "0px 5px",
-        maxWidth: "200px",
-        maxHeight: "300px",
+        maxWidth: props.cardWidth ? props.cardWidth : "200px",
+        maxHeight: props.cardHeight ? props.cardHeight : "300px",
         zIndex: "1",
       }}
     >
@@ -31,7 +31,13 @@ const CardInitial = (props) => {
         }}
       >
         {props.poster ? (
-          <img src={props.poster} height="260" width="220" alt="poster" style={{opacity: "0.7"}} />
+          <img
+            src={props.poster}
+            height={props.imageHeight ? props.imageHeight : "260"}
+            width={props.imageWidth ? props.imageWidth : "220"}
+            alt="poster"
+            style={{ opacity: "0.7" }}
+          />
         ) : (
           <div style={{ display: "inline-block" }}>
             <img

@@ -5,7 +5,8 @@ import "./App.css";
 import { Link } from "react-router-dom";
 import Hover from "./Hover";
 import $ from "jquery";
-
+import CardInitial from "./CardInitial";
+import MobileHover from "./mobile/MobileHover";
 
 export const SearchBtn = (props) => {
   return (
@@ -54,7 +55,6 @@ const Flickhub = () => {
       .then((response) => setRespObj(response))
       .catch((error) => console.log("error", error));
   }, []);
-  
 
   return (
     <div
@@ -134,6 +134,10 @@ const Flickhub = () => {
                   if (e.key === "Enter") {
                     window.location = `/search/${searchValue}`;
                   }
+                }}
+                onFocus={(e) => {
+                  e.target.style.outline = "none";
+                  e.target.style.border = "none";
                 }}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
@@ -237,7 +241,24 @@ export const SearchItem = (props) => {
           if (item === name) {
             return (
               <div style={{ marginTop: "20px" }}>
-                <Hover item={item} key={`search-result-${name}`} />
+                {props.mobileCard ? (
+                  // <CardInitial
+                  //   key={`search-result-mobile-${name}`}
+                  //   title={item.name}
+                  //   poster={item.image}
+                  //   urlname={item.urlname}
+                  //   cardHeight="100px"
+                  //   cardWidth="100px"
+                  //   imageHeight="100"
+                  //   imageWidth="100"
+                  // />
+                  <MobileHover
+                    item={item}
+                    key={`search-result-mobile-${name}`}
+                  />
+                ) : (
+                  <Hover item={item} key={`search-result-${name}`} />
+                )}
               </div>
             );
           } else {

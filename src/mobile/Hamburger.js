@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Switch, Route, HashRouter } from 'react-router-dom'
 import About from '../About';
 import Filter from '../Filter';
 import MobileFeedback from './MobileFeedback';
@@ -8,9 +8,8 @@ import MobileFeedback from './MobileFeedback';
 
 const Hamburger = props => {
 
-
     const mobileHamburger = {
-      top: "40px",
+      top: "45px",
       postion: "fixed",
       display: "flex",
       flexDirection: "column",
@@ -21,22 +20,33 @@ const Hamburger = props => {
       backgroundColor: "white",
     };
 
+    const showRef = React.useRef()
+
     return (
-      <Router>
-        <ul style={mobileHamburger}>
+      // <Router>
+      <div>
+        <ul
+          style={mobileHamburger}
+          ref={showRef}
+          onClick={(e) =>
+            props.showMenu
+              ? (e.target.style.display = "block")
+              : (e.target.style.display = "none")
+          }
+        >
           <li>
-            <Link to="/about">
+            <a href="/about">
               <button
                 type="button"
                 className="btn btn-secondary"
-                style={{ width: "90vw", margin: "3px 0px",  }}
+                style={{ width: "90vw", margin: "3px 0px" }}
               >
                 About
               </button>
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="/filter">
+            <a href="/filter">
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -44,10 +54,10 @@ const Hamburger = props => {
               >
                 Filtered Search
               </button>
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="/feedback">
+            <a href="/feedback">
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -55,21 +65,25 @@ const Hamburger = props => {
               >
                 Feedback
               </button>
-            </Link>
+            </a>
           </li>
         </ul>
 
-        <Switch>
-          <Route path="/feedback" component={MobileFeedback} />
-          <Route path="/filter" component={Filter} />
+        {/* <Switch>
+          <Route path="/feedback" exact component={MobileFeedback} />
+          <Route path="/filter" exact component={Filter} />
           <Route
             path="/about"
+            exact
             render={() => (
-              <About font="18px" headFontSize="35px" margin="30px" />
+              <div style={{ marginTop: "150px" }}>
+                <About font="18px" headFontSize="35px" margin="30px" />
+              </div>
             )}
           />
-        </Switch>
-      </Router>
+        </Switch> */}
+        </div>
+      // {/* </Router> */}
     );
 }
 

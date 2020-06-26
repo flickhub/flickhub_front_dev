@@ -35,7 +35,7 @@ const Feedback = (props) => {
         justifyContent: "center",
         alignItems: "center",
         padding: "50px 100px",
-        margin: "175px",
+        margin: "125px",
       }}
     >
       <div>
@@ -335,8 +335,9 @@ const Feedback = (props) => {
           alignItems: "center",
           justifyContent: "center",
           zIndex: "1",
-          left: "300px",
+          left: "200px",
           position: "absolute",
+          alignSelf: "flex-start",
           border: "1px solid white",
           borderRadius: "2px",
           padding: "20px 10px",

@@ -18,6 +18,11 @@ const Filter = () => {
     genre: [],
   });
 
+  const [filterByService, setFilterByService] = React.useState(false);
+  const [filterByYear, setFilterByYear] = React.useState(false);
+  const [filterByRating, setFilterByRating] = React.useState(false);
+  const [filterByGenre, setFilterByGenre] = React.useState(false);
+
   const yearFilter = {
     1: "1950-1955",
     2: "1956-1960",
@@ -60,16 +65,17 @@ const Filter = () => {
     9: "Family",
     10: "Fantasy",
     11: "Film Noir",
-    12: "History",
-    13: "Horror",
-    14: "Music",
-    15: "Musical",
-    16: "Mystery",
-    17: "Romance",
-    18: "Sci-Fi",
-    19: "Short Film",
-    20: "Sport",
-    21: "Superhero",
+    12: "Game-Show",
+    13: "History",
+    14: "Horror",
+    15: "Music",
+    16: "Musical",
+    17: "Mystery",
+    18: "Romance",
+    19: "Sci-Fi",
+    20: "Short Film",
+    21: "Sport",
+    // 21: "Superhero",
     22: "Thriller",
     23: "War",
     24: "Western",
@@ -107,33 +113,49 @@ const Filter = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        margin: "200px 0px 75px 0px",
+        margin: "100px 0px 75px 0px",
         width: "70vw",
         flexDirection: "column",
-        borderRadius: "5px",
+        borderRadius: "3px",
         background: "rgba(1,1,1,0.5)",
         width: "100%",
+        transition: "all 0.5s ease",
       }}
     >
+      <button
+        style={{
+          width: "50vw",
+          margin: "30px 50px",
+        }}
+        type="button"
+        className="btn btn-light"
+        onClick={() => setFilterByService(!filterByService)}
+      >
+        {!filterByService ? "Filter By Service" : "Hide"}
+      </button>
+      {/* {filterByService ? ( */}
       <div
         style={{
           background: "rgba(255,255,255,0.2)",
-          padding: "5px",
+          padding: filterByService ? "20px" : "0px",
           display: "flex",
           flexWrap: "wrap",
-          margin: "20px",
+          margin: filterByService ? "20px" : "0px",
+          height: filterByService ? "30vh" : "0px",
+          // width: filterByService ? "70vw" : "0px",
+          transition: "all 0.5s ease",
         }}
       >
         <a>
           <img
             id="thumbnail"
             src={icons.netflixIcon}
-            height="50px"
-            width="50px"
             style={{
               filter: !selected.netflix ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.netflix ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, netflix: !selected.netflix });
@@ -144,12 +166,12 @@ const Filter = () => {
           <img
             id="thumbnail"
             src={icons.primeVideoIcon}
-            height="50px"
-            width="50px"
             style={{
               filter: !selected.primeVideo ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.primeVideo ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, primeVideo: !selected.primeVideo });
@@ -160,12 +182,12 @@ const Filter = () => {
           <img
             id="thumbnail"
             src={icons.hotstarIcon}
-            height="50px"
-            width="50px"
             style={{
               filter: !selected.hotstar ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.hotstar ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, hotstar: !selected.hotstar });
@@ -176,12 +198,12 @@ const Filter = () => {
           <img
             id="thumbnail"
             src={icons.erosNowIcon}
-            height="50px"
-            width="50px"
             style={{
               filter: !selected.erosNow ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.erosNow ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, erosNow: !selected.erosNow });
@@ -193,12 +215,12 @@ const Filter = () => {
           <img
             id="thumbnail"
             src={icons.sonyLivIcon}
-            height="50px"
-            width="50px"
             style={{
               filter: !selected.sonyLiv ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.sonyLiv ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, sonyLiv: !selected.sonyLiv });
@@ -210,12 +232,12 @@ const Filter = () => {
           <img
             id="thumbnail"
             src={icons.altBalajiIcon}
-            height="50px"
-            width="50px"
             style={{
               filter: !selected.altBalaji ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.altBalaji ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, altBalaji: !selected.altBalaji });
@@ -229,12 +251,12 @@ const Filter = () => {
           <img
             id="thumbnail"
             src={icons.zee5Icon}
-            height="50px"
-            width="50px"
             style={{
               filter: !selected.zee ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.zee ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, zee: !selected.zee });
@@ -246,12 +268,12 @@ const Filter = () => {
           <img
             id="thumbnail"
             src={icons.vootIcon}
-            height="50px"
-            width="50px"
             style={{
               filter: !selected.voot ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.voot ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, voot: !selected.voot });
@@ -269,6 +291,8 @@ const Filter = () => {
               filter: !selected.viu ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
               opacity: !selected.viu ? "0.8" : "1",
+              height: filterByService ? "50px" : "0px",
+              width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
               setSelected({ ...selected, viu: !selected.viu });
@@ -278,6 +302,16 @@ const Filter = () => {
         </a>
       </div>
 
+      {/* Filter by year */}
+      <button
+        style={{ width: "50vw", margin: "30px 50px" }}
+        type="button"
+        className="btn btn-light"
+        onClick={() => setFilterByYear(!filterByYear)}
+      >
+        {!filterByYear ? "Filter By Year" : "Hide"}
+      </button>
+
       <div
         style={{
           backgroundColor: "rgba(255,255,255,0.2)",
@@ -285,8 +319,10 @@ const Filter = () => {
           alignItems: "flex-start",
           justifyContent: "center",
           flexWrap: "wrap",
-          padding: "10px",
-          margin: "20px",
+          padding: filterByYear ? "10px" : "0px",
+          margin: filterByYear ? "30px 20px" : "0px",
+          transition: "all 0.5s ease",
+          height: filterByYear ? "" : 0,
         }}
       >
         {Object.keys(yearFilter).map((item, index) => {
@@ -301,6 +337,7 @@ const Filter = () => {
                   ? "rgba(255,134,20)"
                   : "",
                 width: "120px",
+                display: filterByYear ? "block" : "none",
               }}
               onClick={(e) => {
                 if (selected.year.includes(yearFilter[item])) {
@@ -326,15 +363,26 @@ const Filter = () => {
         })}
       </div>
 
+      {/* Filter by rating */}
+      <button
+        style={{ width: "50vw", margin: "30px 50px" }}
+        type="button"
+        className="btn btn-light"
+        onClick={() => setFilterByRating(!filterByRating)}
+      >
+        {!filterByRating ? "Filter By Rating" : "Hide"}
+      </button>
       <div
         style={{
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "center",
           flexWrap: "wrap",
-          padding: "10px",
+          padding: filterByRating ? "10px" : "0px",
           backgroundColor: "rgba(255,255,255,0.2)",
-          margin: "20px",
+          margin: filterByRating ? "20px" : "0px",
+          height: filterByRating ? "30vh" : 0,
+          transition: "all 0.5s ease",
         }}
       >
         {Object.keys(ratingFilter).map((item) => {
@@ -344,11 +392,13 @@ const Filter = () => {
               className="btn btn-light"
               style={{
                 margin: "5px",
+                transition: "all 0.5s ease",
                 border: "none",
                 background: selected.rating.includes(ratingFilter[item])
                   ? "rgba(255,134,20)"
                   : "",
                 width: "100px",
+                display: filterByRating ? "block" : "none",
               }}
               onClick={(e) => {
                 if (selected.rating.includes(ratingFilter[item])) {
@@ -374,15 +424,26 @@ const Filter = () => {
         })}
       </div>
 
+      {/* Filter by genre */}
+      <button
+        style={{ width: "50vw", margin: "30px 50px" }}
+        type="button"
+        className="btn btn-light"
+        onClick={() => setFilterByGenre(!filterByGenre)}
+      >
+        {!filterByGenre ? "Filter By Genre" : "Hide"}
+      </button>
       <div
         style={{
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "center",
           flexWrap: "wrap",
-          padding: "10px",
+          padding: filterByGenre ? "10px": "0px",
           backgroundColor: "rgba(255,255,255,0.2)",
-          margin: "20px",
+          margin: filterByGenre ? "20px":"0px",
+          height: filterByGenre ? "60vh" : 0,
+          transition: "all 0.5s ease",
         }}
       >
         {Object.keys(genreFilter).map((item, index) => {
@@ -392,11 +453,14 @@ const Filter = () => {
               className="btn btn-light"
               style={{
                 margin: "5px",
+                marginTop: "10px",
+                transition: "all 0.5s ease",
                 border: "none",
                 background: selected.genre.includes(genreFilter[item])
                   ? "rgba(255,134,20)"
                   : "",
                 width: "120px",
+                display: filterByGenre ? "" : "none"
               }}
               onClick={(e) => {
                 if (selected.genre.includes(genreFilter[item])) {
@@ -437,7 +501,7 @@ const Filter = () => {
       >
         <div>
           <button
-            style={{ width: "150px" }}
+            style={{ width: "45vw" }}
             className="btn btn-light"
             onClick={() => {
               setSelected({
@@ -463,7 +527,7 @@ const Filter = () => {
         <div>
           <button
             className="btn btn-light"
-            style={{ width: "150px" }}
+            style={{ width: "45vw" }}
             onClick={() => {
               console.log("Filters: ", selected);
               sendFilters();
@@ -475,9 +539,6 @@ const Filter = () => {
       </div>
     </div>
   );
-}
-
-
+};
 
 export default Filter;
-

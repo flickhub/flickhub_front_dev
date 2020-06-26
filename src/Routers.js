@@ -11,7 +11,7 @@ import Filter2 from "./Filter2";
 import InfoPage from "./InfoPage";
 import Shimmer from "./Shimmer";
 
-const SearchScreen = (props) => {
+export const SearchScreen = (props) => {
   const [respObj, setRespObj] = React.useState(null);
 
   React.useEffect(() => {
