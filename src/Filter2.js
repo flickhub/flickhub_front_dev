@@ -19,61 +19,61 @@ const Filter2 = () => {
   });
 
   const yearFilter = {
-    1: "1950-1955",
-    2: "1956-1960",
-    3: "1961-1965",
-    4: "1966-1970",
-    5: "1971-1975",
-    6: "1976-1980",
-    7: "1981-1985",
-    8: "1986-1990",
-    9: "1991-1995",
-    10: "1996-2000",
-    11: "2001-2005",
-    12: "2006-2010",
-    13: "2011-2015",
-    14: "2016-2020",
+    0: "1950-1955",
+    1: "1956-1960",
+    2: "1961-1965",
+    3: "1966-1970",
+    4: "1971-1975",
+    5: "1976-1980",
+    6: "1981-1985",
+    7: "1986-1990",
+    8: "1991-1995",
+    9: "1996-2000",
+    10: "2001-2005",
+    11: "2006-2010",
+    12: "2011-2015",
+    13: "2016-2020",
   };
 
   const ratingFilter = {
-    1: "<1.0",
-    2: "1.1 - 2.0",
-    3: "2.1 - 3.0",
-    4: "3.1 - 4.0",
-    5: "4.1 - 5.0",
-    6: "5.1 - 6.0",
-    7: "6.1 - 7.0",
-    8: "7.1 - 8.0",
-    9: "8.1 - 9.0",
-    10: "9.1 - 10.0",
+    0: "0.0 - 1.0",
+    1: "1.1 - 2.0",
+    2: "2.1 - 3.0",
+    3: "3.1 - 4.0",
+    4: "4.1 - 5.0",
+    5: "5.1 - 6.0",
+    6: "6.1 - 7.0",
+    7: "7.1 - 8.0",
+    8: "8.1 - 9.0",
+    9: "9.1 - 10.0",
   };
 
   const genreFilter = {
-    1: "Action",
-    2: "Adventure",
-    3: "Animation",
-    4: "Biography",
-    5: "Comedy",
-    6: "Crime",
-    7: "Documentary",
-    8: "Drama",
-    9: "Family",
-    10: "Fantasy",
-    11: "Film Noir",
-    12: "Game-Show",
-    13: "History",
-    14: "Horror",
-    15: "Music",
-    16: "Musical",
-    17: "Mystery",
-    18: "Romance",
-    19: "Sci-Fi",
-    20: "Short Film",
-    21: "Sport",
+    0: "Action",
+    1: "Adventure",
+    2: "Animation",
+    3: "Biography",
+    4: "Comedy",
+    5: "Crime",
+    6: "Documentary",
+    7: "Drama",
+    8: "Family",
+    9: "Fantasy",
+    10: "Film Noir",
+    11: "Game-Show",
+    12: "History",
+    13: "Horror",
+    14: "Music",
+    15: "Musical",
+    16: "Mystery",
+    17: "Romance",
+    18: "Sci-Fi",
+    19: "Short Film",
+    20: "Sport",
     // 21: "Superhero",
-    22: "Thriller",
-    23: "War",
-    24: "Western",
+    21: "Thriller",
+    22: "War",
+    23: "Western",
   };
 
   const highlightSelected = (e) => {
@@ -351,23 +351,23 @@ const Filter2 = () => {
               style={{
                 margin: "5px",
                 border: "none",
-                background: selected.year.includes(yearFilter[item])
+                background: selected.year.includes(item)
                   ? "rgba(255,134,20)"
                   : "",
               }}
               onClick={(e) => {
-                if (selected.year.includes(yearFilter[item])) {
+                if (selected.year.includes(item)) {
                   setSelected({
                     ...selected,
                     year: [...selected.year].filter(
-                      (itemInner) => itemInner !== yearFilter[item]
+                      (itemInner) => itemInner !== item
                     ),
                   });
                   unSelectFilter(e);
                 } else {
                   setSelected({
                     ...selected,
-                    year: [...selected.year, yearFilter[item]],
+                    year: [...selected.year, item],
                   });
                   selectFilter(e);
                 }
@@ -399,23 +399,23 @@ const Filter2 = () => {
               style={{
                 margin: "5px",
                 border: "none",
-                background: selected.rating.includes(ratingFilter[item])
+                background: selected.rating.includes(item)
                   ? "rgba(255,134,20)"
                   : "",
               }}
               onClick={(e) => {
-                if (selected.rating.includes(ratingFilter[item])) {
+                if (selected.rating.includes(item)) {
                   setSelected({
                     ...selected,
                     rating: [...selected.rating].filter(
-                      (itemInner) => itemInner !== ratingFilter[item]
+                      (itemInner) => itemInner !== item
                     ),
                   });
                   unSelectFilter(e);
                 } else {
                   setSelected({
                     ...selected,
-                    rating: [...selected.rating, ratingFilter[item]],
+                    rating: [...selected.rating,item],
                   });
                   selectFilter(e);
                 }
@@ -447,23 +447,23 @@ const Filter2 = () => {
               style={{
                 margin: "5px",
                 border: "none",
-                background: selected.genre.includes(genreFilter[item])
+                background: selected.genre.includes(item)
                   ? "rgba(255,134,20)"
                   : "",
               }}
               onClick={(e) => {
-                if (selected.genre.includes(genreFilter[item])) {
+                if (selected.genre.includes(item)) {
                   setSelected({
                     ...selected,
                     genre: [...selected.genre].filter(
-                      (itemInner) => itemInner !== genreFilter[item]
+                      (itemInner) => itemInner !== item
                     ),
                   });
                   unSelectFilter(e);
                 } else {
                   setSelected({
                     ...selected,
-                    genre: [...selected.genre, genreFilter[item]],
+                    genre: [...selected.genre, item],
                   });
                   selectFilter(e);
                 }

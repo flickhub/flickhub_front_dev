@@ -240,22 +240,12 @@ export const SearchItem = (props) => {
         return props.respObj.map((name) => {
           if (item === name) {
             return (
-              <div style={{ marginTop: "20px" }}>
+              <div>
                 {props.mobileCard ? (
-                  // <CardInitial
-                  //   key={`search-result-mobile-${name}`}
-                  //   title={item.name}
-                  //   poster={item.image}
-                  //   urlname={item.urlname}
-                  //   cardHeight="100px"
-                  //   cardWidth="100px"
-                  //   imageHeight="100"
-                  //   imageWidth="100"
-                  // />
-                  <MobileHover
+                  <div><MobileHover
                     item={item}
                     key={`search-result-mobile-${name}`}
-                  />
+                  /></div>
                 ) : (
                   <Hover item={item} key={`search-result-${name}`} />
                 )}

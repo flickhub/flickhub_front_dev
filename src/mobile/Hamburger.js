@@ -16,6 +16,7 @@ const Hamburger = props => {
       alignItems: "center",
       justifyContent: "center",
       padding: "10px",
+      zIndex: 3,
       // width: "100%",
       backgroundColor: "white",
     };
