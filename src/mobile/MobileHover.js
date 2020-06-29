@@ -51,7 +51,7 @@ const MobileHover = (props) => {
   const expandRef = React.useRef()
 
   return (
-    <div style={{marginTop: "70px"}}>
+    <div>
       {expandCard ? (
         <div style={mobileWatchBackground}>
           <button
@@ -139,13 +139,14 @@ export const MobileCardInitial = (props) => {
 
 // Expanded card
 export const trailerNAStyle = {
-  paddingTop: "205px",
+  // paddingTop: "205px",
   textAlign: "center",
   fontSize: "25px",
   color: "white",
   backgroundImage: "url(" + flickhub + ")",
   display: "block",
-  height: "240px",
+  // height: "240px",
+  height: "50vh",
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center center",

@@ -3,13 +3,12 @@ import { BrowserRouter as Router, Route, Link, Switch, HashRouter, Redirect } fr
 
 import flickhub from "../assets/images/logo3.jpg";
 import MobileFlickhub from "./MobileFlickhub"
-import Hamburger from "./Hamburger";
 import InfoPage from "../InfoPage"
-import Shimmer from "../Shimmer";
 import About from "../About";
 import Filter from "../Filter";
 import MobileFeedback from "./MobileFeedback";
 import { SearchItem } from "../Flickhub";
+import MobileSpinner from "./MobileSpinner";
 
 export const ulRouter = {
   display: "flex",
@@ -46,7 +45,7 @@ const MobileRouters = (props) => {
   
   const SearchMobile = props => {
     return (
-      <div>
+      <div style={{marginTop: "75px"}}>
         <SearchItem respObj={respObj.data} mobileCard={true} searchFor={props.match.params.searchString} />
       </div>
     )
@@ -76,8 +75,8 @@ const MobileRouters = (props) => {
               );
             })
           ) : (
-            <div style={{ marginTop: "75px" }}>
-              <Shimmer />{" "}
+            <div style={{ margin: "75px 0px" }}>
+              <MobileSpinner />
             </div>
           )}
           {respObj ? (
@@ -86,7 +85,7 @@ const MobileRouters = (props) => {
               component={SearchMobile}
             />
           ) : (
-            <Shimmer />
+            <MobileSpinner />
           )}
 
           <Route path="/about">

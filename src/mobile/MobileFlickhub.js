@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
 import { SearchItem } from "../Flickhub";
-import SearchScreen from "../Routers"
+import SearchScreen from "../Routers";
 import Shimmer from "../Shimmer";
+import filterStringInstance from "../utils/filter";
 
 export const logoStlye = {
   color: "white",
@@ -17,6 +18,9 @@ const MobileFlickhub = (props) => {
   const [search, setSearch] = React.useState("");
   const disableRef = React.useRef();
 
+  React.useEffect(() => {
+    search && filterStringInstance.setFilterString(search);
+  }, [search]);
 
   return (
     <div style={logoStlye}>
@@ -53,8 +57,8 @@ const MobileFlickhub = (props) => {
               : (disableRef.current.disabled = true);
           }}
           onFocus={(e) => {
-              e.target.style.outline = "none"
-              e.target.style.border = "none";
+            e.target.style.outline = "none";
+            e.target.style.border = "none";
           }}
           style={{
             width: "80vw",
@@ -81,7 +85,6 @@ const MobileFlickhub = (props) => {
             <b>Search</b>
           </button>
         </Link>
-        
       </div>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -103,7 +106,6 @@ const MobileFlickhub = (props) => {
           Tap tap and away!
         </p>
       </div>
-
     </div>
   );
 };
