@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom"
 
 import "./App.css";
 import { Link, BrowserRouter as Router } from "react-router-dom";
@@ -6,6 +7,7 @@ import { icons } from "./constants/icons";
 import flickhub from "./assets/images/logo3.jpg";
 import InfoPage from "./InfoPage";
 import Shimmer from "./Shimmer";
+
 
 const Watch = (props) => {
   const {item} = props;
@@ -30,23 +32,27 @@ const Watch = (props) => {
         backgroundColor: "rgba(1,1,1)",
       }}
     >
-      <Link to={`/title/${item.name}`}>
+      
+      {/* <Link to={`/title/${item.name}`}> */}
         <button
           type="button"
           className="btn btn-light card-body goToBtn"
           style={{
             position: "absolute",
-            marginTop: "-15px",
-            alignSelf: "flex-end",
-            marginLeft: "-10px",
-            width: "95%",
+            marginTop: "-18px",
+            alignSelf: "center",
+            // marginLeft: "-10px",
+            width: "100%",
             fontWeight: "bold",
             padding: "0px",
           }}
+          onClick={() => ReactDOM.render(<InfoPage item={item} />, document.getElementById("root"))}
         >
           Go To Page
         </button>
-      </Link>
+      {/* </Link> */}
+
+      
 
       <h1
         id="heading1"
@@ -168,5 +174,6 @@ const Watch = (props) => {
     </div>
   );
 };
+
 
 export default Watch;

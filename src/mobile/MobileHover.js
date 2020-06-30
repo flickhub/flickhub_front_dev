@@ -1,8 +1,10 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 import flickhub from "../assets/images/logo3.jpg";
 import { Link } from "react-router-dom";
 import { icons } from "../constants/icons";
+import InfoPage from "../InfoPage";
 import { useMediaQuery } from "react-responsive";
 
 // export const mobileWatchBackground = {
@@ -37,7 +39,7 @@ const MobileHover = (props) => {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(1,1,1,0.6)",
-    height: "100vh" ,
+    height: "100vh",
     width: "100vw",
     padding: "20px 10px",
     top: "0",
@@ -48,7 +50,7 @@ const MobileHover = (props) => {
     // transform: "translate(0px,200px)",
   };
 
-  const expandRef = React.useRef()
+  const expandRef = React.useRef();
 
   return (
     <div>
@@ -73,10 +75,7 @@ const MobileHover = (props) => {
   );
 };
 
-const mobileHoverCardStyle = {
-  height: "200px",
-  width: "150px",
-};
+
 
 const cardTitleStyle = {
   display: "flex",
@@ -91,19 +90,42 @@ const cardTitleStyle = {
   borderRadius: "0px 0px 3px 3px",
 };
 
-const mobileHoverDivStyle = {
-  margin: "5px 5px 0px 5px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  height: "250px",
-  width: "150px",
-  backgroundColor: "rgba(40,40,40)",
-  overflow: "hidden",
-};
+
 
 export const MobileCardInitial = (props) => {
   const { item } = props;
+  
+  const mobileHoverDivStyle = {
+    margin: useMediaQuery({
+      minWidth: 790,
+    })
+      ? "10px 20px 10px 20px" 
+      : "5px 5px 0px 5px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    height: useMediaQuery({
+      minWidth: 790,
+    }) ? "300px" : "250px",
+    width: useMediaQuery({
+      minWidth: 790,
+    }) ? "200px" : "150px",
+    backgroundColor: "rgba(40,40,40)",
+    overflow: "hidden",
+  };
+  
+  const mobileHoverCardStyle = {
+  height: useMediaQuery({
+      minWidth: 790,
+    }) ? "250px" : "200px",
+  width: useMediaQuery({
+      minWidth: 790,
+    }) ? "200px" : "150px",
+};
+
+const mobile = useMediaQuery({
+  minWidth: 790,
+});
 
   return (
     <div className="card" style={mobileHoverDivStyle}>
@@ -118,7 +140,11 @@ export const MobileCardInitial = (props) => {
         </div>
       ) : (
         <div style={{ display: "inline-block", marginBottom: "-15px" }}>
-          <img src={flickhub} height="200" width="185" alt="no-poster" />
+          <img src={flickhub} 
+          // height="200" width="185" 
+          alt="no-poster"
+          style={{height: mobile ?"250px" :"200px" , width: mobile ? "200px" : "185px"}}
+            />
           <p
             style={{
               color: "white",
@@ -135,36 +161,6 @@ export const MobileCardInitial = (props) => {
       </div>
     </div>
   );
-};
-
-// Expanded card
-export const trailerNAStyle = {
-  // paddingTop: "205px",
-  textAlign: "center",
-  fontSize: "25px",
-  color: "white",
-  backgroundImage: "url(" + flickhub + ")",
-  display: "block",
-  // height: "240px",
-  height: "50vh",
-  backgroundSize: "contain",
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "center center",
-};
-
-export const plotCardStyle = {
-  display: "flex",
-  justifyContent: "center",
-  height: "100px",
-  width: "83%",
-  overflow: "auto",
-  padding: "15px",
-  background: "rgba(50,50,50,0.9)",
-  borderRadius: "10px",
-  scrollbarWidth: "none",
-  textAlign: "center",
-  bottom: "85px",
-  position: "absolute",
 };
 
 export const streamCardStyle = {
@@ -192,13 +188,48 @@ export const titleCardStyle = {
   fontSize: "1.5em",
   color: "black",
   width: "100%",
-  textAlign: "center"
+  textAlign: "center",
 };
 
 export const MobileWatch = (props) => {
   const { item } = props;
 
   const [trailer, setTrailer] = React.useState();
+
+  // Expanded card
+   const trailerNAStyle = {
+    textAlign: "center",
+    fontSize: "1em",
+    color: "white",
+    backgroundImage: "url(" + flickhub + ")",
+    display: "block",
+    marginTop: useMediaQuery({
+      minWidth: 790,
+    }) ?  "150px" : "50px",
+    height:  useMediaQuery({
+      minWidth: 790,
+    }) ?   "35vh" : "30vh",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+  };
+
+  const plotCardStyle = {
+    display: "flex",
+    justifyContent: "center",
+    height: "100px",
+    width: useMediaQuery({
+      minWidth: 790,
+    }) ?   "90%" : "83%",
+    overflow: "auto",
+    padding: "15px",
+    background: "rgba(50,50,50,0.9)",
+    borderRadius: "10px",
+    scrollbarWidth: "none",
+    textAlign: "center",
+    bottom: "85px",
+    position: "absolute",
+  };
 
   return (
     <div
@@ -216,20 +247,25 @@ export const MobileWatch = (props) => {
         backgroundColor: "rgba(1,1,1)",
         position: "fixed",
         zIndex: 1,
-        // transform: "translate(0px,-200px)"
       }}
     >
       <div>
         {/* Go To Page button */}
-        <Link to={`/title/${item.name}`}>
-          <button
-            type="button"
-            className="btn btn-light card-body goToBtn"
-            style={goToPageStyle}
-          >
-            Go To Page
-          </button>
-        </Link>
+        {/* <Link to={`/title/${item.name}`}> */}
+        <button
+          type="button"
+          className="btn btn-light card-body goToBtn"
+          style={goToPageStyle}
+          onClick={() =>
+            ReactDOM.render(
+              <InfoPage item={item} />,
+              document.getElementById("root")
+            )
+          }
+        >
+          Go To Page
+        </button>
+        {/* </Link> */}
       </div>
 
       {/* Title */}
@@ -244,7 +280,7 @@ export const MobileWatch = (props) => {
           display: "inline-block",
           overflow: "auto",
           whiteSpace: "nowrap",
-          padding: "10px 20px"
+          padding: "10px 20px",
         }}
       >
         <h1 style={titleCardStyle}>{item.name}</h1>

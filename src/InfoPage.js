@@ -5,6 +5,7 @@ import { commentsObj } from "./utils/network";
 import "./App.css";
 import { useMediaQuery } from "react-responsive";
 import { icons } from "./constants/icons";
+import { Route } from "react-router-dom";
 
 const InfoPage = (props) => {
   const { item } = props;
@@ -33,10 +34,10 @@ const InfoPage = (props) => {
 
   return (
     // <Router>
-    //   <Route
-    //     path={`/info-page`}
-    //     exact
-    //     render={() => (
+      // <Route
+      //   path={`/title/${item.name}`}
+      //   // exact
+      //   render={() => (
 
     <div style={{ marginTop: "50px" }}>
       {mobile ? (
@@ -441,7 +442,7 @@ const InfoPage = (props) => {
       )}
     </div>
     // )}
-    //   />
+      // />
     // </Router>
   );
 };
