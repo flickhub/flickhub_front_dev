@@ -20,36 +20,34 @@ export const ulRouter = {
   padding: "10px 40px"
 };
 
+export const SearchMobile = props => {
+    const [respObj, setRespObj] = React.useState(null);
 
+      React.useEffect(() => {
+        fetch("http://localhost:5000/submit", {
+          method: "POST",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ mv_name: props.match.params.searchString }),
+        })
+          .then((response) => response.json())
+          //   .then(response => console.log("Response mobile: ",response))
+          .then((response) => setRespObj(response))
+          .catch((error) => console.log("error", error));
+      }, []);
 
-const MobileRouters = (props) => {
-  const [showMenu, setShowMenu] = React.useState(false);
-  const [respObj, setRespObj] = React.useState(null)
-
-  const collapseRef = React.useRef()
-
-  React.useEffect(() => {
-    fetch("http://localhost:5000/submit", {
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ mv_name: "iron man" }),
-    })
-      .then((response) => response.json())
-      //   .then(response => console.log("Response mobile: ",response))
-      .then((response) => setRespObj(response))
-      .catch((error) => console.log("error", error));
-  }, []);
-  
-  const SearchMobile = props => {
-    return (
+    return respObj ? (
       <div style={{marginTop: "75px"}}>
         <SearchItem respObj={respObj.data} mobileCard={true} searchFor={props.match.params.searchString} />
       </div>
-    )
+    ) : (<MobileSpinner />)
   }
+
+const MobileRouters = (props) => {
+  const [showMenu, setShowMenu] = React.useState(false);
+  const collapseRef = React.useRef()
 
   return (
     <div>
@@ -63,7 +61,7 @@ const MobileRouters = (props) => {
         </ul>
 
         <Switch>
-          {respObj ? (
+          {/* {respObj ? (
             respObj.data.map((item, index) => {
               return (
                 <Route
@@ -78,18 +76,15 @@ const MobileRouters = (props) => {
             <div style={{ margin: "75px 0px" }}>
               <MobileSpinner />
             </div>
-          )}
-          {respObj ? (
+          )} */}
             <Route
               path={`/search/:searchString`}
+              // exact
               component={SearchMobile}
             />
-          ) : (
-            <MobileSpinner />
-          )}
 
           <Route path="/about">
-            <About font="18px" headFontSize="35px" margin="30px" />
+            <div style={{margin: "-50px 0px 50px 0px"}}><About font="18px" headFontSize="35px" margin="30px" /></div>
           </Route>
           <Route path="/filter">
             <Filter />

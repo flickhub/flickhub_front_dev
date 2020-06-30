@@ -8,22 +8,21 @@ import MobileSpinner from "./mobile/MobileSpinner";
 
 const Filter = () => {
   const [selected, setSelected] = React.useState({
-    netflix: false,
-    primeVideo: false,
-    hotstar: false,
-    erosNow: false,
-    sonyLiv: false,
-    altBalaji: false,
-    zee: false,
-    voot: false,
-    viu: false,
+    NETFLIX: false,
+    PRIME: false,
+    HOTSTAR: false,
+    EROSNOW: false,
+    SONYLIV: false,
+    ALTBALAJI: false,
+    ZEE5: false,
+    VOOT: false,
+    VIU: false,
     year: [],
     rating: [],
     genre: [],
   });
 
   const [respObj, setRespObj] = React.useState(null);
-
   const [filterByService, setFilterByService] = React.useState(false);
   const [filterByYear, setFilterByYear] = React.useState(false);
   const [filterByRating, setFilterByRating] = React.useState(false);
@@ -118,7 +117,7 @@ const Filter = () => {
       filters: selected,
     };
 
-    fetch("http://248cecce77e5.ngrok.io/filter", {
+    fetch("http://1103d0d94011.ngrok.io/filter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       mode: "cors",
@@ -128,10 +127,30 @@ const Filter = () => {
         return res.json();
       })
       .then((res) => setRespObj(res));
-    // .then((res) =>  console.log("Backend: ",res))
+      // .then((res) => console.log("Backend: ", res));
   };
 
-  return (
+  return respObj ? (
+    <div
+      style={{
+        height: "100%",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexWrap: "wrap",
+        marginTop: "100px",
+      }}
+    >
+      {respObj ? (
+        respObj.data.map((item) => {
+          return <MobileHover item={item} />;
+        })
+      ) : (
+        <MobileSpinner />
+      )}
+    </div>
+  ) : (
     <div
       style={{
         display: "flex",
@@ -177,14 +196,14 @@ const Filter = () => {
             id="thumbnail"
             src={icons.netflixIcon}
             style={{
-              filter: !selected.netflix ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.NETFLIX ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.netflix ? "0.8" : "1",
+              opacity: !selected.NETFLIX ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, netflix: !selected.netflix });
+              setSelected({ ...selected, NETFLIX: !selected.NETFLIX });
             }}
           />
         </a>
@@ -193,14 +212,14 @@ const Filter = () => {
             id="thumbnail"
             src={icons.primeVideoIcon}
             style={{
-              filter: !selected.primeVideo ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.PRIME ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.primeVideo ? "0.8" : "1",
+              opacity: !selected.PRIME ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, primeVideo: !selected.primeVideo });
+              setSelected({ ...selected, PRIME: !selected.PRIME });
             }}
           />
         </a>
@@ -209,14 +228,14 @@ const Filter = () => {
             id="thumbnail"
             src={icons.hotstarIcon}
             style={{
-              filter: !selected.hotstar ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.HOTSTAR ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.hotstar ? "0.8" : "1",
+              opacity: !selected.HOTSTAR ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, hotstar: !selected.hotstar });
+              setSelected({ ...selected, HOTSTAR: !selected.HOTSTAR });
             }}
           />
         </a>
@@ -225,15 +244,15 @@ const Filter = () => {
             id="thumbnail"
             src={icons.erosNowIcon}
             style={{
-              filter: !selected.erosNow ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.EROSNOW ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.erosNow ? "0.8" : "1",
+              opacity: !selected.EROSNOW ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, erosNow: !selected.erosNow });
-              !selected.erosNow ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, EROSNOW: !selected.EROSNOW });
+              !selected.EROSNOW ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -242,15 +261,15 @@ const Filter = () => {
             id="thumbnail"
             src={icons.sonyLivIcon}
             style={{
-              filter: !selected.sonyLiv ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.SONYLIV ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.sonyLiv ? "0.8" : "1",
+              opacity: !selected.SONYLIV ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, sonyLiv: !selected.sonyLiv });
-              !selected.sonyLiv ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, SONYLIV: !selected.SONYLIV });
+              !selected.SONYLIV ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -259,15 +278,15 @@ const Filter = () => {
             id="thumbnail"
             src={icons.altBalajiIcon}
             style={{
-              filter: !selected.altBalaji ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.ALTBALAJI ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.altBalaji ? "0.8" : "1",
+              opacity: !selected.ALTBALAJI ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, altBalaji: !selected.altBalaji });
-              !selected.altBalaji
+              setSelected({ ...selected, ALTBALAJI: !selected.ALTBALAJI });
+              !selected.ALTBALAJI
                 ? highlightSelected(e)
                 : unhighlightSelected(e);
             }}
@@ -278,15 +297,15 @@ const Filter = () => {
             id="thumbnail"
             src={icons.zee5Icon}
             style={{
-              filter: !selected.zee ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.ZEE5 ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.zee ? "0.8" : "1",
+              opacity: !selected.ZEE5 ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, zee: !selected.zee });
-              !selected.zee ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, ZEE5: !selected.ZEE5 });
+              !selected.ZEE5 ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -295,15 +314,15 @@ const Filter = () => {
             id="thumbnail"
             src={icons.vootIcon}
             style={{
-              filter: !selected.voot ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.VOOT ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.voot ? "0.8" : "1",
+              opacity: !selected.VOOT ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, voot: !selected.voot });
-              !selected.voot ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, VOOT: !selected.VOOT });
+              !selected.VOOT ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -314,15 +333,15 @@ const Filter = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.viu ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.VIU ? "grayscale(90%)" : "grayscale(0%)",
               margin: filterByService ? "10px" : "0px",
-              opacity: !selected.viu ? "0.8" : "1",
+              opacity: !selected.VIU ? "0.8" : "1",
               height: filterByService ? "50px" : "0px",
               width: filterByService ? "50px" : "0px",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, viu: !selected.viu });
-              !selected.viu ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, VIU: !selected.VIU });
+              !selected.VIU ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -525,7 +544,7 @@ const Filter = () => {
           width: "100%",
           background: "rgba(200,200,200)",
           padding: "10px",
-          zIndex: 3
+          zIndex: 3,
         }}
       >
         <div>
@@ -535,15 +554,15 @@ const Filter = () => {
             onClick={() => {
               // setShowResults(false)
               setSelected({
-                netflix: false,
-                primeVideo: false,
-                hotstar: false,
-                erosNow: false,
-                sonyLiv: false,
-                altBalaji: false,
-                zee: false,
-                voot: false,
-                viu: false,
+                NETFLIX: false,
+                PRIME: false,
+                HOTSTAR: false,
+                EROSNOW: false,
+                SONYLIV: false,
+                ALTBALAJI: false,
+                ZEE5: false,
+                VOOT: false,
+                VIU: false,
                 year: [],
                 rating: [],
                 genre: [],
@@ -567,14 +586,6 @@ const Filter = () => {
           </button>
         </div>
       </div>
-
-      {/* {respObj ? (
-        respObj.data.map((item) => {
-          return <MobileHover item={item} />;
-        })
-      ) : (
-        <MobileSpinner />
-      )} */}
     </div>
   );
 };

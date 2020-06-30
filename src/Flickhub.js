@@ -2,11 +2,17 @@ import React from "react";
 
 import "./App.css";
 
-import { Link } from "react-router-dom";
+import {
+  Link,
+  Route,
+  Redirect,
+  BrowserRouter as Router,
+  Switch,
+} from "react-router-dom";
 import Hover from "./Hover";
-import $ from "jquery";
 import CardInitial from "./CardInitial";
 import MobileHover from "./mobile/MobileHover";
+import InfoPage from "./InfoPage";
 
 export const SearchBtn = (props) => {
   return (
@@ -242,12 +248,16 @@ export const SearchItem = (props) => {
             return (
               <div>
                 {props.mobileCard ? (
-                  <div><MobileHover
-                    item={item}
-                    key={`search-result-mobile-${name}`}
-                  /></div>
+                  <div>
+                    <MobileHover
+                      item={item}
+                      key={`search-result-mobile-${name}`}
+                    />
+                  </div>
                 ) : (
-                  <Hover item={item} key={`search-result-${name}`} />
+                  <div style={{ margin: "10px 0px 10px 0px" }}>
+                    <Hover item={item} key={`search-result-${name}`} />
+                  </div>
                 )}
               </div>
             );

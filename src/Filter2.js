@@ -1,18 +1,23 @@
 import React from "react";
 import { icons } from "./constants/icons";
 import Shimmer from "./Shimmer";
+import MobileSpinner from "./mobile/MobileSpinner";
+import Hover from "./Hover";
 
 const Filter2 = () => {
+
+  const [respObj, setRespObj]= React.useState(null)
+
   const [selected, setSelected] = React.useState({
-    netflix: false,
-    primeVideo: false,
-    hotstar: false,
-    erosNow: false,
-    sonyLiv: false,
-    altBalaji: false,
-    zee: false,
-    voot: false,
-    viu: false,
+    NETFLIX: false,
+    PRIME: false,
+    HOTSTAR: false,
+    EROSNOW: false,
+    SONYLIV: false,
+    ALTBALAJI: false,
+    ZEE5: false,
+    VOOT: false,
+    VIU: false,
     year: [],
     rating: [],
     genre: [],
@@ -98,18 +103,42 @@ const Filter2 = () => {
 
   const sendFilters = () => {
     const data = {
-      filterObject: { filters: selected },
+      filters: selected,
     };
 
-    fetch("http://localhost:8080/filter", {
+    fetch("http://7ede76c2f937.ngrok.io/filter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      // mode: "cors",
+      mode: "cors",
       body: JSON.stringify(data),
-    });
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => setRespObj(res));
+      // .then((res) => console.log("Backend: ", res));
   };
 
-  return (
+  return respObj ? (<div
+      style={{
+        height: "100%",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexWrap: "wrap",
+        marginTop: "100px",
+      }}
+    >
+      {respObj ? (
+        respObj.data.map((item) => {
+          return <Hover item={item} />;
+        })
+      ) : (
+        <Shimmer />
+      )}
+    </div>
+  ) : (
     <div
       style={{
         display: "flex",
@@ -134,15 +163,15 @@ const Filter2 = () => {
             className="btn btn-link"
             onClick={() => {
               setSelected({
-                netflix: false,
-                primeVideo: false,
-                hotstar: false,
-                erosNow: false,
-                sonyLiv: false,
-                altBalaji: false,
-                zee: false,
-                voot: false,
-                viu: false,
+                NETFLIX: false,
+                PRIME: false,
+                HOTSTAR: false,
+                EROSNOW: false,
+                SONYLIV: false,
+                ALTBALAJI: false,
+                ZEE5: false,
+                VOOT: false,
+                VIU: false,
                 year: [],
                 rating: [],
                 genre: [],
@@ -160,6 +189,7 @@ const Filter2 = () => {
               console.log("Filters: ", selected);
               // console.log("filterValues", filterValues);
               sendFilters();
+              setRespObj(false)
             }}
           >
             Apply Filters
@@ -184,12 +214,12 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.netflix ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.NETFLIX ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.netflix ? "0.8" : "1",
+              opacity: !selected.NETFLIX ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, netflix: !selected.netflix });
+              setSelected({ ...selected, NETFLIX: !selected.NETFLIX });
             }}
           />
         </a>
@@ -200,12 +230,12 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.primeVideo ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.PRIME ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.primeVideo ? "0.8" : "1",
+              opacity: !selected.PRIME ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, primeVideo: !selected.primeVideo });
+              setSelected({ ...selected, PRIME: !selected.PRIME });
             }}
           />
         </a>
@@ -216,12 +246,12 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.hotstar ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.HOTSTAR ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.hotstar ? "0.8" : "1",
+              opacity: !selected.HOTSTAR ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, hotstar: !selected.hotstar });
+              setSelected({ ...selected, HOTSTAR: !selected.HOTSTAR });
             }}
           />
         </a>
@@ -232,13 +262,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.erosNow ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.EROSNOW ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.erosNow ? "0.8" : "1",
+              opacity: !selected.EROSNOW ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, erosNow: !selected.erosNow });
-              !selected.erosNow ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, EROSNOW: !selected.EROSNOW });
+              !selected.EROSNOW ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -249,13 +279,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.sonyLiv ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.SONYLIV ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.sonyLiv ? "0.8" : "1",
+              opacity: !selected.SONYLIV ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, sonyLiv: !selected.sonyLiv });
-              !selected.sonyLiv ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, SONYLIV: !selected.SONYLIV });
+              !selected.SONYLIV ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -266,13 +296,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.altBalaji ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.ALTBALAJI ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.altBalaji ? "0.8" : "1",
+              opacity: !selected.ALTBALAJI ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, altBalaji: !selected.altBalaji });
-              !selected.altBalaji
+              setSelected({ ...selected, ALTBALAJI: !selected.ALTBALAJI });
+              !selected.ALTBALAJI
                 ? highlightSelected(e)
                 : unhighlightSelected(e);
             }}
@@ -285,13 +315,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.zee ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.ZEE5 ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.zee ? "0.8" : "1",
+              opacity: !selected.ZEE5 ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, zee: !selected.zee });
-              !selected.zee ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, ZEE5: !selected.ZEE5 });
+              !selected.ZEE5 ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -302,13 +332,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.voot ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.VOOT ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.voot ? "0.8" : "1",
+              opacity: !selected.VOOT ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, voot: !selected.voot });
-              !selected.voot ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, VOOT: !selected.VOOT });
+              !selected.VOOT ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -319,13 +349,13 @@ const Filter2 = () => {
             height="50px"
             width="50px"
             style={{
-              filter: !selected.viu ? "grayscale(90%)" : "grayscale(0%)",
+              filter: !selected.VIU ? "grayscale(90%)" : "grayscale(0%)",
               margin: "10px",
-              opacity: !selected.viu ? "0.8" : "1",
+              opacity: !selected.VIU ? "0.8" : "1",
             }}
             onClick={(e) => {
-              setSelected({ ...selected, viu: !selected.viu });
-              !selected.viu ? highlightSelected(e) : unhighlightSelected(e);
+              setSelected({ ...selected, VIU: !selected.VIU });
+              !selected.VIU ? highlightSelected(e) : unhighlightSelected(e);
             }}
           />
         </a>
@@ -415,7 +445,7 @@ const Filter2 = () => {
                 } else {
                   setSelected({
                     ...selected,
-                    rating: [...selected.rating,item],
+                    rating: [...selected.rating, item],
                   });
                   selectFilter(e);
                 }
@@ -447,23 +477,23 @@ const Filter2 = () => {
               style={{
                 margin: "5px",
                 border: "none",
-                background: selected.genre.includes(item)
+                background: selected.genre.includes(genreFilter[item])
                   ? "rgba(255,134,20)"
                   : "",
               }}
               onClick={(e) => {
-                if (selected.genre.includes(item)) {
+                if (selected.genre.includes(genreFilter[item])) {
                   setSelected({
                     ...selected,
                     genre: [...selected.genre].filter(
-                      (itemInner) => itemInner !== item
+                      (itemInner) => itemInner !== genreFilter[item]
                     ),
                   });
                   unSelectFilter(e);
                 } else {
                   setSelected({
                     ...selected,
-                    genre: [...selected.genre, item],
+                    genre: [...selected.genre, genreFilter[item]],
                   });
                   selectFilter(e);
                 }
@@ -475,7 +505,7 @@ const Filter2 = () => {
         })}
       </div>
     </div>
-  );
+  )
 };
 
 export default Filter2;
