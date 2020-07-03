@@ -4,20 +4,41 @@ body {
   background-size: cover;
   background-attachment: fixed; */
   height: 100%;
-  background: rgba(30, 30, 30);
-  background-image: radial-gradient( circle farthest-corner at -8.9% 51.2%,  rgba(255,124,0,1) 0%, rgba(255,124,0,1) 15.9%, rgba(255,163,77,1) 15.9%, rgba(255,163,77,1) 24.4%, rgba(19,30,37,1) 24.5%, rgba(19,30,37,1) 66% );
+  background-image: url("./assets/images/final.png");
+  background-color: rgba(1,1,1,0.6);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
+  background-blend-mode: multiply
+  
 }
+/* body::before {
+  content: url("./assets/images/final.png");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-attachment: fixed;
+  z-index: -2;
+  background-color: rgba(1,1,1,0.5);
+} */
 
 #root {
-  display: flex;
+   display: flex;
   justify-content: center;
   height: 100%;
-  /* background: url("https://cutewallpaper.org/21/hd-website-backgrounds/4k-Webpage-Background-Hd-Website-Backgrounds-Teriz-.jpg");
+  background-image: url("./assets/images/final.png");
+  background-color: rgba(1,1,1,0.6);
+  background-position: center center;
   background-size: cover;
-  background-attachment: fixed; */
-  background-image: radial-gradient( circle farthest-corner at -8.9% 51.2%,  rgba(255,124,0,1) 0%, rgba(255,124,0,1) 15.9%, rgba(255,163,77,1) 15.9%, rgba(255,163,77,1) 24.4%, rgba(19,30,37,1) 24.5%, rgba(19,30,37,1) 66% );
+  background-repeat: no-repeat;
   background-attachment: fixed;
+  background-blend-mode: multiply
+
+
+  /* background-image: radial-gradient( circle farthest-corner at -8.9% 51.2%,  rgba(255,124,0,1) 0%, rgba(255,124,0,1) 15.9%, rgba(255,163,77,1) 15.9%, rgba(255,163,77,1) 24.4%, rgba(19,30,37,1) 24.5%, rgba(19,30,37,1) 66% ); */
+  /* background-attachment: fixed; */
 }
 
 .fa-chevron-circle-left {

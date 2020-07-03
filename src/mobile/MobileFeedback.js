@@ -1,4 +1,5 @@
 import React from "react";
+import QuickReview from "../QuickReview";
 
 
 export const textAreaStyle = {
@@ -26,15 +27,17 @@ export const footerButtonStyle = {
 const MobileFeedback = () => {
   
 
-  const [feedback, setFeedback] = React.useState({
-    firstName: null,
-    lastName: null,
-    email: null,
-    question: null,
-    feedback: null,
-  });
+    const [formSubmit, setFormSubmit] = React.useState({
+      quick_review: null,
+      first_name: "",
+      last_name: "",
+      email: "",
+      question: "",
+      feedback: "",
+    });
 
   const [showModal, setShowModal] = React.useState(false)
+    const [rating, setRating] = React.useState(null);
 
   const mobileFeedbackStyle = {
     margin: "100px 0px 150px 0px",
@@ -89,13 +92,71 @@ const MobileFeedback = () => {
     e.target.style.border = "2px solid white";
   }
 
+    const getFeedback = () => {
+      console.log("feedback", formSubmit);
+    };
+
+
   return (
     <div>
       {/* <div>
         <Modal show={showModal} />
       </div> */}
 
+      <div
+        style={{
+          margin: "100px 5px -75px 5px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+        onClick={() => setFormSubmit({ quick_review: rating })}
+      >
+        <QuickReview setRating={setRating} />
+      </div>
+
       <div style={mobileFeedbackStyle}>
+        <div
+          id="mobileConnect"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "0px 15px 30px 15px",
+          }}
+        >
+          <a
+            href="https://www.facebook.com/flickhub.in/"
+            target="_blank"
+            style={{ margin: "0px 20px" }}
+          >
+            <i
+              className="fa fa-facebook"
+              style={{ fontSize: "40px", color: "rgba(255,134,20)" }}
+            ></i>
+          </a>
+          <a
+            href="https://twitter.com/flickhub_in"
+            target="_blank"
+            style={{ margin: "0px 20px" }}
+          >
+            <i
+              className="fa fa-twitter"
+              style={{ fontSize: "40px", color: "rgba(255,134,20)" }}
+            ></i>
+          </a>
+          <a
+            href="https://www.instagram.com/flickhub.in/"
+            target="_blank"
+            style={{ margin: "0px 20px" }}
+          >
+            <i
+              className="fa fa-instagram"
+              style={{ fontSize: "40px", color: "rgba(255,134,20)" }}
+            ></i>
+          </a>
+        </div>
+
         <div style={{ padding: "10px 0px" }}>
           <label ref={firstNameRef} style={labelStyle}>
             First Name
@@ -103,6 +164,9 @@ const MobileFeedback = () => {
           <input
             style={feedbackInputStyle}
             type="text"
+            onChange={(e) => {
+              setFormSubmit({ ...formSubmit, first_name: e.target.value });
+            }}
             onFocus={(e, ref = firstNameRef) => {
               onFocus(e, ref);
             }}
@@ -119,6 +183,9 @@ const MobileFeedback = () => {
           <input
             style={feedbackInputStyle}
             type="text"
+            onChange={(e) => {
+              setFormSubmit({ ...formSubmit, last_name: e.target.value });
+            }}
             onFocus={(e, ref = lastNameRef) => {
               onFocus(e, ref);
             }}
@@ -135,6 +202,9 @@ const MobileFeedback = () => {
           <input
             style={feedbackInputStyle}
             type="text"
+            onChange={(e) => {
+              setFormSubmit({ ...formSubmit, email: e.target.value });
+            }}
             onFocus={(e, ref = emailRef) => {
               onFocus(e, ref);
             }}
@@ -151,6 +221,9 @@ const MobileFeedback = () => {
           <input
             style={feedbackInputStyle}
             type="text"
+            onChange={(e) => {
+              setFormSubmit({ ...formSubmit, question: e.target.value });
+            }}
             onFocus={(e, ref = questionRef) => {
               onFocus(e, ref);
             }}
@@ -166,6 +239,9 @@ const MobileFeedback = () => {
           </label>
           <textarea
             style={textAreaStyle}
+            onChange={(e) => {
+              setFormSubmit({ ...formSubmit, feedback: e.target.value });
+            }}
             onFocus={(e, ref = feedbackRef) => onFocus(e, ref)}
             onBlur={(e, ref = feedbackRef) => onBlur(e, ref)}
           ></textarea>
@@ -176,12 +252,25 @@ const MobileFeedback = () => {
             type="button"
             className="btn btn-light"
             style={{ width: "100%", marginRight: "5px" }}
+            onClick={() => {
+              getFeedback();
+              if (
+                formSubmit.first_name != "" &&
+                formSubmit.last_name != "" &&
+                formSubmit.email != "" &&
+                formSubmit.question != "" &&
+                formSubmit.feedback != ""
+              ) {
+                alert("Your feedback has been submitted.");
+              } else {
+                alert("Please fill all the fields.");
+              }
+            }}
           >
             Submit
           </button>
 
-
-        {/* Quick review modal */}
+          {/* Quick review modal */}
           {/* <div
             style={{
               display: "flex",
@@ -199,8 +288,6 @@ const MobileFeedback = () => {
             Quick Review
           </button>
           </div> */}
-
-
         </div>
       </div>
     </div>

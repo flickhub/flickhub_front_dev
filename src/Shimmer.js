@@ -46,6 +46,14 @@ const Shimmer = () => {
           <div id="cardShimmer"></div>
           <div id="headingShimmer"></div>
         </div>
+        <div id="wrapper">
+          <div id="cardShimmer"></div>
+          <div id="headingShimmer"></div>
+        </div>
+        <div id="wrapper">
+          <div id="cardShimmer"></div>
+          <div id="headingShimmer"></div>
+        </div>
       </div>
     );
 }

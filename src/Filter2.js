@@ -5,8 +5,9 @@ import MobileSpinner from "./mobile/MobileSpinner";
 import Hover from "./Hover";
 
 const Filter2 = () => {
-
-  const [respObj, setRespObj]= React.useState(null)
+  const [respObj, setRespObj] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
+  const [showResults, setShowResults] = React.useState(false);
 
   const [selected, setSelected] = React.useState({
     NETFLIX: false,
@@ -106,7 +107,7 @@ const Filter2 = () => {
       filters: selected,
     };
 
-    fetch("http://7ede76c2f937.ngrok.io/filter", {
+    fetch("http://285888cba28e.ngrok.io/filter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       mode: "cors",
@@ -115,11 +116,15 @@ const Filter2 = () => {
       .then((res) => {
         return res.json();
       })
-      .then((res) => setRespObj(res));
-      // .then((res) => console.log("Backend: ", res));
+      .then((res) => {
+        setRespObj(res);
+        setLoading(false);
+      });
+    // .then((res) => console.log("Backend: ", res));
   };
 
-  return respObj ? (<div
+  return showResults ? (
+    <div
       style={{
         height: "100%",
         width: "100vw",
@@ -130,12 +135,16 @@ const Filter2 = () => {
         marginTop: "100px",
       }}
     >
-      {respObj ? (
-        respObj.data.map((item) => {
-          return <Hover item={item} />;
-        })
-      ) : (
+      {loading ? (
         <Shimmer />
+      ) : (
+        respObj.data.map((item) => {
+          return (
+            <div style={{ margin: "5px 2px" }}>
+              <Hover item={item} />
+            </div>
+          );
+        })
       )}
     </div>
   ) : (
@@ -189,7 +198,7 @@ const Filter2 = () => {
               console.log("Filters: ", selected);
               // console.log("filterValues", filterValues);
               sendFilters();
-              setRespObj(false)
+              setShowResults(true);
             }}
           >
             Apply Filters
@@ -197,6 +206,9 @@ const Filter2 = () => {
         </div>
       </div>
 
+      <h3 style={{ color: "white", marginTop: "75px" }}>
+        Filter By Streaming Service
+      </h3>
       <div
         style={{
           background: "rgba(255,255,255,0.2)",
@@ -361,6 +373,7 @@ const Filter2 = () => {
         </a>
       </div>
 
+      <h3 style={{ color: "white", marginTop: "10px" }}>Filter By Year</h3>
       <div
         style={{
           backgroundColor: "rgba(255,255,255,0.2)",
@@ -409,6 +422,7 @@ const Filter2 = () => {
         })}
       </div>
 
+      <h3 style={{ color: "white", marginTop: "10px" }}>Filter By Rating</h3>
       <div
         style={{
           display: "flex",
@@ -457,6 +471,7 @@ const Filter2 = () => {
         })}
       </div>
 
+      <h3 style={{ color: "white", marginTop: "10px" }}>Filter By Genre</h3>
       <div
         style={{
           display: "flex",
@@ -505,7 +520,7 @@ const Filter2 = () => {
         })}
       </div>
     </div>
-  )
+  );
 };
 
 export default Filter2;

@@ -140,11 +140,15 @@ const mobile = useMediaQuery({
         </div>
       ) : (
         <div style={{ display: "inline-block", marginBottom: "-15px" }}>
-          <img src={flickhub} 
-          // height="200" width="185" 
-          alt="no-poster"
-          style={{height: mobile ?"250px" :"200px" , width: mobile ? "200px" : "185px"}}
-            />
+          <img
+            src={flickhub}
+            // height="200" width="185"
+            alt="no-poster"
+            style={{
+              height: mobile ? "250px" : "200px",
+              width: mobile ? "200px" : "185px",
+            }}
+          />
           <p
             style={{
               color: "white",
@@ -158,6 +162,73 @@ const mobile = useMediaQuery({
       )}
       <div style={cardTitleStyle}>
         <h1 style={{ fontSize: "14px" }}>{item.name}</h1>
+      </div>
+
+      {/* Streaming services */}
+
+      <div style={{bottom: "60px", left: "5px", position: "absolute", display: "flex", overflow: "hidden", justifyContent: "flex-start"}}>
+        <a
+          href={item.urlname.NETFLIX ? item.urlname.NETFLIX : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.NETFLIX ? icons.netflixIcon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
+        <a
+          href={item.urlname.PRIME ? item.urlname.PRIME : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.PRIME ? icons.primeVideoIcon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
+        <a
+          href={item.urlname.HOTSTAR ? item.urlname.HOTSTAR : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.HOTSTAR ? icons.hotstarIcon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.SONYLIV ? item.urlname.SONYLIV : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.SONYLIV ? icons.sonyLivIcon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.ZEE5 ? item.urlname.ZEE5 : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.ZEE5 ? icons.zee5Icon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
       </div>
     </div>
   );
@@ -202,13 +273,11 @@ export const MobileWatch = (props) => {
     fontSize: "1em",
     color: "white",
     backgroundImage: "url(" + flickhub + ")",
-    display: "block",
-    marginTop: useMediaQuery({
-      minWidth: 790,
-    }) ?  "150px" : "50px",
+    display: "flex",
+    justifyContent: "center",
     height:  useMediaQuery({
       minWidth: 790,
-    }) ?   "35vh" : "30vh",
+    }) ?   "35vh" : "28vh",
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center center",
@@ -217,18 +286,14 @@ export const MobileWatch = (props) => {
   const plotCardStyle = {
     display: "flex",
     justifyContent: "center",
-    height: "100px",
-    width: useMediaQuery({
-      minWidth: 790,
-    }) ?   "90%" : "83%",
+    alignSelf: "flex-end",
     overflow: "auto",
+    height: useMediaQuery({minWidth: 790}) ? "" : "15vh",
     padding: "15px",
     background: "rgba(50,50,50,0.9)",
     borderRadius: "10px",
     scrollbarWidth: "none",
     textAlign: "center",
-    bottom: "85px",
-    position: "absolute",
   };
 
   return (
@@ -247,6 +312,10 @@ export const MobileWatch = (props) => {
         backgroundColor: "rgba(1,1,1)",
         position: "fixed",
         zIndex: 1,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "space-around",
       }}
     >
       <div>
@@ -288,17 +357,17 @@ export const MobileWatch = (props) => {
 
       {/* Trailer */}
       <div style={{ marginTop: "20px" }}>
-        {trailer ? (
+        {item.trailer !== "None" ? (
           <iframe
             title="youtubeTrailer"
-            height="250px"
-            src={trailer + "?autoplay=1&mute=1&enablejsapi=1"}
+            src={item.trailer + "?autoplay=1&mute=1&enablejsapi=1"}
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen="true"
             style={{
-              height: trailer === props.netflixIcon ? "100px" : "250px",
-              padding: "0px 20px",
+              height: item.trailer === props.netflixIcon ? "100px" : "35vh",
+              marginLeft: "-30px",
+              padding: " 20px 0px",
               objectFit: "contain",
               transition: "all 0.45s ease",
             }}
@@ -323,43 +392,68 @@ export const MobileWatch = (props) => {
 
       <div style={streamCardStyle}>
         <a
-          href={item.urlname.includes("netflix") ? item.urlname : null}
+          href={item.urlname.NETFLIX ? item.urlname.NETFLIX : null}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             id="thumbnail"
-            src={item.urlname.includes("netflix") ? icons.netflixIcon : null}
+            src={item.urlname.NETFLIX ? icons.netflixIcon : null}
             height="50px"
             alt=""
           />
         </a>
         <a
-          href={item.urlname.includes("primevideo") ? item.urlname : null}
+          href={item.urlname.PRIME ? item.urlname.PRIME : null}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             id="thumbnail"
-            src={
-              item.urlname.includes("primevideo") ? icons.primeVideoIcon : null
-            }
+            src={item.urlname.PRIME ? icons.primeVideoIcon : null}
             height="50px"
             alt=""
           />
         </a>
         <a
-          href={item.urlname.includes("hotstar") ? item.urlname : null}
+          href={item.urlname.HOTSTAR ? item.urlname.HOTSTAR : null}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             id="thumbnail"
-            src={item.urlname.includes("hotstar") ? icons.hotstarIcon : null}
+            src={item.urlname.HOTSTAR ? icons.hotstarIcon : null}
             height="50px"
             alt=""
           />
         </a>
+
+        <a
+          href={item.urlname.SONYLIV ? item.urlname.SONYLIV : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.SONYLIV ? icons.sonyLivIcon : null}
+            height="50px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.ZEE5 ? item.urlname.ZEE5 : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.ZEE5 ? icons.zee5Icon : null}
+            height="50px"
+            alt=""
+          />
+        </a>
+
       </div>
     </div>
   );

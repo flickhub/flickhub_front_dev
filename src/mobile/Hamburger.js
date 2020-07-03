@@ -36,6 +36,18 @@ const Hamburger = props => {
           }
         >
           <li>
+            <a href="/about/#contactInfo">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                style={{ width: "90vw", margin: "3px 0px" }}
+                onClick={(e) => e.target.style.display = "none" }
+              >
+                Contact
+              </button>
+            </a>
+          </li>
+          <li>
             <a href="/about">
               <button
                 type="button"
@@ -83,7 +95,7 @@ const Hamburger = props => {
             )}
           />
         </Switch> */}
-        </div>
+      </div>
       // {/* </Router> */}
     );
 }

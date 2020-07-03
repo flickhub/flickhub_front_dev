@@ -9,25 +9,24 @@ const Feedback = (props) => {
   const textRef5 = React.useRef();
 
   const [selected, setSelected] = React.useState(false);
+  const [rating, setRating] = React.useState(null);
 
-  const [firstName, setFirstName] = React.useState();
-  const [lastName, setLastName] = React.useState();
-  const [email, setEmail] = React.useState();
-  const [question, setQuestion] = React.useState();
-  const [feedback, setFeedback] = React.useState();
+  const [formSubmit, setFormSubmit] = React.useState({
+    quick_review: null,
+    first_name: "",
+    last_name: "",
+    email: "",
+    question: "",
+    feedback: "",
+  });
 
   const getFeedback = () => {
-    console.log("First Name: ", firstName);
-    console.log("Last Name: ", lastName);
-    console.log("E-mail: ", email);
-    console.log("Question: ", question);
-    console.log("Feedback: ", feedback);
+    console.log("feedback",formSubmit);
   };
 
   return (
     <div
       style={{
-        // border: "2px solid #999999",
         background: "rgba(1,1,1,0.5)",
         borderRadius: "5px",
         display: "flex",
@@ -35,32 +34,20 @@ const Feedback = (props) => {
         justifyContent: "center",
         alignItems: "center",
         padding: "50px 100px",
-        margin: "125px",
+        margin: "60px 60px 10px 60px",
       }}
     >
       <div>
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={() => {
-            setSelected(!selected);
-          }}
-        >
-          {!selected ? "Quick Review" : "Hide"}
-        </button>
         <div
           style={{
-            width: selected ? "900px" : "0px",
+            width: "900px",
             transition: "all 0.5s linear",
             display: "flex",
             justifyContent: "center",
           }}
+          onClick={() => setFormSubmit({quick_review: rating})}
         >
-          {selected ? (
-            <QuickReview selected={selected} />
-          ) : (
-            <QuickReview selected={false} />
-          )}
+          <QuickReview setRating={setRating} selected={true} />
         </div>
       </div>
       <div style={{ display: "flex", padding: "10px" }}>
@@ -74,7 +61,7 @@ const Feedback = (props) => {
               marginTop: "23px",
               position: "absolute",
               color: "#999999",
-              transition: "all 0.5s ease",
+              transition: "all 0.2s ease",
             }}
           >
             FirstName
@@ -84,18 +71,17 @@ const Feedback = (props) => {
             style={{
               borderRadius: "3px",
               border: "1px solid #999999",
-              padding: "10px",
+              padding: "17px 10px 3px 10px",
               marginTop: "20px",
-              transition: "all 0.5s ease",
+              transition: "all 0.2s ease",
             }}
             onChange={(e) => {
-              setFirstName(e.target.value);
+              setFormSubmit({ ...formSubmit, first_name: e.target.value });
             }}
             onFocus={(e) => {
-              textRef1.current.style.fontSize = "13px";
+              textRef1.current.style.fontSize = "10px";
               textRef1.current.style.transform = "translate(-3px, 0px)";
               textRef1.current.style.color = "rgba(255,134,20)";
-              e.target.style.paddingTop = "25px";
 
               e.target.style.border = "2px solid orange";
             }}
@@ -105,7 +91,6 @@ const Feedback = (props) => {
                 textRef1.current.style.transform = "translate(-3px, 0px)";
                 textRef1.current.style.color = "#999999";
                 e.target.style.border = "1px solid #999999";
-                e.target.style.paddingTop = "10px";
               } else {
                 textRef1.current.value = "";
               }
@@ -122,7 +107,7 @@ const Feedback = (props) => {
               marginTop: "23px",
               position: "absolute",
               color: "#999999",
-              transition: "all 0.5s ease",
+              transition: "all 0.2s ease",
             }}
           >
             Last Name
@@ -132,18 +117,17 @@ const Feedback = (props) => {
             style={{
               borderRadius: "3px",
               border: "1px solid #999999",
-              padding: "10px",
+              padding: "17px 10px 3px 10px",
               marginTop: "20px",
-              transition: "all 0.5s ease",
+              transition: "all 0.2s ease",
             }}
             onChange={(e) => {
-              setLastName(e.target.value);
+              setFormSubmit({ ...formSubmit, last_name: e.target.value });
             }}
             onFocus={(e) => {
-              textRef2.current.style.fontSize = "13px";
+              textRef2.current.style.fontSize = "10px";
               textRef2.current.style.transform = "translate(-3px, 0px)";
               textRef2.current.style.color = "rgba(255,134,20)";
-              e.target.style.paddingTop = "25px";
               e.target.style.border = "2px solid orange";
             }}
             onBlur={(e) => {
@@ -152,7 +136,6 @@ const Feedback = (props) => {
                 textRef2.current.style.transform = "translate(0px, 0px)";
                 textRef2.current.style.color = "#999999";
                 e.target.style.border = "1px solid #999999";
-                e.target.style.paddingTop = "10px";
               } else {
                 textRef2.current.value = "";
               }
@@ -171,7 +154,7 @@ const Feedback = (props) => {
             marginTop: "23px",
             position: "absolute",
             color: "#999999",
-            transition: "all 0.5s ease",
+            transition: "all 0.2s ease",
           }}
         >
           E-mail
@@ -181,18 +164,17 @@ const Feedback = (props) => {
           style={{
             borderRadius: "3px",
             border: "1px solid #999999",
-            padding: "10px",
+            padding: "17px 10px 3px 10px",
             marginTop: "20px",
-            transition: "all 0.5s ease",
+            transition: "all 0.2s ease",
           }}
           onChange={(e) => {
-            setEmail(e.target.value);
+            setFormSubmit({ ...formSubmit, email: e.target.value });
           }}
           onFocus={(e) => {
-            textRef3.current.style.fontSize = "13px";
+            textRef3.current.style.fontSize = "10px";
             textRef3.current.style.transform = "translate(-3px, 0px)";
             textRef3.current.style.color = "rgba(255,134,20)";
-            e.target.style.paddingTop = "25px";
             e.target.style.border = "2px solid orange";
           }}
           onBlur={(e) => {
@@ -201,7 +183,6 @@ const Feedback = (props) => {
               textRef3.current.style.transform = "translate(0px, 0px)";
               textRef3.current.style.color = "#999999";
               e.target.style.border = "1px solid #999999";
-              e.target.style.paddingTop = "10px";
             } else {
               textRef3.current.value = "";
             }
@@ -219,7 +200,7 @@ const Feedback = (props) => {
             marginTop: "23px",
             position: "absolute",
             color: "#999999",
-            transition: "all 0.5s ease",
+            transition: "all 0.2s ease",
           }}
         >
           Questions
@@ -229,18 +210,17 @@ const Feedback = (props) => {
           style={{
             borderRadius: "3px",
             border: "1px solid #999999",
-            padding: "10px",
+            padding: "17px 10px 3px 10px",
             marginTop: "20px",
-            transition: "all 0.5s ease",
+            transition: "all 0.2s ease",
           }}
           onChange={(e) => {
-            setQuestion(e.target.value);
+            setFormSubmit({ ...formSubmit, question: e.target.value });
           }}
           onFocus={(e) => {
-            textRef4.current.style.fontSize = "13px";
+            textRef4.current.style.fontSize = "10px";
             textRef4.current.style.transform = "translate(-3px, 0px)";
             textRef4.current.style.color = "rgba(255,134,20)";
-            e.target.style.paddingTop = "25px";
             e.target.style.border = "2px solid orange";
           }}
           onBlur={(e) => {
@@ -249,7 +229,6 @@ const Feedback = (props) => {
               textRef4.current.style.transform = "translate(0px, 0px)";
               textRef4.current.style.color = "#999999";
               e.target.style.border = "1px solid #999999";
-              e.target.style.paddingTop = "10px";
             } else {
               textRef4.current.value = "";
             }
@@ -267,28 +246,29 @@ const Feedback = (props) => {
             marginTop: "23px",
             position: "absolute",
             color: "#999999",
-            transition: "all 0.5s ease",
+            transition: "all 0.2s ease",
           }}
         >
           Feedback
         </p>
-        <input
+        <textarea
           type="text"
           style={{
             borderRadius: "3px",
             border: "1px solid #999999",
-            padding: "10px",
+            padding: "17px 10px 3px 10px",
             marginTop: "20px",
-            transition: "all 0.5s ease",
+            transition: "all 0.2s ease",
+            height: "200px",
+            width: "400px",
           }}
           onChange={(e) => {
-            setFeedback(e.target.value);
+            setFormSubmit({ ...formSubmit, feedback: e.target.value });
           }}
           onFocus={(e) => {
-            textRef5.current.style.fontSize = "13px";
+            textRef5.current.style.fontSize = "10px";
             textRef5.current.style.transform = "translate(-3px, 0px)";
             textRef5.current.style.color = "rgba(255,134,20)";
-            e.target.style.paddingTop = "25px";
 
             e.target.style.border = "2px solid orange";
           }}
@@ -298,7 +278,6 @@ const Feedback = (props) => {
               textRef5.current.style.transform = "translate(0px, 0px)";
               textRef5.current.style.color = "#999999";
               e.target.style.border = "1px solid #999999";
-              e.target.style.paddingTop = "10px";
             } else {
               textRef5.current.value = "";
             }
@@ -308,15 +287,15 @@ const Feedback = (props) => {
       <button
         type="button"
         className="btn btn-danger"
-        style={{ backgroundColor: "rgba(255,134,20)", marginTop: "30px" }}
+        style={{ backgroundColor: "rgba(255,134,20)", width: "15%" , marginTop: "30px" }}
         onClick={() => {
           getFeedback();
           if (
-            firstName != null &&
-            lastName != null &&
-            email != null &&
-            question != null &&
-            feedback != null
+            formSubmit.first_name != "" &&
+            formSubmit.last_name != "" &&
+            formSubmit.email != "" &&
+            formSubmit.question != "" &&
+            formSubmit.feedback != ""
           ) {
             alert("Your feedback has been submitted.");
           } else {
@@ -344,19 +323,27 @@ const Feedback = (props) => {
           background: "black",
         }}
       >
-        <a href="#" target="_blank" style={{ marginBottom: "20px" }}>
+        <a
+          href="https://www.facebook.com/flickhub.in/"
+          target="_blank"
+          style={{ marginBottom: "20px" }}
+        >
           <i
             className="fa fa-facebook"
             style={{ fontSize: "40px", color: "rgba(255,134,20)" }}
           ></i>
         </a>
-        <a href="#" target="_blank" style={{ marginBottom: "20px" }}>
+        <a
+          href="https://twitter.com/flickhub_in"
+          target="_blank"
+          style={{ marginBottom: "20px" }}
+        >
           <i
             className="fa fa-twitter"
             style={{ fontSize: "40px", color: "rgba(255,134,20)" }}
           ></i>
         </a>
-        <a href="#" target="_blank">
+        <a href="https://www.instagram.com/flickhub.in/" target="_blank">
           <i
             className="fa fa-instagram"
             style={{ fontSize: "40px", color: "rgba(255,134,20)" }}

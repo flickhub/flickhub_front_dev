@@ -1,9 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch, HashRouter, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  HashRouter,
+  Redirect,
+} from "react-router-dom";
 
 import flickhub from "../assets/images/logo3.jpg";
-import MobileFlickhub from "./MobileFlickhub"
-import InfoPage from "../InfoPage"
+import MobileFlickhub from "./MobileFlickhub";
+import InfoPage from "../InfoPage";
 import About from "../About";
 import Filter from "../Filter";
 import MobileFeedback from "./MobileFeedback";
@@ -17,37 +24,43 @@ export const ulRouter = {
   top: "0",
   position: "fixed",
   tansition: "all 0.3s ease",
-  padding: "10px 40px"
+  padding: "10px 40px",
 };
 
-export const SearchMobile = props => {
-    const [respObj, setRespObj] = React.useState(null);
+export const SearchMobile = (props) => {
+  const [respObj, setRespObj] = React.useState(null);
 
-      React.useEffect(() => {
-        fetch("http://localhost:5000/submit", {
-          method: "POST",
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ mv_name: props.match.params.searchString }),
-        })
-          .then((response) => response.json())
-          //   .then(response => console.log("Response mobile: ",response))
-          .then((response) => setRespObj(response))
-          .catch((error) => console.log("error", error));
-      }, []);
+  React.useEffect(() => {
+    fetch("http://285888cba28e.ngrok.io/submit", {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ mv_name: props.match.params.searchString }),
+    })
+      .then((response) => response.json())
+      //   .then(response => console.log("Response mobile: ",response))
+      .then((response) => setRespObj(response))
+      .catch((error) => console.log("error", error));
+  }, []);
 
-    return respObj ? (
-      <div style={{marginTop: "75px"}}>
-        <SearchItem respObj={respObj.data} mobileCard={true} searchFor={props.match.params.searchString} />
-      </div>
-    ) : (<MobileSpinner />)
-  }
+  return respObj ? (
+    <div style={{ marginTop: "75px" }}>
+      <SearchItem
+        respObj={respObj.data}
+        mobileCard={true}
+        searchFor={props.match.params.searchString}
+      />
+    </div>
+  ) : (
+    <MobileSpinner />
+  );
+};
 
 const MobileRouters = (props) => {
   const [showMenu, setShowMenu] = React.useState(false);
-  const collapseRef = React.useRef()
+  const collapseRef = React.useRef();
 
   return (
     <div>
@@ -77,14 +90,16 @@ const MobileRouters = (props) => {
               <MobileSpinner />
             </div>
           )} */}
-            <Route
-              path={`/search/:searchString`}
-              // exact
-              component={SearchMobile}
-            />
+          <Route
+            path={`/search/:searchString`}
+            // exact
+            component={SearchMobile}
+          />
 
           <Route path="/about">
-            <div style={{margin: "-50px 0px 50px 0px"}}><About font="18px" headFontSize="35px" margin="30px" /></div>
+            <div style={{ margin: "-50px 0px 50px 0px" }}>
+              <About font="18px" headFontSize="35px" margin="10px" />
+            </div>
           </Route>
           <Route path="/filter">
             <Filter />
@@ -95,7 +110,7 @@ const MobileRouters = (props) => {
 
           <Route path="/" exact>
             <MobileFlickhub />
-           </Route>
+          </Route>
         </Switch>
       </Router>
     </div>
