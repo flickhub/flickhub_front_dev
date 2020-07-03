@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import Flickhub, { SearchItem } from "./Flickhub";
 import Feedback from "./Feedback";
-import About from "./About";
+import About, { Contact } from "./About";
 import flickhub from "./assets/images/logo3.jpg";
 import Filter2 from "./Filter2";
 import InfoPage from "./InfoPage";
@@ -16,7 +16,7 @@ export const SearchScreen = (props) => {
   const [respObj, setRespObj] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("http://localhost:5000/submit", {
+    fetch("http://285888cba28e.ngrok.io/submit", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -60,6 +60,7 @@ function Routers(props) {
   const [find, setFind] = React.useState("");
   const [respObj, setRespObj] = React.useState(null)
   
+  const aboutRef = React.useRef()
 
     // React.useEffect(() => {
     //   fetch("http://localhost:5000/submit", {
@@ -110,7 +111,7 @@ function Routers(props) {
           <Link to="/">
             <div style={{ display: "flex", transition: "all 1s ease" }}>
               <img
-              alt=""
+                alt=""
                 src={flickhub}
                 height="45px"
                 width="45px"
@@ -121,6 +122,9 @@ function Routers(props) {
         </li>
         <li id="leftBtn" style={{ color: "white" }}></li>
         <div id="navRight">
+          <li>
+              <a href="/about/#contactInfo"><button className="btn btn-link">Contact</button></a>
+          </li>
           <li>
             <Link to="/about">
               <button className="btn btn-link">About</button>
@@ -147,16 +151,18 @@ function Routers(props) {
           <Filter2 />
         </Route>
         <Route path="/about">
-          <About />
+            <About />
         </Route>
-          <Route path="/search/:searchString" component={SearchScreen} />
-          {/* {respObj ? respObj.data.map((item,index) => {
+        <Route path="/search/:searchString" component={SearchScreen} />
+        {/* {respObj ? respObj.data.map((item,index) => {
             return <Route path={`/title/${item.name}`} exact key={`title-number-${index}`} render={() => <InfoPage item={item} />} /> 
           }) : <div style={{marginTop: "75px"}}><Shimmer /> </div>} */}
-        
-        <Route path="/">
 
-            <Flickhub />
+        <Route exact path="/title">
+          <div></div>
+        </Route>
+        <Route path="/">
+          <Flickhub />
         </Route>
       </Switch>
     </Router>

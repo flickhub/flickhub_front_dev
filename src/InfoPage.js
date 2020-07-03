@@ -30,14 +30,14 @@ const InfoPage = (props) => {
     }
   };
 
-  const mobile = useMediaQuery({minWidth: 1200})
+  const mobile = useMediaQuery({ minWidth: 1200 });
 
   return (
     // <Router>
-      // <Route
-      //   path={`/title/${item.name}`}
-      //   // exact
-      //   render={() => (
+    // <Route
+    //   path={`/title/${item.name}`}
+    //   // exact
+    //   render={() => (
 
     <div style={{ marginTop: "50px" }}>
       {mobile ? (
@@ -71,13 +71,25 @@ const InfoPage = (props) => {
                 <br />
                 <div id="infoRight">
                   <p>
-                    Synopsis: <b style={{ fontSize: "18px" }}>{item.plot}</b>
+                    <span>Synopsis: </span>
+                    <div style={{ margin: "10px 20px" }}>
+                      <b
+                        style={{
+                          fontSize: "18px",
+                        }}
+                      >
+                        {item.plot}
+                      </b>
+                    </div>
                   </p>
                   <p>
-                    Cast: <b style={{ fontSize: "18px" }}>{item.cast}</b>
+                    <span style={{ width: "125px" }}>Cast: </span>
+                    <div style={{ margin: "10px 20px" }}>
+                      <b style={{ fontSize: "18px" }}>{item.cast}</b>
+                    </div>
                   </p>
                   <div style={{ display: "flex", paddingTop: "25px" }}>
-                    IMDb Rating:
+                    <span style={{ width: "110px" }}>IMDb Rating:</span>
                     <p
                       style={{
                         color: "orange",
@@ -96,88 +108,114 @@ const InfoPage = (props) => {
                 </div>
 
                 <div id="ImagesDiv" Link>
-                  Stream:
-                  <a
-                    // href={item.ott.netflix}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      alt=""
-                      id="thumbnail"
-                      // src={item.ott.netflix === "" ? null : icons.netflixIcon}
-                      height="50px"
-                    />
-                  </a>
-                  <a
-                    // href={item.ott.primeVideo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      alt=""
-                      id="thumbnail"
-                      // src={
-                      // item.ott.primeVideo === "" ? null : icons.primeVideoIcon
-                      // }
-                      height="50px"
-                    />
-                  </a>
-                  <a
-                    // href={item.ott.hotstar}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      alt=""
-                      id="thumbnail"
-                      // src={item.ott.hotstar === "" ? null : icons.hotstarIcon}
-                      height="50px"
-                    />
-                  </a>
+                  <span style={{ width: "115px" }}>Stream:</span>
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    <a
+                      href={item.urlname.NETFLIX ? item.urlname.NETFLIX : null}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        id="thumbnail"
+                        src={item.urlname.NETFLIX ? icons.netflixIcon : null}
+                        height="50px"
+                        alt=""
+                      />
+                    </a>
+                    <a
+                      href={item.urlname.PRIME ? item.urlname.PRIME : null}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        id="thumbnail"
+                        src={item.urlname.PRIME ? icons.primeVideoIcon : null}
+                        height="50px"
+                        alt=""
+                      />
+                    </a>
+                    <a
+                      href={item.urlname.HOTSTAR ? item.urlname.HOTSTAR : null}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        id="thumbnail"
+                        src={item.urlname.HOTSTAR ? icons.hotstarIcon : null}
+                        height="50px"
+                        alt=""
+                      />
+                    </a>
+
+                    <a
+                      href={item.urlname.SONYLIV ? item.urlname.SONYLIV : null}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        id="thumbnail"
+                        src={item.urlname.SONYLIV ? icons.sonyLivIcon : null}
+                        height="50px"
+                        alt=""
+                      />
+                    </a>
+
+                    <a
+                      href={item.urlname.ZEE5 ? item.urlname.ZEE5 : null}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        id="thumbnail"
+                        src={item.urlname.ZEE5 ? icons.zee5Icon : null}
+                        height="50px"
+                        alt=""
+                      />
+                    </a>
+                  </div>
                 </div>
                 <div id="ImagesDiv">
-                  IMDb page:
-                  <a
-                    // href={item.ott.imdb}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <span style={{ width: "125px" }}>IMDb page: </span>
+                  <div
+                    style={{
+                      color: "orange",
+                      padding: "10px",
+                      background: "rgba(60,60,60,0.8)",
+                      borderRadius: "5px",
+                    }}
                   >
-                    <img
-                      alt=""
-                      id="thumbnail"
-                      // src={item.ott.imdb === "" ? null : icons.imdbIcon}
-                      height="50px"
-                    />
-                  </a>
+                    <b>N/A</b>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div id="embededVid">
-              {/* <iframe
-            title="youtubeTrailer"
-              width="1000"
-              height="500"
-              // src={item.ott.youtube}
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen="true"
-            ></iframe> */}
-
-              {/* <div
-              style={{
-                background: "rgba(1,1,1)",
-                height: "500px",
-                width: "1000px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <h1 style={{ fontSize: "100px" }}>Trailer coming soon</h1>
-            </div> */}
-            </div>
+            {item.trailer ? (
+              <div id="embededVid">
+                <iframe
+                  title="youtubeTrailer"
+                  width="1000"
+                  height="500"
+                  src={item.trailer}
+                  frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen="true"
+                ></iframe>
+              </div>
+            ) : (
+              <div
+                style={{
+                  background: "rgba(1,1,1)",
+                  height: "500px",
+                  width: "1000px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h1 style={{ fontSize: "100px" }}>Trailer coming soon</h1>
+              </div>
+            )}
 
             {/* <div id="AddComment">
             <div id="rate">
@@ -257,9 +295,10 @@ const InfoPage = (props) => {
         </div>
       ) : (
         //Mobile
+
         <div
           style={{
-            marginTop: "100px",
+            // marginTop: "50px",
             backgroundColor: "rgba(1,1,1,0.8)",
             width: "90vw",
             display: "flex",
@@ -268,11 +307,17 @@ const InfoPage = (props) => {
             padding: "50px 0px",
           }}
         >
+          {/* Title */}
+          <div style={{ display: "flex", color: "white", textAlign: "center" }}>
+            <h3>{item.title}</h3>
+          </div>
+
           {/* Poster */}
           <div
             style={{
               height: "250px",
               width: "100vw",
+              padding: "0px 30px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -281,7 +326,24 @@ const InfoPage = (props) => {
             <img src={item.image} />
           </div>
 
-          <div style={{ marginTop: "50px" }}></div>
+          {/* Rating */}
+          <div
+            style={{
+              textAlign: "left",
+              display: "flex",
+              justifyContent: "flex-start",
+              color: "white",
+              padding: "10px 30px",
+              margin: "10px",
+              background: "rgba(60,60,60,0.8)",
+              color: "orange",
+              borderRadius: "5px",
+            }}
+          >
+            <b>{item.rate !== null ? item.rate : "N/A"}</b>
+          </div>
+
+          <div style={{ marginTop: "30px" }}></div>
 
           {/* IMDb Page */}
           <div
@@ -292,7 +354,7 @@ const InfoPage = (props) => {
               textAlign: "center",
               justifyContent: "center",
               flexDirection: "column",
-              margin: "10px 40px",
+              margin: "10px",
             }}
           >
             <h3>IMDb Page</h3>
@@ -302,9 +364,16 @@ const InfoPage = (props) => {
                 padding: "20px",
                 background: "rgba(60,60,60,0.8)",
                 borderRadius: "5px",
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               {/* <p>{item.plot}</p> */}
+              <p>
+                <b>N/A</b>
+              </p>
 
               <div>
                 <a
@@ -332,7 +401,7 @@ const InfoPage = (props) => {
               textAlign: "center",
               justifyContent: "center",
               flexDirection: "column",
-              margin: "40px",
+              margin: "10px 40px",
             }}
           >
             <h3>Synopsis</h3>
@@ -357,7 +426,7 @@ const InfoPage = (props) => {
               textAlign: "center",
               justifyContent: "center",
               flexDirection: "column",
-              margin: "40px",
+              margin: "10px 40px",
             }}
           >
             <h3>Cast</h3>
@@ -394,22 +463,74 @@ const InfoPage = (props) => {
                 borderRadius: "5px",
                 overflow: "scroll",
                 display: "flex",
-                justifyContent: "center", 
-                alignItems: "center"
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
+              {/* <div style={{ display: "flex", overflow: "auto" }}> */}
               <a
-                href={item.urlname}
+                href={item.urlname.NETFLIX ? item.urlname.NETFLIX : null}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
-                  alt=""
                   id="thumbnail"
-                  src={icons.netflixIcon}
+                  src={item.urlname.NETFLIX ? icons.netflixIcon : null}
                   height="50px"
+                  alt=""
                 />
               </a>
+              <a
+                href={item.urlname.PRIME ? item.urlname.PRIME : null}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  id="thumbnail"
+                  src={item.urlname.PRIME ? icons.primeVideoIcon : null}
+                  height="50px"
+                  alt=""
+                />
+              </a>
+              <a
+                href={item.urlname.HOTSTAR ? item.urlname.HOTSTAR : null}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  id="thumbnail"
+                  src={item.urlname.HOTSTAR ? icons.hotstarIcon : null}
+                  height="50px"
+                  alt=""
+                />
+              </a>
+
+              <a
+                href={item.urlname.SONYLIV ? item.urlname.SONYLIV : null}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  id="thumbnail"
+                  src={item.urlname.SONYLIV ? icons.sonyLivIcon : null}
+                  height="50px"
+                  alt=""
+                />
+              </a>
+
+              <a
+                href={item.urlname.ZEE5 ? item.urlname.ZEE5 : null}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  id="thumbnail"
+                  src={item.urlname.ZEE5 ? icons.zee5Icon : null}
+                  height="50px"
+                  alt=""
+                />
+              </a>
+              {/* </div> */}
               <a
                 // href={item.ott.primeVideo}
                 target="_blank"
@@ -438,11 +559,43 @@ const InfoPage = (props) => {
               </a>
             </div>
           </div>
+
+          {/* Trailer */}
+          <h3 style={{ textAlign: "center", color: "white" }}>Trailer</h3>
+          {item.trailer ? (
+            <div>
+              <iframe
+                title="youtubeTrailer"
+                // width="1000"
+                // height="500"
+                src={item.trailer}
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen="true"
+                style={{ padding: "10px 10px 40px 10px" }}
+              ></iframe>
+            </div>
+          ) : (
+            <div
+              style={{
+                background: "rgba(1,1,1)",
+                // height: "500px",
+                // width: "1000px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h1 style={{ fontSize: "25px", color: "white" }}>
+                Trailer coming soon
+              </h1>
+            </div>
+          )}
         </div>
       )}
     </div>
     // )}
-      // />
+    // />
     // </Router>
   );
 };

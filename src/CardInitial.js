@@ -86,41 +86,63 @@ const CardInitial = (props) => {
           }}
         >
           <a
-            href={props.urlname.includes("netflix") ? props.urlname : null}
+            href={props.urlname.NETFLIX ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
               id="thumbnail"
-              src={props.urlname.includes("netflix") ? icons.netflixIcon : null}
+              src={props.urlname.NETFLIX ? icons.netflixIcon : null}
               height="30px"
               alt=""
             />
           </a>
           <a
-            href={props.urlname.includes("primevideo") ? props.urlname : null}
+            href={props.urlname.PRIME ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
               id="thumbnail"
-              src={
-                props.urlname.includes("primevideo")
-                  ? icons.primeVideoIcon
-                  : null
-              }
+              src={props.urlname.PRIME ? icons.primeVideoIcon : null}
               height="30px"
               alt=""
             />
           </a>
           <a
-            href={props.urlname.includes("hotstar") ? props.urlname : null}
+            href={props.urlname.HOTSTAR ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
               id="thumbnail"
-              src={props.urlname.includes("hotstar") ? icons.hotstarIcon : null}
+              src={props.urlname.HOTSTAR ? icons.hotstarIcon : null}
+              height="30px"
+              alt=""
+            />
+          </a>
+
+          <a
+            href={props.urlname.SONYLIV ? props.urlname : null}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              id="thumbnail"
+              src={props.urlname.SONYLIV ? icons.sonyLivIcon : null}
+              height="30px"
+              alt=""
+            />
+          </a>
+
+          <a
+            href={props.urlname.ZEE5 ? props.urlname : null}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              id="thumbnail"
+              src={props.urlname.ZEE5 ? icons.zee5Icon : null}
               height="30px"
               alt=""
             />

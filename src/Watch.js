@@ -13,7 +13,7 @@ const Watch = (props) => {
   const {item} = props;
   const [trailer, setTrailer] = React.useState();
 
-  setTimeout(() => {setTrailer("https://youtube.com/embed/EErSKhC0CZs")}, 510)
+  setTimeout(() => {setTrailer(item.trailer)}, 510)
 
   
   const replaceTrailer = <p>Trailer coming soon</p>;
@@ -32,28 +32,30 @@ const Watch = (props) => {
         backgroundColor: "rgba(1,1,1)",
       }}
     >
-      
       {/* <Link to={`/title/${item.name}`}> */}
-        <button
-          type="button"
-          className="btn btn-light card-body goToBtn"
-          style={{
-            position: "absolute",
-            marginTop: "-18px",
-            alignSelf: "center",
-            // marginLeft: "-10px",
-            width: "100%",
-            fontWeight: "bold",
-            padding: "0px",
-          }}
-          onClick={() => ReactDOM.render(<InfoPage item={item} />, document.getElementById("root"))}
-        >
-          Go To Page
-        </button>
-      {/* </Link> */}
-
-      
-
+      <button
+        type="button"
+        className="btn btn-light card-body goToBtn"
+        style={{
+          position: "absolute",
+          left: "0",
+          marginTop: "-18px",
+          justifySelf: "flex-start",
+          // marginLeft: "-10px",
+          width: "100%",
+          fontWeight: "bold",
+          padding: "0px",
+        }}
+        onClick={() =>
+          ReactDOM.render(
+            <InfoPage item={item} />,
+            document.getElementById("root")
+          )
+        }
+      >
+        Go To Page
+      </button>
+      {/* </Link> */}v
       <h1
         id="heading1"
         className="card-title"
@@ -68,27 +70,26 @@ const Watch = (props) => {
       >
         <b>{item.name}</b>
       </h1>
-
-      {/* {trailer ? (<iframe
+      {trailer ? (<iframe
         title="youtubeTrailer"
         height="250px"
+        width="350px"
         src={trailer + "?autoplay=1&mute=1&enablejsapi=1"}
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen="true"
         style={{
           height: trailer === props.netflixIcon ? "100px" : "250px",
-          padding: "0px 20px",
+          alignSelf: "flex-start",
+          marginLeft: "-20px",
           objectFit: "contain",
           transition: "all 0.45s ease",
         }}
-      ></iframe>) : <p>Loading . . .</p>} */}
-
-      <div
+      ></iframe>) : (<div
         style={{
           height: "300px",
           display: "flex",
-          alignItems: "flex-end",
+          alignItems: "center",
           justifyContent: "center",
           color: "white",
           backgroundImage: "url(" + flickhub + ")",
@@ -100,7 +101,7 @@ const Watch = (props) => {
         <h3 style={{ display: "block", blockSize: "30px" }}>
           {replaceTrailer}
         </h3>
-      </div>
+      </div>)}
 
       <div id="newId" className="card-body imageBack">
         <div
@@ -133,39 +134,63 @@ const Watch = (props) => {
         }}
       >
         <a
-          href={item.urlname.includes("netflix") ? item.urlname : null}
+          href={item.urlname.NETFLIX ? item.urlname.NETFLIX : null}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             id="thumbnail"
-            src={item.urlname.includes("netflix") ? icons.netflixIcon : null}
+            src={item.urlname.NETFLIX ? icons.netflixIcon : null}
             height="50px"
             alt=""
           />
         </a>
         <a
-          href={item.urlname.includes("primevideo") ? item.urlname : null}
+          href={item.urlname.PRIME ? item.urlname.PRIME : null}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             id="thumbnail"
-            src={
-              item.urlname.includes("primevideo") ? icons.primeVideoIcon : null
-            }
+            src={item.urlname.PRIME ? icons.primeVideoIcon : null}
             height="50px"
             alt=""
           />
         </a>
         <a
-          href={item.urlname.includes("hotstar") ? item.urlname : null}
+          href={item.urlname.HOTSTAR ? item.urlname.HOTSTAR : null}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             id="thumbnail"
-            src={item.urlname.includes("hotstar") ? icons.hotstarIcon : null}
+            src={item.urlname.HOTSTAR ? icons.hotstarIcon : null}
+            height="50px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.SONYLIV ? item.urlname.SONYLIV : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.SONYLIV ? icons.sonyLivIcon : null}
+            height="50px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.ZEE5 ? item.urlname.ZEE5 : null}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.ZEE5 ? icons.zee5Icon : null}
             height="50px"
             alt=""
           />
