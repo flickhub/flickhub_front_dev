@@ -268,12 +268,17 @@ const Flickhub = () => {
           alignItems: "center",
           width: "100vw",
           flexWrap: "wrap",
-          marginTop: "150px",
+          margin: "150px 10px 50px 10px",
+          
         }}
       >
         {respObj ? (
           respObj.data.map((item, index) => {
-            return <Hover item={item} key={`search-result-${item.name}`} />;
+            return (
+              <div style={{}}>
+                <Hover item={item} key={`search-result-${item.name}`} />;
+              </div>
+            );
           })
         ) : (
           <div>
@@ -299,8 +304,7 @@ export const SearchItem = (props) => {
         return props.respObj.map((name) => {
           if (item === name) {
             return (
-              // <div>
-              <Router>
+              <div>
                 {props.mobileCard ? (
                   <div>
                     <MobileHover
@@ -311,21 +315,11 @@ export const SearchItem = (props) => {
                 ) : (
                   <div style={{ margin: "10px 0px 10px 0px" }}>
                     <div>
-                      {/* <Router> */}
-                      {/* <Link to={`/title/${item.name}`}> */}
-
                       <Hover item={item} key={`search-result-${name}`} />
-
-                      {/* </Link> */}
-                      {/* <Switch> */}
-                      {/* <Route path={`/title/${item.name}`} render={() => <InfoPage item={name} />} /> */}
-                      {/* </Switch> */}
-                      {/* </Router> */}
                     </div>
                   </div>
                 )}
-                {/* </div> */}
-              </Router>
+              </div>
             );
           } else {
             return null;
@@ -341,6 +335,7 @@ export const SearchItem = (props) => {
         alignItems: "center",
         flexWrap: "wrap",
         width: "100vw",
+        marginTop: "25px"
       }}
     >
       {items()}

@@ -81,6 +81,10 @@ const MobileFeedback = () => {
    const inputRef4 = React.useRef();
    const inputRef5 = React.useRef();
 
+   React.useEffect(() => {
+     console.log("feedback", rating)
+   },[rating])
+
   const onFocus = (e, ref) => {
     ref.current.style.transform = "translate(10px,-1px)";
     ref.current.style.color = "rgba(255,134,20)";
@@ -110,13 +114,29 @@ const MobileFeedback = () => {
       ref.current.select();
     }
 
+    const sendFeedback = () => {
+      const submitFeedback = {
+        feedback: formSubmit,
+      };
+      fetch("http://3.7.155.169/feedback", {
+        method: "POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify(submitFeedback),
+      })
+        .then((response) => response.json())
+        .then((response) => console.log(response))
+        .catch((error) => console.log("error", error));
+
+      // return request
+    };
+
 
   return (
     <div>
-      {/* <div>
-        <Modal show={showModal} />
-      </div> */}
-
       <div
         style={{
           margin: "100px 5px -90px 5px",
@@ -125,7 +145,7 @@ const MobileFeedback = () => {
           alignItems: "center",
           flexWrap: "wrap",
         }}
-        onClick={() => setFormSubmit({ quick_review: rating })}
+        onClick={() => setFormSubmit({ ...formSubmit, quick_review: rating })}
       >
         <QuickReview setRating={setRating} />
       </div>
@@ -292,7 +312,8 @@ const MobileFeedback = () => {
             className="btn btn-light"
             style={{ width: "100%", marginRight: "5px" }}
             onClick={() => {
-              getFeedback();
+              // getFeedback();
+              // sendFeedback()
               if (
                 formSubmit.first_name !== "" &&
                 formSubmit.last_name !== "" &&
@@ -308,25 +329,6 @@ const MobileFeedback = () => {
           >
             Submit
           </button>
-
-          {/* Quick review modal */}
-          {/* <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-          <button
-            style={{ width: "50%", marginLeft: "5px" }}
-            type="button"
-            className="btn btn-light"
-            onClick={() => setShowModal(true)}
-            onBlur={() => setShowModal(false)}
-          >
-            Quick Review
-          </button>
-          </div> */}
         </div>
       </div>
     </div>

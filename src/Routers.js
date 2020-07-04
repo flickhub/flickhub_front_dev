@@ -12,6 +12,8 @@ import Shimmer from "./Shimmer";
 import MobileHover from "./mobile/MobileHover";
 import Hover from "./Hover";
 import { responseObj } from "./utils/network";
+import { useMediaQuery } from "react-responsive";
+import MobileSpinner from "./mobile/MobileSpinner";
 
 export const SearchScreen = (props) => {
   const [respObj, setRespObj] = React.useState(null);
@@ -60,6 +62,35 @@ export const SearchScreen = (props) => {
   );
 };
 
+
+  export const Info = props => {
+    const [respObj, setRespObj] = React.useState(null)
+    const mobile = useMediaQuery({ minWidth: 850 });
+
+    console.log("id", props.match.params.id);
+    React.useEffect(() => {
+       fetch(`http://3.7.155.169/title/${props.match.params.id}`, {
+         method: "POST",
+         headers: {
+           "Access-Control-Allow-Origin": "*",
+           "Content-Type": "application/json",
+         },
+       })
+         .then((response) => response.json())
+         .then((response) => {
+           setRespObj(response)
+           console.log(response)
+          })
+         .catch((error) => console.log("error", error));
+    },[])
+    
+    return (
+      <div>
+      {respObj ? <InfoPage item={respObj.data[0]} /> : <div style={{height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center"}}>{mobile? <Shimmer /> : <MobileSpinner />}</div>}</div>
+    )
+  }
+
+
 function Routers(props) {
   const [search, setSearch] = React.useState(false);
   const [find, setFind] = React.useState("marvel");
@@ -95,24 +126,6 @@ function Routers(props) {
     setFind(e.target.value);
   };
 
-  React.useEffect(() => {
-    fetch("http://3.7.155.169/submit", {
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      // mode: "cors",
-      body: JSON.stringify({ mv_name: "iron" }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setRespObj(response);
-        response === null ? console.log("No results") : console.log("Success!");
-        // console.log("Response", response);
-      })
-      .catch((error) => console.log("error", error));
-  }, [find]);
 
   return (
     <Router>
@@ -166,27 +179,7 @@ function Routers(props) {
           <About />
         </Route>
         <Route path="/search/:searchString" component={SearchScreen} />
-
-        {respObj ? (
-          respObj.data.map((item, index) => {
-            return (
-              <Route
-                path={`/title/${item.name}`}
-                exact
-                key={`title-number-${index}`}
-                render={() => <InfoPage item={item} />}
-              />
-            );
-          })
-        ) : (
-          <div style={{ marginTop: "75px" }}>
-            <Shimmer />{" "}
-          </div>
-        )}
-
-        {/* <Route exact path="/title">
-          
-        </Route> */}
+        <Route path="/title/:id" component={Info} />
 
         <Route path="/">
           <Flickhub />
