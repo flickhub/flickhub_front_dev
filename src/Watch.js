@@ -47,7 +47,7 @@ const Watch = (props) => {
           padding: "0px 10px",
         }}
         onClick={() => window.open(`/title/${item.id_mov}`)}
-        onMouseEnter={(e) => (e.target.style.color = "")}
+        onMouseEnter={(e) => (e.target.style.color = "rgba(150,0,0)")}
         onMouseLeave={(e) => (e.target.style.color = "orange")}
       >
         Go To Page

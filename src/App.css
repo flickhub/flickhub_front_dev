@@ -106,12 +106,16 @@ ul {
   height: 300px;
   width: 250px;
   transition: 0.7s ease;
+  z-index: 1;
 }
 
 #container1:hover {
   height: 450px;
   width: 350px;
   padding: 20px;
+  margin: -75px;
+  z-index: 2;
+  position: absolute;
 }
 
 #App:hover {
@@ -121,6 +125,8 @@ ul {
 #hoverId {
   transition: 0.8s ease-in;
   height: 300px;
+  width: 210px;
+  position: relative;
 }
 
 .card-body {
