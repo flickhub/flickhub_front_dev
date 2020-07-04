@@ -1,5 +1,6 @@
 {
   "name": "flickhub_front_dev",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
