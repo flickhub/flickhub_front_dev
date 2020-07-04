@@ -11,22 +11,28 @@ import InfoPage from "./InfoPage";
 import Shimmer from "./Shimmer";
 import MobileHover from "./mobile/MobileHover";
 import Hover from "./Hover";
+import { responseObj } from "./utils/network";
 
 export const SearchScreen = (props) => {
   const [respObj, setRespObj] = React.useState(null);
 
+  // Link to server for making requests
   React.useEffect(() => {
-    fetch("http://285888cba28e.ngrok.io/submit", {
+    fetch("http://3.7.155.169/submit", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      // mode: "cors",
+      mode: "cors",
       body: JSON.stringify({ mv_name: props.match.params.searchString }),
     })
       .then((response) => response.json())
-      .then((response) => setRespObj(response))
+      .then((response) => {
+        setRespObj(response);
+        response === null ? console.log("No results") : console.log("Success!");
+        console.log("Response", response);
+      })
       .catch((error) => console.log("error", error));
   }, []);
   return (
@@ -51,30 +57,15 @@ export const SearchScreen = (props) => {
         </div>
       )}
     </div>
-  ); 
+  );
 };
-
 
 function Routers(props) {
   const [search, setSearch] = React.useState(false);
-  const [find, setFind] = React.useState("");
-  const [respObj, setRespObj] = React.useState(null)
-  
-  const aboutRef = React.useRef()
+  const [find, setFind] = React.useState("marvel");
+  const [respObj, setRespObj] = React.useState(null);
 
-    // React.useEffect(() => {
-    //   fetch("http://localhost:5000/submit", {
-    //     method: "POST",
-    //     headers: {
-    //       "Access-Control-Allow-Origin": "*",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ mv_name: "iron man" }),
-    //   })
-    //     .then((response) => response.json())
-    //     .then((response) => setRespObj(response))
-    //     .catch((error) => console.log("error", error));
-    // }, []);
+  const aboutRef = React.useRef();
 
   const searchBar = (
     <input
@@ -104,6 +95,25 @@ function Routers(props) {
     setFind(e.target.value);
   };
 
+  React.useEffect(() => {
+    fetch("http://3.7.155.169/submit", {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      // mode: "cors",
+      body: JSON.stringify({ mv_name: "iron" }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setRespObj(response);
+        response === null ? console.log("No results") : console.log("Success!");
+        // console.log("Response", response);
+      })
+      .catch((error) => console.log("error", error));
+  }, [find]);
+
   return (
     <Router>
       <ul>
@@ -123,7 +133,9 @@ function Routers(props) {
         <li id="leftBtn" style={{ color: "white" }}></li>
         <div id="navRight">
           <li>
-              <a href="/about/#contactInfo"><button className="btn btn-link">Contact</button></a>
+            <a href="/about/#contactInfo">
+              <button className="btn btn-link">Contact</button>
+            </a>
           </li>
           <li>
             <Link to="/about">
@@ -150,17 +162,32 @@ function Routers(props) {
         <Route path="/filter">
           <Filter2 />
         </Route>
-        <Route path="/about">
-            <About />
+        <Route exact path="/about">
+          <About />
         </Route>
         <Route path="/search/:searchString" component={SearchScreen} />
-        {/* {respObj ? respObj.data.map((item,index) => {
-            return <Route path={`/title/${item.name}`} exact key={`title-number-${index}`} render={() => <InfoPage item={item} />} /> 
-          }) : <div style={{marginTop: "75px"}}><Shimmer /> </div>} */}
 
-        <Route exact path="/title">
-          <div></div>
-        </Route>
+        {respObj ? (
+          respObj.data.map((item, index) => {
+            return (
+              <Route
+                path={`/title/${item.name}`}
+                exact
+                key={`title-number-${index}`}
+                render={() => <InfoPage item={item} />}
+              />
+            );
+          })
+        ) : (
+          <div style={{ marginTop: "75px" }}>
+            <Shimmer />{" "}
+          </div>
+        )}
+
+        {/* <Route exact path="/title">
+          
+        </Route> */}
+
         <Route path="/">
           <Flickhub />
         </Route>

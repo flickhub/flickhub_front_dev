@@ -75,6 +75,12 @@ const MobileFeedback = () => {
   const questionRef = React.useRef();
   const feedbackRef = React.useRef();
 
+   const inputRef1 = React.useRef();
+   const inputRef2 = React.useRef();
+   const inputRef3 = React.useRef();
+   const inputRef4 = React.useRef();
+   const inputRef5 = React.useRef();
+
   const onFocus = (e, ref) => {
     ref.current.style.transform = "translate(10px,-1px)";
     ref.current.style.color = "rgba(255,134,20)";
@@ -96,6 +102,14 @@ const MobileFeedback = () => {
       console.log("feedback", formSubmit);
     };
 
+    const onClick= (e, ref) => {
+      e.target.style.fontSize = "10px";
+      e.target.style.transform = "translate(-3px, 0px)";
+      e.target.style.color = "rgba(255,134,20)";
+      ref.current.focus();
+      ref.current.select();
+    }
+
 
   return (
     <div>
@@ -105,7 +119,7 @@ const MobileFeedback = () => {
 
       <div
         style={{
-          margin: "100px 5px -75px 5px",
+          margin: "100px 5px -90px 5px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -158,10 +172,15 @@ const MobileFeedback = () => {
         </div>
 
         <div style={{ padding: "10px 0px" }}>
-          <label ref={firstNameRef} style={labelStyle}>
+          <label
+            ref={firstNameRef}
+            style={labelStyle}
+            onClick={(e, ref = inputRef1) => onClick(e, ref)}
+          >
             First Name
           </label>
           <input
+            ref={inputRef1}
             style={feedbackInputStyle}
             type="text"
             onChange={(e) => {
@@ -177,10 +196,15 @@ const MobileFeedback = () => {
         </div>
 
         <div style={{ padding: "10px 0px" }}>
-          <label ref={lastNameRef} style={labelStyle}>
+          <label
+            ref={lastNameRef}
+            style={labelStyle}
+            onClick={(e, ref = inputRef2) => onClick(e, ref)}
+          >
             Last Name
           </label>
           <input
+            ref={inputRef2}
             style={feedbackInputStyle}
             type="text"
             onChange={(e) => {
@@ -196,10 +220,15 @@ const MobileFeedback = () => {
         </div>
 
         <div style={{ padding: "10px 0px" }}>
-          <label ref={emailRef} style={labelStyle}>
+          <label
+            ref={emailRef}
+            style={labelStyle}
+            onClick={(e, ref = inputRef3) => onClick(e, ref)}
+          >
             E-mail
           </label>
           <input
+            ref={inputRef3}
             style={feedbackInputStyle}
             type="text"
             onChange={(e) => {
@@ -215,10 +244,15 @@ const MobileFeedback = () => {
         </div>
 
         <div style={{ padding: "10px 0px" }}>
-          <label ref={questionRef} style={labelStyle}>
+          <label
+            ref={questionRef}
+            style={labelStyle}
+            onClick={(e, ref = inputRef4) => onClick(e, ref)}
+          >
             Questions
           </label>
           <input
+            ref={inputRef4}
             style={feedbackInputStyle}
             type="text"
             onChange={(e) => {
@@ -234,10 +268,15 @@ const MobileFeedback = () => {
         </div>
 
         <div style={{ padding: "10px 0px" }}>
-          <label ref={feedbackRef} style={labelStyle}>
+          <label
+            ref={feedbackRef}
+            style={labelStyle}
+            onClick={(e, ref = inputRef5) => onClick(e, ref)}
+          >
             Feedback
           </label>
           <textarea
+          ref={inputRef5}
             style={textAreaStyle}
             onChange={(e) => {
               setFormSubmit({ ...formSubmit, feedback: e.target.value });
@@ -255,11 +294,11 @@ const MobileFeedback = () => {
             onClick={() => {
               getFeedback();
               if (
-                formSubmit.first_name != "" &&
-                formSubmit.last_name != "" &&
-                formSubmit.email != "" &&
-                formSubmit.question != "" &&
-                formSubmit.feedback != ""
+                formSubmit.first_name !== "" &&
+                formSubmit.last_name !== "" &&
+                formSubmit.email !== "" &&
+                formSubmit.question !== "" &&
+                formSubmit.feedback !== ""
               ) {
                 alert("Your feedback has been submitted.");
               } else {

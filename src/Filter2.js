@@ -1,8 +1,8 @@
 import React from "react";
 import { icons } from "./constants/icons";
 import Shimmer from "./Shimmer";
-import MobileSpinner from "./mobile/MobileSpinner";
 import Hover from "./Hover";
+import { Link, Route } from "react-router-dom";
 
 const Filter2 = () => {
   const [respObj, setRespObj] = React.useState(null);
@@ -107,10 +107,10 @@ const Filter2 = () => {
       filters: selected,
     };
 
-    fetch("http://285888cba28e.ngrok.io/filter", {
+    fetch("http://3.7.155.169/filter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      mode: "cors",
+      // mode: "cors",
       body: JSON.stringify(data),
     })
       .then((res) => {
@@ -147,13 +147,14 @@ const Filter2 = () => {
         })
       )}
     </div>
-  ) : (
+  ) : 
+  (
     <div
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: "75px",
+        margin: "75px 0px 25px 0px",
         width: "70vw",
         flexDirection: "column",
         borderRadius: "5px",
@@ -196,26 +197,26 @@ const Filter2 = () => {
             className="btn btn-link"
             onClick={() => {
               console.log("Filters: ", selected);
-              // console.log("filterValues", filterValues);
               sendFilters();
               setShowResults(true);
             }}
           >
             Apply Filters
           </button>
+          
         </div>
       </div>
 
-      <h3 style={{ color: "white", marginTop: "75px" }}>
+      <h4 style={{ color: "white", textAlign: "left", width: "65%" }}>
         Filter By Streaming Service
-      </h3>
+      </h4>
       <div
         style={{
           background: "rgba(255,255,255,0.2)",
           padding: "5px",
           display: "flex",
           width: "65%",
-          margin: "20px",
+          margin: "5px",
           overflow: "auto",
         }}
       >
@@ -373,66 +374,26 @@ const Filter2 = () => {
         </a>
       </div>
 
-      <h3 style={{ color: "white", marginTop: "10px" }}>Filter By Year</h3>
-      <div
+      <h4
         style={{
-          backgroundColor: "rgba(255,255,255,0.2)",
-          display: "flex",
+          color: "white",
+          marginTop: "5px",
+          textAlign: "left",
           width: "65%",
-          alignItems: "flex-start",
-          justifyContent: "flex-start",
-          flexWrap: "wrap",
-          padding: "10px",
-          margin: "20px",
         }}
       >
-        {Object.keys(yearFilter).map((item, index) => {
-          return (
-            <button
-              key={"filter-button-year " + index}
-              className="btn btn-light"
-              style={{
-                margin: "5px",
-                border: "none",
-                background: selected.year.includes(item)
-                  ? "rgba(255,134,20)"
-                  : "",
-              }}
-              onClick={(e) => {
-                if (selected.year.includes(item)) {
-                  setSelected({
-                    ...selected,
-                    year: [...selected.year].filter(
-                      (itemInner) => itemInner !== item
-                    ),
-                  });
-                  unSelectFilter(e);
-                } else {
-                  setSelected({
-                    ...selected,
-                    year: [...selected.year, item],
-                  });
-                  selectFilter(e);
-                }
-              }}
-            >
-              {yearFilter[item]}
-            </button>
-          );
-        })}
-      </div>
-
-      <h3 style={{ color: "white", marginTop: "10px" }}>Filter By Rating</h3>
+        Filter By Rating
+      </h4>
       <div
         style={{
           display: "flex",
           width: "65%",
           alignItems: "flex-start",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           flexWrap: "wrap",
-          padding: "10px",
+          padding: "10px 0px",
           backgroundColor: "rgba(255,255,255,0.2)",
-          margin: "20px",
+          margin: "5px",
         }}
       >
         {Object.keys(ratingFilter).map((item) => {
@@ -446,6 +407,8 @@ const Filter2 = () => {
                 background: selected.rating.includes(item)
                   ? "rgba(255,134,20)"
                   : "",
+                width: "20%",
+                padding: "2px",
               }}
               onClick={(e) => {
                 if (selected.rating.includes(item)) {
@@ -471,17 +434,26 @@ const Filter2 = () => {
         })}
       </div>
 
-      <h3 style={{ color: "white", marginTop: "10px" }}>Filter By Genre</h3>
+      <h4
+        style={{
+          color: "white",
+          marginTop: "5px",
+          textAlign: "left",
+          width: "65%",
+        }}
+      >
+        Filter By Genre
+      </h4>
       <div
         style={{
           display: "flex",
           width: "65%",
           alignItems: "flex-start",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           flexWrap: "wrap",
-          padding: "10px",
+          padding: "10px 0px",
           backgroundColor: "rgba(255,255,255,0.2)",
-          margin: "20px",
+          margin: "5px",
         }}
       >
         {Object.keys(genreFilter).map((item, index) => {
@@ -495,6 +467,8 @@ const Filter2 = () => {
                 background: selected.genre.includes(genreFilter[item])
                   ? "rgba(255,134,20)"
                   : "",
+                width: "20%",
+                padding: "2px",
               }}
               onClick={(e) => {
                 if (selected.genre.includes(genreFilter[item])) {
@@ -518,6 +492,112 @@ const Filter2 = () => {
             </button>
           );
         })}
+      </div>
+
+      <h4
+        style={{
+          color: "white",
+          marginTop: "5px",
+          textAlign: "left",
+          width: "65%",
+        }}
+      >
+        Filter By Year
+      </h4>
+      <div
+        style={{
+          backgroundColor: "rgba(255,255,255,0.2)",
+          display: "flex",
+          width: "65%",
+          alignItems: "flex-start",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          padding: "10px 0px",
+          margin: "5px",
+        }}
+      >
+        {Object.keys(yearFilter).map((item, index) => {
+          return (
+            <button
+              key={"filter-button-year " + index}
+              className="btn btn-light"
+              style={{
+                margin: "5px",
+                border: "none",
+                background: selected.year.includes(item)
+                  ? "rgba(255,134,20)"
+                  : "",
+                width: "20%",
+                padding: "2px",
+              }}
+              onClick={(e) => {
+                if (selected.year.includes(item)) {
+                  setSelected({
+                    ...selected,
+                    year: [...selected.year].filter(
+                      (itemInner) => itemInner !== item
+                    ),
+                  });
+                  unSelectFilter(e);
+                } else {
+                  setSelected({
+                    ...selected,
+                    year: [...selected.year, item],
+                  });
+                  selectFilter(e);
+                }
+              }}
+            >
+              {yearFilter[item]}
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "70vw",
+        }}
+      >
+        <div style={{}}>
+          <button
+            className="btn btn-link"
+            onClick={() => {
+              setSelected({
+                NETFLIX: false,
+                PRIME: false,
+                HOTSTAR: false,
+                EROSNOW: false,
+                SONYLIV: false,
+                ALTBALAJI: false,
+                ZEE5: false,
+                VOOT: false,
+                VIU: false,
+                year: [],
+                rating: [],
+                genre: [],
+              });
+            }}
+          >
+            Clear All
+          </button>
+        </div>
+
+        <div style={{}}>
+            <button
+              className="btn btn-link"
+              onClick={() => {
+                console.log("Filters: ", selected);
+                // console.log("filterValues", filterValues);
+                sendFilters();
+                setShowResults(true);
+              }}
+            >
+              Apply Filters
+            </button>
+        </div>
       </div>
     </div>
   );
