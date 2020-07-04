@@ -49,10 +49,8 @@ const Watch = (props) => {
           fontWeight: "bold",
           padding: "0px 10px",
         }}
-        // onClick={() => window.open(`/title/${item.name}`)}
+        onClick={() => window.open(`/title/${item.name}`)}
 
-
-        onClick={() => ReactDOM.render(<InfoPage item={item} />, document.getElementById("root"))}
         // onClick={() => {
 
         //   fetch(`http://http://3.7.155.169/title/${item.id_mov}`, {
