@@ -10,12 +10,12 @@ import {
 
 import flickhub from "../assets/images/logo3.jpg";
 import MobileFlickhub from "./MobileFlickhub";
-import InfoPage from "../InfoPage";
 import About from "../About";
 import Filter from "../Filter";
 import MobileFeedback from "./MobileFeedback";
 import { SearchItem } from "../Flickhub";
 import MobileSpinner from "./MobileSpinner";
+import { Info } from "../Routers";
 
 export const ulRouter = {
   display: "flex",
@@ -92,28 +92,12 @@ const MobileRouters = (props) => {
         </ul>
 
         <Switch>
-          {/* {respObj ? (
-            respObj.data.map((item, index) => {
-              return (
-                <Route
-                  path={`/title/${item.name}`}
-                  exact
-                  key={`title-number-${index}`}
-                  render={() => <InfoPage item={item} />}
-                />
-              );
-            })
-          ) : (
-            <div style={{ margin: "75px 0px" }}>
-              <MobileSpinner />
-            </div>
-          )} */}
           <Route
             path={`/search/:searchString`}
             // exact
             component={SearchMobile}
           />
-
+          <Route path="/title/:id" component={Info} />
           <Route path="/about">
             <div style={{ margin: "-50px 0px 50px 0px" }}>
               <About font="18px" headFontSize="35px" margin="10px" />

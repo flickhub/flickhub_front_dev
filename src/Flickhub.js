@@ -268,12 +268,12 @@ const Flickhub = () => {
           alignItems: "center",
           width: "100vw",
           flexWrap: "wrap",
-          marginTop: "150px",
+          margin: "150px 0px 50px 0px",
         }}
       >
         {respObj ? (
           respObj.data.map((item, index) => {
-            return <Hover item={item} key={`search-result-${item.name}`} />;
+            return <div style={{}}><Hover item={item} key={`search-result-${item.name}`} />;</div>
           })
         ) : (
           <div>

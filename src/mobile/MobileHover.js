@@ -7,17 +7,19 @@ import { icons } from "../constants/icons";
 import InfoPage from "../InfoPage";
 import { useMediaQuery } from "react-responsive";
 
-export const closeBtnStyle = {
-  right: "5px",
-  top: "50px",
-  position: "absolute",
-  color: "white",
-  fontSize: "20px",
-};
+ 
 
 const MobileHover = (props) => {
   const { item } = props;
   const [expandCard, setExpandCard] = React.useState(false);
+  
+  const closeBtnStyle = {
+  right: useMediaQuery({ minWidth: 790 }) ? "5px" : "50px",
+  top: useMediaQuery({ minWidth: 790 }) ? "50px" : "175px",
+  position: "absolute",
+  color: "white",
+  fontSize: "20px",
+};
 
   const mobileWatchBackground = {
     display: "flex",
@@ -335,12 +337,13 @@ export const goToPageStyle = {
   top: "10px",
   left: "10px",
   position: "absolute",
-  padding: "0px 10px"
+  padding: "0px 10px",
+  color: "orange"
 };
 
 export const titleCardStyle = {
   fontSize: "1.5em",
-  color: "black",
+  color: "white",
   width: "100%",
   textAlign: "center",
 };
@@ -348,7 +351,7 @@ export const titleCardStyle = {
 export const MobileWatch = (props) => {
   const { item } = props;
 
-  const [trailer, setTrailer] = React.useState();
+  const [trailer, setTrailer] = React.useState(null);
 
   // Expanded card
    const trailerNAStyle = {
@@ -379,48 +382,44 @@ export const MobileWatch = (props) => {
     textAlign: "center",
   };
 
+  const mobile = useMediaQuery({minWidth: 850})
+
   return (
     <div
       className="card"
       style={{
-        backgroundImage: "url(" + item.image + ")",
+        backgroundImage: "url(" + item.image + ")" ,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
-        height: "80vh",
+        height: "50%",
         width: "80vw",
         transition: "all 0.5s ease",
         padding: "30px",
-        overflow: "hidden",
+        overflowX: "hidden",
         backgroundColor: "rgba(1,1,1)",
         position: "fixed",
         zIndex: 1,
         display: "flex",
         flexDirection: "column",
+        overflowY: "auto",
         justifyContent: "flex-start",
-        alignItems: "space-around",
+        alignItems: "stretch",
       }}
     >
       <div>
-        {/* Go To Page button */}
-        {/* <Link to={`/title/${item.name}`}> */}
         <button
           type="button"
-          className="btn btn-light card-body goToBtn"
+          className="btn btn-link card-body goToBtn"
           style={goToPageStyle}
-          onClick={() =>
-            ReactDOM.render(
-              <InfoPage item={item} />,
-              document.getElementById("root")
-            )
-          }
+          onClick={() => window.open(`/title/${item.id_mov}`)}
+          onMouseEnter={(e) => (e.target.style.color = "")}
+          onMouseLeave={(e) => (e.target.style.color = "orange")}
         >
-          Go To Page
+          <strong>Go To Page</strong>
         </button>
-        {/* </Link> */}
       </div>
 
-      {/* Title */}
       <div
         style={{
           width: "100%",
@@ -429,7 +428,7 @@ export const MobileWatch = (props) => {
           color: "white",
           writingMode: "horizontal-tb",
           borderRadius: "5px",
-          marginTop: "20px",
+          marginTop: "10px",
           display: "inline-block",
           overflow: "auto",
           whiteSpace: "nowrap",
@@ -440,7 +439,7 @@ export const MobileWatch = (props) => {
       </div>
 
       {/* Trailer */}
-      <div style={{ marginTop: "20px" }}>
+      <div>
         {item.trailer !== "None" ? (
           <iframe
             title="youtubeTrailer"
@@ -449,10 +448,11 @@ export const MobileWatch = (props) => {
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen="true"
             style={{
-              height: item.trailer === props.netflixIcon ? "100px" : "35vh",
-              marginLeft: "-30px",
-              padding: " 20px 0px",
-              objectFit: "contain",
+              // marginLeft: "-30px",
+              height: "28vh",
+              width: "100%",
+              justifySelf: "flex-start",
+              // objectFit: "cover",
               transition: "all 0.45s ease",
             }}
           ></iframe>
@@ -462,15 +462,6 @@ export const MobileWatch = (props) => {
           </div>
         )}
       </div>
-
-      {/* Title plot */}
-      {/* <div>
-        <div style={plotCardStyle}>
-          <p style={{ color: "white" }}>
-            <strong>{item.plot}</strong>
-          </p>
-        </div>
-      </div> */}
 
       {/* Streaming services */}
 

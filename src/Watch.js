@@ -34,42 +34,24 @@ const Watch = (props) => {
         overflow: "hidden",
       }}
     >
-      {/* <Router> */}
-      {/* <Link to={`/title/${item.name}`}> */}
       <button
         type="button"
-        className="btn btn-light card-body goToBtn"
+        className="btn btn-link card-body goToBtn"
         style={{
           position: "absolute",
-          left: "20px",
+          color: "orange",
+          left: "0",
           marginTop: "-15px",
           justifySelf: "flex-start",
-          // marginLeft: "-10px",
-          // width: "100%",
           fontWeight: "bold",
           padding: "0px 10px",
         }}
-        onClick={() => window.open(`/title/${item.name}`)}
-
-        // onClick={() => {
-
-        //   fetch(`http://http://3.7.155.169/title/${item.id_mov}`, {
-        //     method: "POST",
-        //     headers: {
-        //       "Access-Control-Allow-Origin": "*",
-        //       "Content-Type": "application/json",
-        //     },
-        //     // body: JSON.stringify({ mv_name: props.match.params.searchString }),
-        //   })
-        //     .then((response) => response.json())
-        //     // .then((response) => setRespObj(response))
-        //     .then((response) => setRespObj(response))
-        //     .catch((error) => console.log("error", error));
-        // }}
+        onClick={() => window.open(`/title/${item.id_mov}`)}
+        onMouseEnter={(e) => (e.target.style.color = "")}
+        onMouseLeave={(e) => (e.target.style.color = "orange")}
       >
         Go To Page
       </button>
-      {/* </Link> */}
 
       <h2
         id="heading1"

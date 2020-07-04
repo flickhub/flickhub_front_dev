@@ -46,8 +46,6 @@ const sendFeedback = () => {
        .then((response) => response.json())
        .then((response) => console.log(response))
        .catch((error) => console.log("error", error));
-
-        // return request
 }
 
   return (
