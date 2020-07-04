@@ -4,6 +4,8 @@ import { SearchItem } from "../Flickhub";
 import SearchScreen from "../Routers";
 import Shimmer from "../Shimmer";
 import filterStringInstance from "../utils/filter";
+import MobileSpinner from "./MobileSpinner";
+import MobileHover from "./MobileHover";
 
 export const logoStlye = {
   color: "white",
@@ -16,11 +18,27 @@ export const logoStlye = {
 
 const MobileFlickhub = (props) => {
   const [search, setSearch] = React.useState("");
+  const [respObj, setRespObj] = React.useState(null)
   const disableRef = React.useRef();
 
   React.useEffect(() => {
     search && filterStringInstance.setFilterString(search);
   }, [search]);
+
+    React.useEffect(() => {
+      fetch("http://3.7.155.169/", {
+        method: "POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      })
+        .then((response) => response.json())
+        // .then((response) => console.log("Random ", response))
+        .then((response) => setRespObj(response))
+        .catch((error) => console.log("error", error));
+    }, []);
 
   return (
     <div style={logoStlye}>
@@ -53,8 +71,8 @@ const MobileFlickhub = (props) => {
           onChange={(e) => {
             setSearch(e.target.value);
             e.target.value !== ""
-              ? (disableRef.current.disabled = false)
-              : (disableRef.current.disabled = true);
+              ? (disableRef.current.disabled = true)
+              : (disableRef.current.disabled = false);
           }}
           onFocus={(e) => {
             e.target.style.outline = "none";
@@ -105,6 +123,27 @@ const MobileFlickhub = (props) => {
           <br />
           Tap tap and away!
         </p>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100vw",
+          flexWrap: "wrap",
+          marginTop: "150px",
+        }}
+      >
+        {respObj ? (
+          respObj.data.map((item, index) => {
+            return <MobileHover item={item} key={`search-result-${item.name}`} />;
+          })
+        ) : (
+          <div>
+            <Shimmer />
+          </div>
+        )}
       </div>
     </div>
   );

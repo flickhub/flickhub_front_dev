@@ -78,6 +78,7 @@ const CardInitial = (props) => {
             display: "flex",
             justifyContent: "flex-start",
             alignSelf: "flex-start",
+            flexWrap: "wrap-reverse",
             width: "100%",
             padding: "10px 10px",
             left: 0,
@@ -89,6 +90,10 @@ const CardInitial = (props) => {
             href={props.urlname.NETFLIX ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              display: props.urlname.NETFLIX ? "block" : "none",
+              margin: "3px",
+            }}
           >
             <img
               id="thumbnail"
@@ -101,6 +106,10 @@ const CardInitial = (props) => {
             href={props.urlname.PRIME ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              display: props.urlname.PRIME ? "block" : "none",
+              margin: "3px",
+            }}
           >
             <img
               id="thumbnail"
@@ -113,6 +122,10 @@ const CardInitial = (props) => {
             href={props.urlname.HOTSTAR ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              display: props.urlname.HOTSTAR ? "block" : "none",
+              margin: "3px",
+            }}
           >
             <img
               id="thumbnail"
@@ -126,6 +139,10 @@ const CardInitial = (props) => {
             href={props.urlname.SONYLIV ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              display: props.urlname.SONYLIV ? "block" : "none",
+              margin: "3px",
+            }}
           >
             <img
               id="thumbnail"
@@ -139,10 +156,82 @@ const CardInitial = (props) => {
             href={props.urlname.ZEE5 ? props.urlname : null}
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              display: props.urlname.ZEE5 ? "block" : "none",
+              margin: "3px",
+            }}
           >
             <img
               id="thumbnail"
               src={props.urlname.ZEE5 ? icons.zee5Icon : null}
+              height="30px"
+              alt=""
+            />
+          </a>
+
+          <a
+            href={props.urlname.EROSNOW ? props.urlname : null}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: props.urlname.EROSNOW ? "block" : "none",
+              margin: "3px",
+            }}
+          >
+            <img
+              id="thumbnail"
+              src={props.urlname.EROSNOW ? icons.erosNowIcon : null}
+              height="30px"
+              alt=""
+            />
+          </a>
+
+          <a
+            href={props.urlname.VOOT ? props.urlname : null}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: props.urlname.VOOT ? "block" : "none",
+              margin: "3px",
+            }}
+          >
+            <img
+              id="thumbnail"
+              src={props.urlname.VOOT ? icons.vootIcon : null}
+              height="30px"
+              alt=""
+            />
+          </a>
+
+          <a
+            href={props.urlname.VIU ? props.urlname : null}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: props.urlname.VIU ? "block" : "none",
+              margin: "3px",
+            }}
+          >
+            <img
+              id="thumbnail"
+              src={props.urlname.VIU ? icons.viuIcon : null}
+              height="30px"
+              alt=""
+            />
+          </a>
+
+          <a
+            href={props.urlname.ALTBALAJI ? props.urlname : null}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: props.urlname.ALTBALAJI ? "block" : "none",
+              margin: "3px",
+            }}
+          >
+            <img
+              id="thumbnail"
+              src={props.urlname.ALTBALAJI ? icons.altBalajiIcon : null}
               height="30px"
               alt=""
             />

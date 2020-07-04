@@ -30,8 +30,9 @@ export const ulRouter = {
 export const SearchMobile = (props) => {
   const [respObj, setRespObj] = React.useState(null);
 
+  // Link to server for making requests
   React.useEffect(() => {
-    fetch("http://285888cba28e.ngrok.io/submit", {
+    fetch("http://3.7.155.169/submit", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -40,7 +41,7 @@ export const SearchMobile = (props) => {
       body: JSON.stringify({ mv_name: props.match.params.searchString }),
     })
       .then((response) => response.json())
-      //   .then(response => console.log("Response mobile: ",response))
+      // .then(response => console.log("Response mobile: ",response))
       .then((response) => setRespObj(response))
       .catch((error) => console.log("error", error));
   }, []);
@@ -61,6 +62,23 @@ export const SearchMobile = (props) => {
 const MobileRouters = (props) => {
   const [showMenu, setShowMenu] = React.useState(false);
   const collapseRef = React.useRef();
+
+    const [respObj, setRespObj] = React.useState(null);
+
+    // Link to server for making requests
+    React.useEffect(() => {
+      fetch("http://3.7.155.169/submit", {
+        method: "POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify({ mv_name: props.match.params.searchString }),
+      })
+        .then((response) => response.json())
+        .then((response) => setRespObj(response))
+        .catch((error) => console.log("error", error));
+    }, []);
 
   return (
     <div>

@@ -7,21 +7,6 @@ import { icons } from "../constants/icons";
 import InfoPage from "../InfoPage";
 import { useMediaQuery } from "react-responsive";
 
-// export const mobileWatchBackground = {
-//          display: "flex",
-//          alignItems: "center",
-//          justifyContent: "center",
-//          backgroundColor: "rgba(1,1,1,0.6)",
-//          height: "100vh",
-//          width: "100vw",
-//          padding: "20px 10px",
-//          top: "0",
-//          left: "0",
-//          position: "fixed",
-//          zIndex: 2,
-//          transition: "all 1s ease",
-//        };
-
 export const closeBtnStyle = {
   right: "5px",
   top: "50px",
@@ -161,16 +146,30 @@ const mobile = useMediaQuery({
         </div>
       )}
       <div style={cardTitleStyle}>
-        <h1 style={{ fontSize: "14px" }}>{item.name}</h1>
+        <h1 style={{ fontSize: "14px", color: "white" }}>{item.name}</h1>
       </div>
 
       {/* Streaming services */}
 
-      <div style={{bottom: "60px", left: "5px", position: "absolute", display: "flex", overflow: "hidden", justifyContent: "flex-start"}}>
+      <div
+        style={{
+          bottom: "60px",
+          left: "5px",
+          position: "absolute",
+          display: "flex",
+          overflow: "hidden",
+          justifyContent: "flex-start",
+          flexWrap: "wrap-reverse"
+        }}
+      >
         <a
           href={item.urlname.NETFLIX ? item.urlname.NETFLIX : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.NETFLIX ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
@@ -183,6 +182,10 @@ const mobile = useMediaQuery({
           href={item.urlname.PRIME ? item.urlname.PRIME : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.PRIME ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
@@ -195,6 +198,10 @@ const mobile = useMediaQuery({
           href={item.urlname.HOTSTAR ? item.urlname.HOTSTAR : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.HOTSTAR ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
@@ -208,6 +215,10 @@ const mobile = useMediaQuery({
           href={item.urlname.SONYLIV ? item.urlname.SONYLIV : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.SONYLIV ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
@@ -221,10 +232,82 @@ const mobile = useMediaQuery({
           href={item.urlname.ZEE5 ? item.urlname.ZEE5 : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.ZEE5 ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
             src={item.urlname.ZEE5 ? icons.zee5Icon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.EROSNOW ? item.urlname.EROSNOW : null}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: item.urlname.EROSNOW ? "block" : "none",
+            margin: "3px",
+          }}
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.EROSNOW ? icons.erosNowIcon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.VOOT ? item.urlname.VOOT : null}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: item.urlname.VOOT ? "block" : "none",
+            margin: "3px",
+          }}
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.VOOT ? icons.vootIcon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.VIU ? item.urlname.VIU : null}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: item.urlname.VIU ? "block" : "none",
+            margin: "3px",
+          }}
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.VIU ? icons.viuIcon : null}
+            height="30px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.ALTBALAJI ? item.urlname.ALTBALAJI : null}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: item.urlname.ALTBALAJI ? "block" : "none",
+            margin: "3px",
+          }}
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.ALTBALAJI ? icons.altBalajiIcon : null}
             height="30px"
             alt=""
           />
@@ -249,10 +332,10 @@ export const streamCardStyle = {
 };
 
 export const goToPageStyle = {
-  top: "0",
-  left: "0",
+  top: "10px",
+  left: "10px",
   position: "absolute",
-  width: "100%",
+  padding: "0px 10px"
 };
 
 export const titleCardStyle = {
@@ -342,7 +425,8 @@ export const MobileWatch = (props) => {
         style={{
           width: "100%",
           flexWrap: "none",
-          backgroundColor: "rgba(255,134,20,0.9)",
+          // backgroundColor: "rgba(255,134,20,0.9)",
+          color: "white",
           writingMode: "horizontal-tb",
           borderRadius: "5px",
           marginTop: "20px",
@@ -380,13 +464,13 @@ export const MobileWatch = (props) => {
       </div>
 
       {/* Title plot */}
-      <div>
+      {/* <div>
         <div style={plotCardStyle}>
           <p style={{ color: "white" }}>
             <strong>{item.plot}</strong>
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Streaming services */}
 
@@ -395,11 +479,16 @@ export const MobileWatch = (props) => {
           href={item.urlname.NETFLIX ? item.urlname.NETFLIX : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.NETFLIX ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
             src={item.urlname.NETFLIX ? icons.netflixIcon : null}
-            height="50px"
+            height="40px"
+            width="40px"
             alt=""
           />
         </a>
@@ -407,11 +496,16 @@ export const MobileWatch = (props) => {
           href={item.urlname.PRIME ? item.urlname.PRIME : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.PRIME ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
             src={item.urlname.PRIME ? icons.primeVideoIcon : null}
-            height="50px"
+            height="40px"
+            width="40px"
             alt=""
           />
         </a>
@@ -419,11 +513,16 @@ export const MobileWatch = (props) => {
           href={item.urlname.HOTSTAR ? item.urlname.HOTSTAR : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.HOTSTAR ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
             src={item.urlname.HOTSTAR ? icons.hotstarIcon : null}
-            height="50px"
+            height="40px"
+            width="40px"
             alt=""
           />
         </a>
@@ -432,11 +531,16 @@ export const MobileWatch = (props) => {
           href={item.urlname.SONYLIV ? item.urlname.SONYLIV : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.SONYLIV ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
             src={item.urlname.SONYLIV ? icons.sonyLivIcon : null}
-            height="50px"
+            height="40px"
+            width="40px"
             alt=""
           />
         </a>
@@ -445,15 +549,91 @@ export const MobileWatch = (props) => {
           href={item.urlname.ZEE5 ? item.urlname.ZEE5 : null}
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            display: item.urlname.ZEE5 ? "block" : "none",
+            margin: "3px",
+          }}
         >
           <img
             id="thumbnail"
             src={item.urlname.ZEE5 ? icons.zee5Icon : null}
-            height="50px"
+            height="40px"
+            width="40px"
             alt=""
           />
         </a>
 
+        <a
+          href={item.urlname.EROSNOW ? item.urlname.EROSNOW : null}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: item.urlname.EROSNOW ? "block" : "none",
+            margin: "3px",
+          }}
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.EROSNOW ? icons.erosNowIcon : null}
+            height="40px"
+            width="40px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.VOOT ? item.urlname.VOOT : null}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: item.urlname.VOOT ? "block" : "none",
+            margin: "3px",
+          }}
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.VOOT ? icons.vootIcon : null}
+            height="40px"
+            width="40px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.VIU ? item.urlname.VIU : null}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: item.urlname.VIU ? "block" : "none",
+            margin: "3px",
+          }}
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.VIU ? icons.viuIcon : null}
+            height="40px"
+            width="40px"
+            alt=""
+          />
+        </a>
+
+        <a
+          href={item.urlname.ALTBALAJI ? item.urlname.ALTBALAJI : null}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: item.urlname.ALTBALAJI ? "block" : "none",
+            margin: "3px",
+          }}
+        >
+          <img
+            id="thumbnail"
+            src={item.urlname.ALTBALAJI ? icons.altBalajiIcon : null}
+            height="40px"
+            width="40px"
+            alt=""
+          />
+        </a>
       </div>
     </div>
   );

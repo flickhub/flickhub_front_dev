@@ -13,108 +13,7 @@ import Hover from "./Hover";
 import CardInitial from "./CardInitial";
 import MobileHover from "./mobile/MobileHover";
 import InfoPage from "./InfoPage";
-
-
-
-
-export const initState = {
-  NETFLIX: false,
-  PRIME: false,
-  HOTSTAR: false,
-  EROSNOW: false,
-  SONYLIV: false,
-  ALTBALAJI: false,
-  ZEE5: false,
-  VOOT: false,
-  VIU: false,
-  year: [],
-  rating: [],
-  genre: [],
-};
-
-export const yearFilter = {
-  0: "1950-1955",
-  1: "1956-1960",
-  2: "1961-1965",
-  3: "1966-1970",
-  4: "1971-1975",
-  5: "1976-1980",
-  6: "1981-1985",
-  7: "1986-1990",
-  8: "1991-1995",
-  9: "1996-2000",
-  10: "2001-2005",
-  11: "2006-2010",
-  12: "2011-2015",
-  13: "2016-2020",
-};
-
-export const ratingFilter = {
-  0: "0.0 - 1.0",
-  1: "1.1 - 2.0",
-  2: "2.1 - 3.0",
-  3: "3.1 - 4.0",
-  4: "4.1 - 5.0",
-  5: "5.1 - 6.0",
-  6: "6.1 - 7.0",
-  7: "7.1 - 8.0",
-  8: "8.1 - 9.0",
-  9: "9.1 - 10.0",
-};
-
-export const genreFilter = {
-  0: "Action",
-  1: "Adventure",
-  2: "Animation",
-  3: "Biography",
-  4: "Comedy",
-  5: "Crime",
-  6: "Documentary",
-  7: "Drama",
-  8: "Family",
-  9: "Fantasy",
-  10: "Film Noir",
-  11: "Game-Show",
-  12: "History",
-  13: "Horror",
-  14: "Music",
-  15: "Musical",
-  16: "Mystery",
-  17: "Romance",
-  18: "Sci-Fi",
-  19: "Short Film",
-  20: "Sport",
-  // 21: "Superhero",
-  21: "Thriller",
-  22: "War",
-  23: "Western",
-};
-
-export const randomFilter = () => {
-  const filterObj = JSON.parse(JSON.stringify(initState));
-  for (let i = 0; i < Math.floor(2 + 5 * Math.random()); i++) {
-    filterObj[Object.keys(filterObj)[Math.floor(8 * Math.random())]] = true;
-    filterObj.year.push(
-      Object.keys(yearFilter)[
-        Math.floor(Object.keys(yearFilter).length * Math.random())
-      ]
-    );
-    filterObj.rating.push(
-      Object.keys(ratingFilter)[
-        Math.floor(Object.keys(ratingFilter).length * Math.random())
-      ]
-    );
-    filterObj.genre.push(
-      Object.keys(genreFilter)[
-        Math.floor(Object.keys(genreFilter).length * Math.random())
-      ]
-    );
-  }
-  return filterObj;
-};
-
-
-
+import Shimmer from "./Shimmer";
 
 export const SearchBtn = (props) => {
   return (
@@ -149,19 +48,32 @@ const Flickhub = () => {
   const disableRef = React.useRef();
   const searchStringRef = React.useRef();
 
-  console.log("Random", randomFilter())
+  // React.useEffect(() => {
+  //   fetch("http://localhost:5000/submit", {
+  //     method: "POST",
+  //     headers: {
+  //       "Access-Control-Allow-Origin": "*",
+  //       "Content-Type": "application/json",
+  //     },
+  //     // mode: "cors",
+  //     body: JSON.stringify({ mv_name: "iron man" }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((response) => setRespObj(response))
+  //     .catch((error) => console.log("error", error));
+  // }, []);
 
   React.useEffect(() => {
-    fetch("http://localhost:5000/submit", {
+    fetch("http://3.7.155.169/", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      // mode: "cors",
-      body: JSON.stringify({ mv_name: "iron man" }),
+      mode: "cors",
     })
       .then((response) => response.json())
+      // .then((response) => console.log("Random ", response))
       .then((response) => setRespObj(response))
       .catch((error) => console.log("error", error));
   }, []);
@@ -197,7 +109,12 @@ const Flickhub = () => {
             width: "100%",
           }}
         >
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <h2
               style={{
                 fontSize: "100px",
@@ -226,7 +143,12 @@ const Flickhub = () => {
           </div>
 
           <div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <input
                 autoFocus={true}
                 placeholder="Search with a keyword"
@@ -254,12 +176,18 @@ const Flickhub = () => {
                   e.target.value !== ""
                     ? (disableRef.current.disabled = false)
                     : (disableRef.current.disabled = true);
+                  console.log();
                 }}
               />
               <SearchBtn searchValue={searchValue} disableRef={disableRef} />
             </div>
 
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <p
                 style={{
                   fontSize: "24px",
@@ -332,6 +260,27 @@ const Flickhub = () => {
           </div>
         </div>
       </div> */}
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100vw",
+          flexWrap: "wrap",
+          marginTop: "150px",
+        }}
+      >
+        {respObj ? (
+          respObj.data.map((item, index) => {
+            return <Hover item={item} key={`search-result-${item.name}`} />;
+          })
+        ) : (
+          <div>
+            <Shimmer />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -350,7 +299,8 @@ export const SearchItem = (props) => {
         return props.respObj.map((name) => {
           if (item === name) {
             return (
-              <div>
+              // <div>
+              <Router>
                 {props.mobileCard ? (
                   <div>
                     <MobileHover
@@ -361,20 +311,21 @@ export const SearchItem = (props) => {
                 ) : (
                   <div style={{ margin: "10px 0px 10px 0px" }}>
                     <div>
-                      {/* <Router basename="/title"> */}
-                      {/* <Link to={`/${item.name}`}> */}
+                      {/* <Router> */}
+                      {/* <Link to={`/title/${item.name}`}> */}
 
+                      <Hover item={item} key={`search-result-${name}`} />
 
-                        <Hover item={item} key={`search-result-${name}`} />
-
-                        
-                        {/* </Link> */}
-                      {/* <Route path={`/${item.name}`} render={() => <InfoPage item={item} />} /> */}
+                      {/* </Link> */}
+                      {/* <Switch> */}
+                      {/* <Route path={`/title/${item.name}`} render={() => <InfoPage item={name} />} /> */}
+                      {/* </Switch> */}
                       {/* </Router> */}
                     </div>
                   </div>
                 )}
-              </div>
+                {/* </div> */}
+              </Router>
             );
           } else {
             return null;
