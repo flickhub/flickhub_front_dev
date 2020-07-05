@@ -55,7 +55,7 @@ const MobileFeedback = () => {
   const feedbackInputStyle = {
     padding: "10px 10px 0px 10px",
     borderRadius: "5px",
-    border: "2px solid white",
+    border: "2px solid transparent",
     width: "70vw",
     zIndex: -1,
   };
@@ -130,8 +130,6 @@ const MobileFeedback = () => {
         .then((response) => response.json())
         .then((response) => console.log(response))
         .catch((error) => console.log("error", error));
-
-      // return request
     };
 
 

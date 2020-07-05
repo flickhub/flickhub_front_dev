@@ -64,13 +64,13 @@ const Flickhub = () => {
   // }, []);
 
   React.useEffect(() => {
-    fetch("http://3.7.155.169/", {
+    fetch("http://3.7.155.169/random", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      mode: "cors",
+      // mode: "cors",
     })
       .then((response) => response.json())
       // .then((response) => console.log("Random ", response))
@@ -269,7 +269,6 @@ const Flickhub = () => {
           width: "100vw",
           flexWrap: "wrap",
           margin: "150px 10px 50px 10px",
-          
         }}
       >
         {respObj ? (
@@ -335,7 +334,7 @@ export const SearchItem = (props) => {
         alignItems: "center",
         flexWrap: "wrap",
         width: "100vw",
-        marginTop: "25px"
+        marginTop: "25px",
       }}
     >
       {items()}
