@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "./static/css/main.5d0aee57.chunk.css",
-    "main.js": "./static/js/main.2d5df312.chunk.js",
-    "main.js.map": "./static/js/main.2d5df312.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.41d859ba.js",
-    "runtime-main.js.map": "./static/js/runtime-main.41d859ba.js.map",
-    "static/js/2.b3ac8882.chunk.js": "./static/js/2.b3ac8882.chunk.js",
-    "static/js/2.b3ac8882.chunk.js.map": "./static/js/2.b3ac8882.chunk.js.map",
-    "index.html": "./index.html",
-    "precache-manifest.372b36f6757ed66c4881b328c07afa2e.js": "./precache-manifest.372b36f6757ed66c4881b328c07afa2e.js",
-    "service-worker.js": "./service-worker.js",
-    "static/css/main.5d0aee57.chunk.css.map": "./static/css/main.5d0aee57.chunk.css.map",
-    "static/js/2.b3ac8882.chunk.js.LICENSE.txt": "./static/js/2.b3ac8882.chunk.js.LICENSE.txt",
-    "static/media/App.css": "./static/media/final.ec74c045.png"
+    "main.css": "http://www.flickhub.in/static/css/main.90aa3fbd.chunk.css",
+    "main.js": "http://www.flickhub.in/static/js/main.0fd4d83e.chunk.js",
+    "main.js.map": "http://www.flickhub.in/static/js/main.0fd4d83e.chunk.js.map",
+    "runtime-main.js": "http://www.flickhub.in/static/js/runtime-main.34d01afa.js",
+    "runtime-main.js.map": "http://www.flickhub.in/static/js/runtime-main.34d01afa.js.map",
+    "static/js/2.b3ac8882.chunk.js": "http://www.flickhub.in/static/js/2.b3ac8882.chunk.js",
+    "static/js/2.b3ac8882.chunk.js.map": "http://www.flickhub.in/static/js/2.b3ac8882.chunk.js.map",
+    "index.html": "http://www.flickhub.in/index.html",
+    "precache-manifest.3009a040b989e9f8aecfa9efab9c6651.js": "http://www.flickhub.in/precache-manifest.3009a040b989e9f8aecfa9efab9c6651.js",
+    "service-worker.js": "http://www.flickhub.in/service-worker.js",
+    "static/css/main.90aa3fbd.chunk.css.map": "http://www.flickhub.in/static/css/main.90aa3fbd.chunk.css.map",
+    "static/js/2.b3ac8882.chunk.js.LICENSE.txt": "http://www.flickhub.in/static/js/2.b3ac8882.chunk.js.LICENSE.txt",
+    "static/media/App.css": "http://www.flickhub.in/static/media/final.ec74c045.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.41d859ba.js",
+    "static/js/runtime-main.34d01afa.js",
     "static/js/2.b3ac8882.chunk.js",
-    "static/css/main.5d0aee57.chunk.css",
-    "static/js/main.2d5df312.chunk.js"
+    "static/css/main.90aa3fbd.chunk.css",
+    "static/js/main.0fd4d83e.chunk.js"
   ]
 }

@@ -62,34 +62,47 @@ export const SearchScreen = (props) => {
   );
 };
 
+export const Info = (props) => {
+  const [respObj, setRespObj] = React.useState(null);
+  const mobile = useMediaQuery({ minWidth: 850 });
 
-  export const Info = props => {
-    const [respObj, setRespObj] = React.useState(null)
-    const mobile = useMediaQuery({ minWidth: 850 });
+  console.log("id", props.match.params.id);
+  React.useEffect(() => {
+    fetch(`http://3.7.155.169/title/${props.match.params.id}`, {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setRespObj(response);
+        console.log(response);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
 
-    console.log("id", props.match.params.id);
-    React.useEffect(() => {
-       fetch(`http://3.7.155.169/title/${props.match.params.id}`, {
-         method: "POST",
-         headers: {
-           "Access-Control-Allow-Origin": "*",
-           "Content-Type": "application/json",
-         },
-       })
-         .then((response) => response.json())
-         .then((response) => {
-           setRespObj(response)
-           console.log(response)
-          })
-         .catch((error) => console.log("error", error));
-    },[])
-    
-    return (
-      <div>
-      {respObj ? <InfoPage item={respObj.data[0]} /> : <div style={{height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center"}}>{mobile? <Shimmer /> : <MobileSpinner />}</div>}</div>
-    )
-  }
-
+  return (
+    <div>
+      {respObj ? (
+        <InfoPage item={respObj.data[0]} />
+      ) : (
+        <div
+          style={{
+            height: "100vh",
+            width: "100vw",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {mobile ? <Shimmer /> : <MobileSpinner />}
+        </div>
+      )}
+    </div>
+  );
+};
 
 function Routers(props) {
   const [search, setSearch] = React.useState(false);
@@ -125,7 +138,6 @@ function Routers(props) {
   const onChange = (e) => {
     setFind(e.target.value);
   };
-
 
   return (
     <Router>

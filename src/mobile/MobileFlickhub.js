@@ -26,7 +26,7 @@ const MobileFlickhub = (props) => {
   }, [search]);
 
     React.useEffect(() => {
-      fetch("http://3.7.155.169/", {
+      fetch("http://3.7.155.169/random", {
         method: "POST",
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -71,8 +71,8 @@ const MobileFlickhub = (props) => {
           onChange={(e) => {
             setSearch(e.target.value);
             e.target.value !== ""
-              ? (disableRef.current.disabled = true)
-              : (disableRef.current.disabled = false);
+              ? (disableRef.current.disabled = false)
+              : (disableRef.current.disabled = true);
           }}
           onFocus={(e) => {
             e.target.style.outline = "none";

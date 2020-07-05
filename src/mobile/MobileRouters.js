@@ -63,31 +63,31 @@ const MobileRouters = (props) => {
   const [showMenu, setShowMenu] = React.useState(false);
   const collapseRef = React.useRef();
 
-    const [respObj, setRespObj] = React.useState(null);
+  const [respObj, setRespObj] = React.useState(null);
 
-    // Link to server for making requests
-    React.useEffect(() => {
-      fetch("http://3.7.155.169/submit", {
-        method: "POST",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-        // body: JSON.stringify({ mv_name: props.match.params.searchString }),
-      })
-        .then((response) => response.json())
-        .then((response) => setRespObj(response))
-        .catch((error) => console.log("error", error));
-    }, []);
+  // Link to server for making requests
+  React.useEffect(() => {
+    fetch("http://3.7.155.169/submit", {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify({ mv_name: props.match.params.searchString }),
+    })
+      .then((response) => response.json())
+      .then((response) => setRespObj(response))
+      .catch((error) => console.log("error", error));
+  }, []);
 
   return (
     <div>
       <Router>
         <ul style={ulRouter}>
           <li style={{ marginLeft: "-35px" }}>
-            <a href="/#/home">
+            <Link to="/">
               <img src={flickhub} height="30" width="30" alt="" />
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -110,7 +110,7 @@ const MobileRouters = (props) => {
             <MobileFeedback />
           </Route>
 
-          <Route path="/" exact>
+          <Route path="/">
             <MobileFlickhub />
           </Route>
         </Switch>
