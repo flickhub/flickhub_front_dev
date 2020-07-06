@@ -3,11 +3,13 @@ import { icons } from "./constants/icons";
 import Shimmer from "./Shimmer";
 import Hover from "./Hover";
 import { Link, Route } from "react-router-dom";
+import FiltersNotFound from "./FiltersNotFound";
 
 const Filter2 = () => {
   const [respObj, setRespObj] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [showResults, setShowResults] = React.useState(false);
+  const [notFound, setNotFound] = React.useState(false);
 
   const [selected, setSelected] = React.useState({
     NETFLIX: false,
@@ -107,7 +109,7 @@ const Filter2 = () => {
       filters: selected,
     };
 
-    fetch("http://3.7.155.169/filter", {
+    fetch("http://flickhub.in/filter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       // mode: "cors",
@@ -118,7 +120,9 @@ const Filter2 = () => {
       })
       .then((res) => {
         setRespObj(res);
+         res.data.length === 0 ? setNotFound(true) : setNotFound(false);
         setLoading(false);
+        
       });
     // .then((res) => console.log("Backend: ", res));
   };
@@ -138,6 +142,7 @@ const Filter2 = () => {
       {loading ? (
         <Shimmer />
       ) : (
+        notFound ? <FiltersNotFound /> :
         respObj.data.map((item) => {
           return (
             <div style={{ margin: "5px 2px" }}>

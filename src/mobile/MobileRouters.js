@@ -16,6 +16,8 @@ import MobileFeedback from "./MobileFeedback";
 import { SearchItem } from "../Flickhub";
 import MobileSpinner from "./MobileSpinner";
 import { Info } from "../Routers";
+import PageNotFound from "../PageNotFound"
+import Faq from "../Faq";
 
 export const ulRouter = {
   display: "flex",
@@ -29,10 +31,11 @@ export const ulRouter = {
 
 export const SearchMobile = (props) => {
   const [respObj, setRespObj] = React.useState(null);
+  const [notFound, setNotFound] = React.useState(false)
 
   // Link to server for making requests
   React.useEffect(() => {
-    fetch("http://3.7.155.169/submit", {
+    fetch("http://flickhub.in/submit", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -42,12 +45,19 @@ export const SearchMobile = (props) => {
     })
       .then((response) => response.json())
       // .then(response => console.log("Response mobile: ",response))
-      .then((response) => setRespObj(response))
+      .then((response) => {
+        setRespObj(response)
+        response.data.length === 0 ? setNotFound(true) : setNotFound(false);
+      })
       .catch((error) => console.log("error", error));
   }, []);
 
-  return respObj ? (
+
+  return (
+    <div>
+      { !notFound ? respObj ? (
     <div style={{ marginTop: "75px" }}>
+      {notFound ? <PageNotFound /> : null}
       <SearchItem
         respObj={respObj.data}
         mobileCard={true}
@@ -56,7 +66,10 @@ export const SearchMobile = (props) => {
     </div>
   ) : (
     <MobileSpinner />
-  );
+  )
+      : <PageNotFound />}</div>
+  )
+   
 };
 
 const MobileRouters = (props) => {
@@ -67,7 +80,7 @@ const MobileRouters = (props) => {
 
   // Link to server for making requests
   React.useEffect(() => {
-    fetch("http://3.7.155.169/submit", {
+    fetch("http://flickhub.in/submit", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -102,6 +115,9 @@ const MobileRouters = (props) => {
             <div style={{ margin: "-50px 0px 50px 0px" }}>
               <About font="18px" headFontSize="35px" margin="10px" />
             </div>
+          </Route>
+          <Route path="/faq">
+            <Faq />
           </Route>
           <Route path="/filter">
             <Filter />

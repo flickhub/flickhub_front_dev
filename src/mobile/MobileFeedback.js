@@ -1,43 +1,40 @@
 import React from "react";
 import QuickReview from "../QuickReview";
 
-
 export const textAreaStyle = {
-         width: "70vw",
-         height: "150px",
-         borderRadius: "5px",
-         border: "2px solid white",
-         padding: "10px",
-         overflowX: "hidden",
-         overflowY: "auto"
-       };
+  width: "70vw",
+  height: "150px",
+  borderRadius: "5px",
+  border: "2px solid transparent",
+  padding: "10px",
+  overflowX: "hidden",
+  overflowY: "auto",
+};
 
 export const footerButtonStyle = {
-    bottom: "0",
-    left: "0",
-    width: "100%",
-    position: "fixed",
-    background: "rgba(200,200,200)",
-    padding: "20px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-}
+  bottom: "0",
+  left: "0",
+  width: "100%",
+  position: "fixed",
+  background: "rgba(200,200,200)",
+  padding: "20px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
 
 const MobileFeedback = () => {
-  
+  const [formSubmit, setFormSubmit] = React.useState({
+    quick_review: null,
+    first_name: "",
+    last_name: "",
+    email: "",
+    question: "",
+    feedback: "",
+  });
 
-    const [formSubmit, setFormSubmit] = React.useState({
-      quick_review: null,
-      first_name: "",
-      last_name: "",
-      email: "",
-      question: "",
-      feedback: "",
-    });
-
-  const [showModal, setShowModal] = React.useState(false)
-    const [rating, setRating] = React.useState(null);
+  const [showModal, setShowModal] = React.useState(false);
+  const [rating, setRating] = React.useState(null);
 
   const mobileFeedbackStyle = {
     margin: "100px 0px 150px 0px",
@@ -66,8 +63,7 @@ const MobileFeedback = () => {
     transition: "all 0.3s ease",
     color: "grey",
     zIndex: 0,
-  }; 
-
+  };
 
   const firstNameRef = React.useRef();
   const lastNameRef = React.useRef();
@@ -75,63 +71,63 @@ const MobileFeedback = () => {
   const questionRef = React.useRef();
   const feedbackRef = React.useRef();
 
-   const inputRef1 = React.useRef();
-   const inputRef2 = React.useRef();
-   const inputRef3 = React.useRef();
-   const inputRef4 = React.useRef();
-   const inputRef5 = React.useRef();
+  const inputRef1 = React.useRef();
+  const inputRef2 = React.useRef();
+  const inputRef3 = React.useRef();
+  const inputRef4 = React.useRef();
+  const inputRef5 = React.useRef();
 
-   React.useEffect(() => {
-     console.log("feedback", rating)
-   },[rating])
+  React.useEffect(() => {
+    console.log("feedback", rating);
+  }, [rating]);
 
   const onFocus = (e, ref) => {
     ref.current.style.transform = "translate(10px,-1px)";
     ref.current.style.color = "rgba(255,134,20)";
     ref.current.style.fontSize = "10px";
     e.target.style.border = "2px solid rgba(255,134,20)";
-  }
+    e.target.style.outline = "none";
+  };
 
-  const onBlur = (e,ref) => {
+  const onBlur = (e, ref) => {
     if (e.target.value === "") {
       ref.current.style.transform = "translate(10px,7px)";
       ref.current.style.color = "grey";
       ref.current.style.fontSize = "16px";
     }
 
-    e.target.style.border = "2px solid white";
-  }
+    e.target.style.border = "2px solid transparent";
+  };
 
-    const getFeedback = () => {
-      console.log("feedback", formSubmit);
+  const getFeedback = () => {
+    console.log("feedback", formSubmit);
+  };
+
+  const onClick = (e, ref) => {
+    e.target.style.fontSize = "10px";
+    e.target.style.transform = "translate(-3px, 0px)";
+    e.target.style.color = "rgba(255,134,20)";
+    ref.current.focus();
+    ref.current.select();
+  };
+
+  const sendFeedback = () => {
+    const submitFeedback = {
+      feedback: formSubmit,
     };
-
-    const onClick= (e, ref) => {
-      e.target.style.fontSize = "10px";
-      e.target.style.transform = "translate(-3px, 0px)";
-      e.target.style.color = "rgba(255,134,20)";
-      ref.current.focus();
-      ref.current.select();
-    }
-
-    const sendFeedback = () => {
-      const submitFeedback = {
-        feedback: formSubmit,
-      };
-      fetch("http://3.7.155.169/feedback", {
-        method: "POST",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-        body: JSON.stringify(submitFeedback),
-      })
-        .then((response) => response.json())
-        .then((response) => console.log(response))
-        .catch((error) => console.log("error", error));
-    };
-
+    fetch("http://3.7.155.169/feedback", {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify(submitFeedback),
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((error) => console.log("error", error));
+  };
 
   return (
     <div>
@@ -294,7 +290,7 @@ const MobileFeedback = () => {
             Feedback
           </label>
           <textarea
-          ref={inputRef5}
+            ref={inputRef5}
             style={textAreaStyle}
             onChange={(e) => {
               setFormSubmit({ ...formSubmit, feedback: e.target.value });
@@ -334,7 +330,6 @@ const MobileFeedback = () => {
 };
 
 export const Modal = (props) => {
-  
   return (
     <div
       style={{
@@ -363,6 +358,6 @@ export const Modal = (props) => {
       </h1>
     </div>
   );
-}
+};
 
 export default MobileFeedback;

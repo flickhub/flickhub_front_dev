@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "http://www.flickhub.in/static/css/main.90aa3fbd.chunk.css",
-    "main.js": "http://www.flickhub.in/static/js/main.0fd4d83e.chunk.js",
-    "main.js.map": "http://www.flickhub.in/static/js/main.0fd4d83e.chunk.js.map",
-    "runtime-main.js": "http://www.flickhub.in/static/js/runtime-main.34d01afa.js",
-    "runtime-main.js.map": "http://www.flickhub.in/static/js/runtime-main.34d01afa.js.map",
-    "static/js/2.b3ac8882.chunk.js": "http://www.flickhub.in/static/js/2.b3ac8882.chunk.js",
-    "static/js/2.b3ac8882.chunk.js.map": "http://www.flickhub.in/static/js/2.b3ac8882.chunk.js.map",
-    "index.html": "http://www.flickhub.in/index.html",
-    "precache-manifest.3009a040b989e9f8aecfa9efab9c6651.js": "http://www.flickhub.in/precache-manifest.3009a040b989e9f8aecfa9efab9c6651.js",
-    "service-worker.js": "http://www.flickhub.in/service-worker.js",
-    "static/css/main.90aa3fbd.chunk.css.map": "http://www.flickhub.in/static/css/main.90aa3fbd.chunk.css.map",
-    "static/js/2.b3ac8882.chunk.js.LICENSE.txt": "http://www.flickhub.in/static/js/2.b3ac8882.chunk.js.LICENSE.txt",
-    "static/media/App.css": "http://www.flickhub.in/static/media/final.ec74c045.png"
+    "main.css": "/static/css/main.0faba97d.chunk.css",
+    "main.js": "/static/js/main.c1a04a58.chunk.js",
+    "main.js.map": "/static/js/main.c1a04a58.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a17854fb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a17854fb.js.map",
+    "static/js/2.9a7910ec.chunk.js": "/static/js/2.9a7910ec.chunk.js",
+    "static/js/2.9a7910ec.chunk.js.map": "/static/js/2.9a7910ec.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.486702f996b057bb69336d77ed430a20.js": "/precache-manifest.486702f996b057bb69336d77ed430a20.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.0faba97d.chunk.css.map": "/static/css/main.0faba97d.chunk.css.map",
+    "static/js/2.9a7910ec.chunk.js.LICENSE.txt": "/static/js/2.9a7910ec.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/final.ec74c045.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.34d01afa.js",
-    "static/js/2.b3ac8882.chunk.js",
-    "static/css/main.90aa3fbd.chunk.css",
-    "static/js/main.0fd4d83e.chunk.js"
+    "static/js/runtime-main.a17854fb.js",
+    "static/js/2.9a7910ec.chunk.js",
+    "static/css/main.0faba97d.chunk.css",
+    "static/js/main.c1a04a58.chunk.js"
   ]
 }

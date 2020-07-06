@@ -5,6 +5,7 @@ import MobileHover from "./mobile/MobileHover";
 import { Route } from "react-router-dom";
 import filterStringInstance from "./utils/filter";
 import MobileSpinner from "./mobile/MobileSpinner";
+import FiltersNotFound from "./FiltersNotFound";
 
 export const initState = {
   NETFLIX: false,
@@ -118,6 +119,8 @@ const Filter = () => {
   const [filterByRating, setFilterByRating] = React.useState(false);
   const [filterByGenre, setFilterByGenre] = React.useState(false);
 
+    const [notFound, setNotFound] = React.useState(false);
+
   const highlightSelected = (e) => {
     e.target.style.filter = "grayscale(0%)";
   };
@@ -143,7 +146,7 @@ const Filter = () => {
       filters: selected,
     };
 
-    fetch("http://3.7.155.169/filter", {
+    fetch("http://flickhub.in/filter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       // mode: "cors",
@@ -154,6 +157,7 @@ const Filter = () => {
       })
       .then((res) => {
         setRespObj(res);
+        res.data.length === 0 ? setNotFound(true) : setNotFound(false);
         setLoading(false);
       });
     // .then((res) => console.log("Backend: ", res));
@@ -174,6 +178,7 @@ const Filter = () => {
       {loading ? (
         <MobileSpinner />
       ) : (
+        notFound ? <FiltersNotFound /> : 
         respObj.data.map((item) => {
           return <MobileHover item={item} />;
         })

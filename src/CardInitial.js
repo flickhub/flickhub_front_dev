@@ -25,7 +25,7 @@ const CardInitial = (props) => {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundColor: "black",
-          opacity: "0.6",
+          // opacity: "0.6",
           padding: "0px 10px",
           margin: "-20px",
         }}
@@ -249,6 +249,7 @@ const CardInitial = (props) => {
           padding: "10px",
           display: "block",
           blockSize: "50px",
+          textAlign: "center"
         }}
       >
         {props.title}
