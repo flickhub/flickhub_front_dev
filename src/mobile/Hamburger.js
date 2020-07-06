@@ -41,9 +41,20 @@ const Hamburger = props => {
                 type="button"
                 className="btn btn-secondary"
                 style={{ width: "90vw", margin: "3px 0px" }}
-                onClick={(e) => e.target.style.display = "none" }
+                onClick={(e) => (e.target.style.display = "none")}
               >
                 Contact
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="/faq">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                style={{ width: "90vw", margin: "3px 0px" }}
+              >
+                FAQs
               </button>
             </a>
           </li>

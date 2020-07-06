@@ -1,26 +1,37 @@
 body {
-  overflow-x: hidden;
-  height: 100%;
-
-  background-image: url("./assets/images/final.png");
-  background-color: rgba(1,1,1,0.6);
-  background-position: center center;
-  /* background-size: 175% 100%; */
-  background-repeat: no-repeat;
+  /* overflow-x: hidden;
+  height: 100%; */
+  /* background-image: url("./assets/images/final.png"); */
+  /* background-color: rgba(1, 1, 1, 0.6);
+  background-position: center center; */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat;
   background-attachment: fixed;
-  background-blend-mode: multiply
-  
+  background-blend-mode: multiply; */
 }
 
-@media only screen and (min-width: 200px) {
+@media only screen and (min-width: 200px) and (max-width: 790px) {
   body {
-    background-size: 175% 100%;
+    background-image: url("./assets/images/final\ mobile.png");
+    background-size: 100% 100%;
+    background-color: rgba(1, 1, 1, 0.6);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
   }
   #root {
-    background-size: 175% 100%;
+    background-image: url("./assets/images/final\ mobile.png");
+    background-size: 100% 100%;
+    background-color: rgba(1, 1, 1, 0.6);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
   }
 }
 
+/* 
 @media only screen and (min-width: 600px) {
   body {
     background-size: 100% 100%;
@@ -28,28 +39,35 @@ body {
   #root {
     background-size: 100% 100%;
   }
-}
+}*/
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 791px) {
   body {
+    background-image: url("./assets/images/final.png");
     background-size: cover;
+    background-color: rgba(1, 1, 1, 0.6);
+    background-position: center center;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
   }
   #root {
+    background-image: url("./assets/images/final.png");
     background-size: cover;
+    background-color: rgba(1, 1, 1, 0.6);
+    background-position: center center;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
   }
 }
 
 #root {
-   display: flex;
+  display: flex;
   justify-content: center;
   height: 100%;
-  background-image: url("./assets/images/final.png");
-  background-color: rgba(1,1,1,0.6);
-  background-position: center center;
-  /* background-size: 175% 100%; */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-blend-mode: multiply
 }
 
 .fa-chevron-circle-left {
@@ -201,7 +219,6 @@ ul {
   position: absolute;
 }
 
-
 #innerContainer {
   /* width: 100%; */
   height: 500px;
@@ -300,7 +317,6 @@ select {
   color: white;
 }
 
-
 #embededVid {
   display: flex;
   height: 700px;
@@ -360,7 +376,7 @@ a:hover {
   #wrapper {
     height: 250px;
     width: 150px;
-    margin: 5px 
+    margin: 5px;
   }
 }
 
@@ -413,12 +429,11 @@ a:hover {
 @keyframes spin {
   0% {
     transform: rotate(360deg);
-    
   }
-  100% {transform: rotate(0deg);}
-  
+  100% {
+    transform: rotate(0deg);
+  }
 }
-
 
 #spinnerInner {
   animation-name: spin;

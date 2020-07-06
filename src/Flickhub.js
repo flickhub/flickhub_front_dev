@@ -12,8 +12,8 @@ import {
 import Hover from "./Hover";
 import CardInitial from "./CardInitial";
 import MobileHover from "./mobile/MobileHover";
-import InfoPage from "./InfoPage";
 import Shimmer from "./Shimmer";
+import { useMediaQuery } from "react-responsive";
 
 export const SearchBtn = (props) => {
   return (
@@ -27,7 +27,7 @@ export const SearchBtn = (props) => {
           border: "none",
           marginLeft: "10px",
           height: "40px",
-          borderRadius: "10px",
+          borderRadius: useMediaQuery({minWidth: 790}) ? "10px" : "5px",
           padding: "0px 15px",
           fontSize: "16px",
         }}
@@ -64,7 +64,7 @@ const Flickhub = () => {
   // }, []);
 
   React.useEffect(() => {
-    fetch("http://3.7.155.169/random", {
+    fetch("http://flickhub.in/random", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -290,6 +290,13 @@ const Flickhub = () => {
 };
 
 export const SearchItem = (props) => {
+
+  const [searchValue, setSearchValue] = React.useState("")
+  const searchStringRef = React.useRef()
+  const disableRef = React.useRef();
+
+  const mobile = useMediaQuery({ minWidth: 790 });
+
   const items = () => {
     return props.respObj
       .filter((item) => {
@@ -337,6 +344,47 @@ export const SearchItem = (props) => {
         marginTop: "25px",
       }}
     >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "100vw",
+          margin: "0px 20px 100px 20px"
+        }}
+      >
+        <input
+          autoFocus={true}
+          placeholder="Search with a keyword"
+          type="text"
+          style={{
+            height: "40px",
+            borderRadius: mobile ? "10px" : "5px",
+            padding: "5px 20px",
+            border: "none",
+            fontSize: "16px",
+            width: "80%"
+          }}
+          ref={searchStringRef}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              window.location = `/search/${searchValue}`;
+            }
+          }}
+          onFocus={(e) => {
+            e.target.style.outline = "none";
+            e.target.style.border = "none";
+          }}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+            e.target.value !== ""
+              ? (disableRef.current.disabled = false)
+              : (disableRef.current.disabled = true);
+            console.log();
+          }}
+        />
+        <SearchBtn searchValue={searchValue} disableRef={disableRef} />
+      </div>
+
       {items()}
     </div>
   ) : (

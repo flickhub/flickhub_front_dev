@@ -26,7 +26,7 @@ const MobileFlickhub = (props) => {
   }, [search]);
 
     React.useEffect(() => {
-      fetch("http://3.7.155.169/random", {
+      fetch("http://flickhub.in/random", {
         method: "POST",
         headers: {
           "Access-Control-Allow-Origin": "*",

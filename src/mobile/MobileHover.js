@@ -14,14 +14,21 @@ const MobileHover = (props) => {
   const closeBtnStyle = {
     right: useMediaQuery({ minWidth: 790 }) ? "5px" : "50px",
     top: useMediaQuery({ minWidth: 790 }) ? "175px" : "50px",
-    position: "absolute",
-    color: "white",
-    fontSize: "20px",
+    display: "block",
+    height: "60px",
+    width: "60px",
+    alignSelf: "flex-end",
+    margin: "0px 0px 160px 0px",
+    borderRadius: "50% 50%",
+    backgroundColor: "rgba(70,70,70)",
+    color: "orange",
+    fontSize: "30px",
   };
 
   const mobileWatchBackground = {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
+    marginTop: "50px",
     justifyContent: "center",
     backgroundColor: "rgba(1,1,1,0.6)",
     height: "100vh",
@@ -31,8 +38,7 @@ const MobileHover = (props) => {
     left: "0",
     position: "fixed",
     zIndex: 2,
-    transition: "all 1s ease",
-    // transform: "translate(0px,200px)",
+    transition: "0.2s ease",
   };
 
   const expandRef = React.useRef();
@@ -41,6 +47,7 @@ const MobileHover = (props) => {
     <div>
       {expandCard ? (
         <div style={mobileWatchBackground}>
+          {/* <div> */}
           <button
             type="button"
             className="btn btn-link"
@@ -49,6 +56,7 @@ const MobileHover = (props) => {
           >
             X
           </button>
+          {/* </div> */}
           <MobileWatch item={item} expandCard={expandCard} />
         </div>
       ) : (
@@ -150,7 +158,9 @@ export const MobileCardInitial = (props) => {
         </div>
       )}
       <div style={cardTitleStyle}>
-        <h1 style={{ fontSize: "14px", color: "white" }}>{item.name}</h1>
+        <h1 style={{ fontSize: "14px", color: "white", textAlign: "center" }}>
+          {item.name}
+        </h1>
       </div>
 
       {/* Streaming services */}
@@ -336,20 +346,20 @@ export const streamCardStyle = {
 };
 
 export const goToPageStyle = {
-  top: "10px",
-  left: "10px",
-  position: "absolute",
-  padding: "0px 10px",
   color: "orange",
+  fontSize: "16px",
+  right: "10px",
+  position: "absolute",
+  // marginTop: "-5px"
 };
 
 export const titleCardStyle = {
   fontSize: "1.5em",
   color: "white",
-  width: "100%",
   textAlign: "center",
-  top: "50px",
+  top: "10px",
   position: "abolute",
+  // width: "80%",
 };
 
 export const MobileWatch = (props) => {
@@ -410,39 +420,46 @@ export const MobileWatch = (props) => {
         // flexDirection: "column",
         overflowY: "auto",
         justifyContent: "flex-start",
-        alignItems: "stretch",
+        // alignItems: "stretch",
       }}
     >
-      <div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          margin: "-30px 0px 30px 0px",
+        }}
+      >
+        <div
+          style={{
+            flexWrap: "none",
+            color: "white",
+            writingMode: "horizontal-tb",
+            borderRadius: "5px",
+            display: "inline-block",
+            overflow: "auto",
+            whiteSpace: "nowrap",
+            padding: "5px",
+            width: "80%"
+          }}
+        >
+          <h1 style={titleCardStyle}>{item.name}</h1>
+        </div>
+
+        {/* <div>/ */}
         <button
           type="button"
           className="btn btn-link card-body goToBtn"
           style={goToPageStyle}
           onClick={() => window.open(`/title/${item.id_mov}`)}
         >
-          <strong>Go To Page</strong>
+          <strong>More</strong>
         </button>
-      </div>
-
-      <div
-        style={{
-          width: "100%",
-          flexWrap: "none",
-          color: "white",
-          writingMode: "horizontal-tb",
-          borderRadius: "5px",
-          marginTop: "10px",
-          display: "inline-block",
-          overflow: "auto",
-          whiteSpace: "nowrap",
-          padding: "10px 20px",
-        }}
-      >
-        <h1 style={titleCardStyle}>{item.name}</h1>
+        {/* </div> */}
       </div>
 
       {/* Trailer */}
-      <div>
+      <div style={{ height: "35vh" }}>
         {item.trailer !== "None" ? (
           <iframe
             title="youtubeTrailer"
@@ -452,7 +469,7 @@ export const MobileWatch = (props) => {
             allowfullscreen="true"
             style={{
               marginLeft: "-30px",
-              height: "28vh",
+              height: "100%",
               width: "80vw",
               justifySelf: "flex-start",
               // objectFit: "cover",

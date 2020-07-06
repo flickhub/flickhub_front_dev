@@ -84,7 +84,7 @@ const InfoPage = (props) => {
                         overflow: "auto",
                         padding: "10px",
                         borderRadius: "5px",
-                        background: "rgba(50,50,50)",
+                        background: "rgba(50,50,50, 0.7)",
                       }}
                     >
                       <b
@@ -107,7 +107,7 @@ const InfoPage = (props) => {
                         overflow: "auto",
                         padding: "10px",
                         borderRadius: "5px",
-                        background: "rgba(50,50,50)",
+                        background: "rgba(50,50,50,0.7)",
                       }}
                     >
                       <b style={{ fontSize: "18px" }}>{item.cast}</b>
@@ -479,7 +479,6 @@ const InfoPage = (props) => {
               display: "flex",
               color: "white",
               textAlign: "center",
-              
             }}
           >
             <h3>{item.name}</h3>

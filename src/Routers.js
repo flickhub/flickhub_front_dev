@@ -14,13 +14,16 @@ import Hover from "./Hover";
 import { responseObj } from "./utils/network";
 import { useMediaQuery } from "react-responsive";
 import MobileSpinner from "./mobile/MobileSpinner";
+import PageNotFound from "./PageNotFound";
+import Faq from "./Faq";
 
 export const SearchScreen = (props) => {
   const [respObj, setRespObj] = React.useState(null);
+  const [notFound, setNotFound] = React.useState(false);
 
   // Link to server for making requests
   React.useEffect(() => {
-    fetch("http://3.7.155.169/submit", {
+    fetch("http://flickhub.in/submit", {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -32,33 +35,37 @@ export const SearchScreen = (props) => {
       .then((response) => response.json())
       .then((response) => {
         setRespObj(response);
+        response.data.length === 0 ? setNotFound(true) : setNotFound(false);
         response === null ? console.log("No results") : console.log("Success!");
         console.log("Response", response);
       })
       .catch((error) => console.log("error", error));
   }, []);
   return (
-    <div
-      style={{
-        margin: "100px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {respObj ? (
-        <div>
-          <SearchItem
-            searchFor={props.match.params.searchString}
-            respObj={respObj.data}
-          />
-        </div>
-      ) : (
-        <div>
-          <Shimmer />
-        </div>
-      )}
-    </div>
+    <div>
+      { !notFound ? 
+      <div
+        style={{
+          margin: "100px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {respObj ? (
+          <div>
+            <SearchItem
+              searchFor={props.match.params.searchString}
+              respObj={respObj.data}
+            />
+          </div>
+        ) : (
+          <div>
+            <Shimmer />
+          </div>
+        )}
+      </div> : (<PageNotFound />) }
+</div>
   );
 };
 
@@ -68,7 +75,7 @@ export const Info = (props) => {
 
   console.log("id", props.match.params.id);
   React.useEffect(() => {
-    fetch(`http://3.7.155.169/title/${props.match.params.id}`, {
+    fetch(`http://flickhub.in/title/${props.match.params.id}`, {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -163,10 +170,16 @@ function Routers(props) {
             </a>
           </li>
           <li>
+            <Link to="/faq">
+              <button className="btn btn-link">FAQs</button>
+            </Link>
+          </li>
+          <li>
             <Link to="/about">
               <button className="btn btn-link">About</button>
             </Link>
           </li>
+
           <li>
             <Link to="/filter">
               <button className="btn btn-link">Filtered Search</button>
@@ -189,6 +202,9 @@ function Routers(props) {
         </Route>
         <Route exact path="/about">
           <About />
+        </Route>
+        <Route exact path="/faq">
+          <Faq />
         </Route>
         <Route path="/search/:searchString" component={SearchScreen} />
         <Route path="/title/:id" component={Info} />

@@ -34,44 +34,47 @@ const Watch = (props) => {
         overflow: "hidden",
       }}
     >
-      <button
-        type="button"
-        className="btn btn-link card-body goToBtn"
-        style={{
-          position: "absolute",
-          color: "orange",
-          left: "0",
-          marginTop: "-15px",
-          justifySelf: "flex-start",
-          fontWeight: "bold",
-          padding: "0px 10px",
-        }}
-        onClick={() => window.open(`/title/${item.id_mov}`)}
-        onMouseEnter={(e) => (e.target.style.color = "rgba(150,0,0)")}
-        onMouseLeave={(e) => (e.target.style.color = "orange")}
-      >
-        Go To Page
-      </button>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <h2
+          id="heading1"
+          className="card-title"
+          style={{
+            width: "80%",
+            flexWrap: "none",
+            writingMode: "horizontal-tb",
+            borderRadius: "5px",
+            marginTop: "10px",
+            display: "inline-block",
+            overflowX: "auto",
+            whiteSpace: "nowrap",
+            padding: "5px 10px",
+            overflowY: "hidden",
+            color: "white",
+          }}
+        >
+          <b>{item.name}</b>
+        </h2>
 
-      <h2
-        id="heading1"
-        className="card-title"
-        style={{
-          width: "100%",
-          flexWrap: "none",
-          writingMode: "horizontal-tb",
-          borderRadius: "5px",
-          marginTop: "10px",
-          display: "inline-block",
-          overflowX: "auto",
-          whiteSpace: "nowrap",
-          padding: "5px 10px",
-          overflowY: "hidden",
-          color: "white",
-        }}
-      >
-        <b>{item.name}</b>
-      </h2>
+        <button
+          type="button"
+          className="btn btn-link card-body goToBtn"
+          style={{
+            color: "orange",
+            fontWeight: "bold",
+            // width: "30%",
+            right: "10px",
+            position: "absolute",
+            padding: "0px 10px",
+            fontSize: "16px"
+          }}
+          onClick={() => window.open(`/title/${item.id_mov}`)}
+          onMouseEnter={(e) => (e.target.style.color = "rgba(150,0,0)")}
+          onMouseLeave={(e) => (e.target.style.color = "orange")}
+        >
+          More
+        </button>
+      </div>
+
       {trailer ? (
         <iframe
           title="youtubeTrailer"
@@ -92,7 +95,7 @@ const Watch = (props) => {
       ) : (
         <div
           style={{
-            height: "300px",
+            height: "250px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

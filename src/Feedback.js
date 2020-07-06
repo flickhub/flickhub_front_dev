@@ -117,6 +117,7 @@ const sendFeedback = () => {
             textRef1.current.style.transform = "translate(-3px, 0px)";
             textRef1.current.style.color = "rgba(255,134,20)";
             e.target.style.border = "2px solid orange";
+            e.target.style.outline = "none";
           }}
           onBlur={(e) => {
             if (e.target.value === "") {
@@ -171,6 +172,7 @@ const sendFeedback = () => {
             textRef2.current.style.transform = "translate(-3px, 0px)";
             textRef2.current.style.color = "rgba(255,134,20)";
             e.target.style.border = "2px solid orange";
+            e.target.style.outline = "none";
           }}
           onBlur={(e) => {
             if (e.target.value === "") {
@@ -227,6 +229,7 @@ const sendFeedback = () => {
             textRef3.current.style.transform = "translate(-3px, 0px)";
             textRef3.current.style.color = "rgba(255,134,20)";
             e.target.style.border = "2px solid orange";
+            e.target.style.outline = "none";
           }}
           onBlur={(e) => {
             if (e.target.value === "") {
@@ -282,6 +285,7 @@ const sendFeedback = () => {
             textRef4.current.style.transform = "translate(-3px, 0px)";
             textRef4.current.style.color = "rgba(255,134,20)";
             e.target.style.border = "2px solid orange";
+            e.target.style.outline = "none";
           }}
           onBlur={(e) => {
             if (e.target.value === "") {
@@ -338,7 +342,7 @@ const sendFeedback = () => {
             textRef5.current.style.fontSize = "10px";
             textRef5.current.style.transform = "translate(-3px, 0px)";
             textRef5.current.style.color = "rgba(255,134,20)";
-
+            e.target.style.outline = "none";
             e.target.style.border = "2px solid orange";
           }}
           onBlur={(e) => {
