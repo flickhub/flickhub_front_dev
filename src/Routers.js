@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import "./App.css";
 import Flickhub, { SearchItem } from "./Flickhub";
@@ -43,29 +43,32 @@ export const SearchScreen = (props) => {
   }, []);
   return (
     <div>
-      { !notFound ? 
-      <div
-        style={{
-          margin: "100px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {respObj ? (
-          <div>
-            <SearchItem
-              searchFor={props.match.params.searchString}
-              respObj={respObj.data}
-            />
-          </div>
-        ) : (
-          <div>
-            <Shimmer />
-          </div>
-        )}
-      </div> : (<PageNotFound />) }
-</div>
+      {!notFound ? (
+        <div
+          style={{
+            margin: "100px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {respObj ? (
+            <div>
+              <SearchItem
+                searchFor={props.match.params.searchString}
+                respObj={respObj.data}
+              />
+            </div>
+          ) : (
+            <div>
+              <Shimmer />
+            </div>
+          )}
+        </div>
+      ) : (
+        <PageNotFound />
+      )}
+    </div>
   );
 };
 
