@@ -1,10 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import flickhub from "../assets/images/logo3.jpg";
-import { Link } from "react-router-dom";
 import { icons } from "../constants/icons";
-import InfoPage from "../InfoPage";
 import { useMediaQuery } from "react-responsive";
 
 const MobileHover = (props) => {
@@ -20,7 +17,8 @@ const MobileHover = (props) => {
     alignSelf: "flex-end",
     margin: "0px 0px 160px 0px",
     borderRadius: "50% 50%",
-    backgroundColor: "rgba(70,70,70)",
+    backgroundColor: "black",
+    border: "none",
     color: "orange",
     fontSize: "30px",
   };
@@ -30,7 +28,8 @@ const MobileHover = (props) => {
     alignItems: "flex-start",
     marginTop: "50px",
     justifyContent: "center",
-    backgroundColor: "rgba(1,1,1,0.6)",
+    backgroundColor: "transparent",
+    border: "none",
     height: "100vh",
     width: "100vw",
     padding: "20px 10px",
@@ -40,8 +39,6 @@ const MobileHover = (props) => {
     zIndex: 2,
     transition: "0.2s ease",
   };
-
-  const expandRef = React.useRef();
 
   return (
     <div>
@@ -68,71 +65,109 @@ const MobileHover = (props) => {
   );
 };
 
-const cardTitleStyle = {
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "center",
-  alignItems: "center",
-  textAlign: "center",
-  color: "white",
-  padding: "10px 5px",
-  width: "100%",
-  height: "50px",
-  borderRadius: "0px 0px 3px 3px",
-};
+// const cardTitleStyle = {
+//   display: "flex",
+//   flexWrap: "wrap",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   textAlign: "center",
+//   color: "white",
+//   padding: "10px 5px",
+//   width: "100%",
+//   height: "50px",
+//   border: "none",
+// };
 
 export const MobileCardInitial = (props) => {
   const { item } = props;
 
-  const mobileHoverDivStyle = {
-    margin: useMediaQuery({
-      minWidth: 790,
-    })
-      ? "10px 20px 10px 20px"
-      : "5px 5px 0px 5px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    height: useMediaQuery({
-      minWidth: 790,
-    })
-      ? "300px"
-      : "250px",
-    width: useMediaQuery({
-      minWidth: 790,
-    })
-      ? "200px"
-      : "150px",
-    backgroundColor: "rgba(40,40,40)",
-    overflow: "hidden",
-  };
+  // const mobileHoverDivStyle = {
+  //   margin: useMediaQuery({
+  //     minWidth: 700,
+  //   })
+  //     ? "10px 20px 10px 20px"
+  //     : "5px 5px 0px 5px",
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   alignItems: "center",
+  //   height: useMediaQuery({
+  //     minWidth: 790,
+  //   })
+  //     ? "300px"
+  //     : "250px",
+  //   width: useMediaQuery({
+  //     minWidth: 790,
+  //   })
+  //     ? "200px"
+  //     : "150px",
+  //   backgroundColor: "transparent",
+  //   overflow: "hidden",
+  // };
 
-  const mobileHoverCardStyle = {
-    height: useMediaQuery({
-      minWidth: 790,
-    })
-      ? "250px"
-      : "200px",
-    width: useMediaQuery({
-      minWidth: 790,
-    })
-      ? "200px"
-      : "150px",
-  };
+  // const mobileHoverCardStyle = {
+  //   height: useMediaQuery({
+  //     minWidth: 790,
+  //   })
+  //     ? "250px"
+  //     : "200px",
+  //   width: useMediaQuery({
+  //     minWidth: 790,
+  //   })
+  //     ? "200px"
+  //     : "150px",
+  //   backgroundColor: "transparent",
+  // };
 
-  const mobile = useMediaQuery({
-    minWidth: 790,
-  });
+  // const mobile = useMediaQuery({
+  //   minWidth: 790,
+  // });
 
   return (
-    <div className="card" style={mobileHoverDivStyle}>
+    // <div className="card" style={mobileHoverDivStyle}>
+    <div
+      classname="card"
+      style={{
+        //border: "1px solid black",
+        //backgroundColor: "#333333",
+        // borderRadius: "5px",
+        overflow: "hidden",
+        textOverflow: "ellipses",
+        //margin: "0px 5px",
+        //maxWidth: "180px",
+        height: "180px",
+        width: "100%",
+        zIndex: "1",
+        position: "relative",
+      }}
+    >
       {item.image ? (
-        <div style={mobileHoverCardStyle}>
+        // <div style={mobileHoverCardStyle}>
+        <div
+          style={{
+            zIndex: "0",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundColor: "black",
+            //maxWidth: "180px",
+            // opacity: "0.6",
+            // padding: "0px 10px",
+            // margin: "-20px",
+          }}
+        >
           <img
+            alt="CARD_IMAGE"
             src={item.image}
-            height="100%"
-            width="100%"
-            style={{ marginLeft: "-2px" }}
+            // height="100%"
+            // width="100%"
+            // style={{ marginLeft: "-2px" }}
+            style={{
+              opacity: "0.7",
+              height: "128px",
+              minWidth: "100%",
+              minHeight: "128px",
+              width: "100%",
+              objectFit: "cover",
+            }}
           />
         </div>
       ) : (
@@ -141,9 +176,17 @@ export const MobileCardInitial = (props) => {
             src={flickhub}
             // height="200" width="185"
             alt="no-poster"
+            // style={{
+            //   height: mobile ? "250px" : "200px",
+            //   width: mobile ? "200px" : "185px",
+            // }}
             style={{
-              height: mobile ? "250px" : "200px",
-              width: mobile ? "200px" : "185px",
+              opacity: "0.7",
+              height: "128px",
+              minWidth: "100%",
+              minHeight: "128px",
+              width: "100%",
+              objectFit: "cover",
             }}
           />
           <p
@@ -157,17 +200,35 @@ export const MobileCardInitial = (props) => {
           </p>
         </div>
       )}
-      <div style={cardTitleStyle}>
-        <h1 style={{ fontSize: "14px", color: "white", textAlign: "center" }}>
-          {item.name}
-        </h1>
-      </div>
+      <h1
+        // id="heading1"
+        // className="card-title"
+        style={{
+          fontSize: "14px",
+          color: "white",
+          textAlign: "center",
+          marginTop: "5px",
+          //overflow: "hidden",
+          // maxWidth: "280px",
+          // display: "block",
+          // blockSize: "50px",
+          // textAlign: "center",
+          // textOverflow: "hidden",
+          // overflow: "hidden",
+          // marginTop: "12px",
+          textOverflow: "ellipsis",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {item.name}
+      </h1>
 
       {/* Streaming services */}
 
       <div
         style={{
-          bottom: "60px",
+          bottom: "53px",
           left: "5px",
           position: "absolute",
           display: "flex",
@@ -190,6 +251,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.NETFLIX ? icons.netflixIcon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
         <a
@@ -206,6 +268,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.PRIME ? icons.primeVideoIcon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
         <a
@@ -222,6 +285,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.HOTSTAR ? icons.hotstarIcon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
 
@@ -239,6 +303,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.SONYLIV ? icons.sonyLivIcon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
 
@@ -256,6 +321,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.ZEE5 ? icons.zee5Icon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
 
@@ -273,6 +339,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.EROSNOW ? icons.erosNowIcon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
 
@@ -290,6 +357,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.VOOT ? icons.vootIcon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
 
@@ -307,6 +375,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.VIU ? icons.viuIcon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
 
@@ -324,6 +393,7 @@ export const MobileCardInitial = (props) => {
             src={item.urlname.ALTBALAJI ? icons.altBalajiIcon : null}
             height="30px"
             alt=""
+            style={{ border: "1px solid white" }}
           />
         </a>
       </div>
@@ -337,7 +407,7 @@ export const streamCardStyle = {
   width: "100%",
   padding: "10px",
   overflow: "scroll",
-  backgroundColor: "rgba(60,60,60,0.8)",
+  backgroundColor: "rgba(0,0,0,0.7)",
   scrollbarWidth: "none",
   bottom: "0",
   left: "0",
@@ -364,9 +434,6 @@ export const titleCardStyle = {
 
 export const MobileWatch = (props) => {
   const { item } = props;
-
-  const [trailer, setTrailer] = React.useState(null);
-
   // Expanded card
   const trailerNAStyle = {
     textAlign: "center",
@@ -385,21 +452,6 @@ export const MobileWatch = (props) => {
     backgroundPosition: "center center",
   };
 
-  const plotCardStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignSelf: "flex-end",
-    overflow: "auto",
-    height: useMediaQuery({ minWidth: 790 }) ? "" : "15vh",
-    padding: "15px",
-    background: "rgba(50,50,50,0.9)",
-    borderRadius: "10px",
-    scrollbarWidth: "none",
-    textAlign: "center",
-  };
-
-  const mobile = useMediaQuery({ minWidth: 850 });
-
   return (
     <div
       className="card"
@@ -409,17 +461,18 @@ export const MobileWatch = (props) => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
         height: "60%",
-        width: "80vw",
+        width: "100%",
         transition: "all 0.5s ease",
         padding: "30px",
         overflowX: "hidden",
-        backgroundColor: "rgba(1,1,1)",
+        backgroundColor: "#141414",
         position: "fixed",
         zIndex: 1,
         display: "flex",
         // flexDirection: "column",
         overflowY: "auto",
         justifyContent: "flex-start",
+        border: "none",
         // alignItems: "stretch",
       }}
     >
@@ -440,7 +493,7 @@ export const MobileWatch = (props) => {
             overflow: "auto",
             whiteSpace: "nowrap",
             padding: "5px",
-            width: "80%"
+            width: "80%",
           }}
         >
           <h1 style={titleCardStyle}>{item.name}</h1>
@@ -459,7 +512,7 @@ export const MobileWatch = (props) => {
       </div>
 
       {/* Trailer */}
-      <div style={{ height: "35vh" }}>
+      <div style={{ height: "35vh", width: "100%" }}>
         {item.trailer !== "None" ? (
           <iframe
             title="youtubeTrailer"
@@ -470,7 +523,7 @@ export const MobileWatch = (props) => {
             style={{
               marginLeft: "-30px",
               height: "100%",
-              width: "80vw",
+              width: "100%",
               justifySelf: "flex-start",
               // objectFit: "cover",
               transition: "all 0.45s ease",

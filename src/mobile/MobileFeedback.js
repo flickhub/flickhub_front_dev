@@ -33,7 +33,6 @@ const MobileFeedback = () => {
     feedback: "",
   });
 
-  const [showModal, setShowModal] = React.useState(false);
   const [rating, setRating] = React.useState(null);
 
   const mobileFeedbackStyle = {
@@ -99,10 +98,6 @@ const MobileFeedback = () => {
     e.target.style.border = "2px solid transparent";
   };
 
-  const getFeedback = () => {
-    console.log("feedback", formSubmit);
-  };
-
   const onClick = (e, ref) => {
     e.target.style.fontSize = "10px";
     e.target.style.transform = "translate(-3px, 0px)";
@@ -111,23 +106,23 @@ const MobileFeedback = () => {
     ref.current.select();
   };
 
-  const sendFeedback = () => {
-    const submitFeedback = {
-      feedback: formSubmit,
-    };
-    fetch("http://3.7.155.169/feedback", {
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      body: JSON.stringify(submitFeedback),
-    })
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((error) => console.log("error", error));
-  };
+  // const sendFeedback = () => {
+  //   const submitFeedback = {
+  //     feedback: formSubmit,
+  //   };
+  //   fetch("http://3.7.155.169/feedback", {
+  //     method: "POST",
+  //     headers: {
+  //       "Access-Control-Allow-Origin": "*",
+  //       "Content-Type": "application/json",
+  //     },
+  //     mode: "cors",
+  //     body: JSON.stringify(submitFeedback),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((response) => console.log(response))
+  //     .catch((error) => console.log("error", error));
+  // };
 
   return (
     <div>
@@ -156,6 +151,7 @@ const MobileFeedback = () => {
           <a
             href="https://www.facebook.com/flickhub.in/"
             target="_blank"
+            rel="noopener noreferrer"
             style={{ margin: "0px 20px" }}
           >
             <i
@@ -166,6 +162,7 @@ const MobileFeedback = () => {
           <a
             href="https://twitter.com/flickhub_in"
             target="_blank"
+            rel="noopener noreferrer"
             style={{ margin: "0px 20px" }}
           >
             <i
@@ -176,6 +173,7 @@ const MobileFeedback = () => {
           <a
             href="https://www.instagram.com/flickhub.in/"
             target="_blank"
+            rel="noopener noreferrer"
             style={{ margin: "0px 20px" }}
           >
             <i

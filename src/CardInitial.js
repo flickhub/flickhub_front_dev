@@ -9,15 +9,18 @@ const CardInitial = (props) => {
   return (
     <div
       style={{
-        border: "1px solid black",
-        backgroundColor: "#333333",
-        borderRadius: "5px",
+        //border: "1px solid black",
+        //backgroundColor: "#333333",
+        // borderRadius: "5px",
         overflow: "hidden",
-        margin: "0px 5px",
-        maxWidth: props.cardWidth ? props.cardWidth : "200px",
-        maxHeight: props.cardHeight ? props.cardHeight : "300px",
+        textOverflow: "ellipses",
+        //margin: "0px 5px",
+        //maxWidth: "180px",
+        height: "180px",
+        width: "100%",
         zIndex: "1",
       }}
+      className="card-initial"
     >
       <div
         style={{
@@ -25,36 +28,47 @@ const CardInitial = (props) => {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundColor: "black",
+          //maxWidth: "180px",
           // opacity: "0.6",
-          padding: "0px 10px",
-          margin: "-20px",
+          // padding: "0px 10px",
+          // margin: "-20px",
         }}
       >
         {props.poster ? (
           <img
             src={props.poster}
-            height={props.imageHeight ? props.imageHeight : "260"}
-            width={props.imageWidth ? props.imageWidth : "220"}
             alt="poster"
-            style={{ opacity: "0.7" }}
+            style={{
+              opacity: "0.7",
+              height: "128px",
+              minWidth: "100%",
+              minHeight: "128px",
+              width: "100%",
+              objectFit: "cover",
+            }}
           />
         ) : (
           <div style={{ display: "inline-block" }}>
             <img
               src={flickhub}
-              height="185"
-              width="200"
               alt="no-poster"
-              style={{ paddingTop: "20px", opacity: "0.7" }}
+              style={{
+                opacity: "0.7",
+                height: "128px",
+                minWidth: "100%",
+                minHeight: "128px",
+                width: "100%",
+                objectFit: "cover",
+              }}
             />
-            <h3
+            {/* <h3
               style={{
                 color: "white",
                 textAlign: "center",
               }}
             >
               Image not available
-            </h3>
+            </h3> */}
           </div>
         )}
       </div>
@@ -65,10 +79,11 @@ const CardInitial = (props) => {
         style={{
           zIndex: "0",
           maxWidth: "280px",
-          maxHeight: "320px",
+          width: "100%",
           border: "none",
           marginTop: "-100px",
           background: "transparent",
+          overflowY: "hidden",
         }}
       >
         <div
@@ -82,7 +97,6 @@ const CardInitial = (props) => {
             width: "100%",
             padding: "10px 10px",
             left: 0,
-            bottom: 0,
             position: "absolute",
           }}
         >
@@ -100,6 +114,7 @@ const CardInitial = (props) => {
               src={props.urlname.NETFLIX ? icons.netflixIcon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
           <a
@@ -116,6 +131,7 @@ const CardInitial = (props) => {
               src={props.urlname.PRIME ? icons.primeVideoIcon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
           <a
@@ -132,6 +148,7 @@ const CardInitial = (props) => {
               src={props.urlname.HOTSTAR ? icons.hotstarIcon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
 
@@ -149,6 +166,7 @@ const CardInitial = (props) => {
               src={props.urlname.SONYLIV ? icons.sonyLivIcon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
 
@@ -166,6 +184,7 @@ const CardInitial = (props) => {
               src={props.urlname.ZEE5 ? icons.zee5Icon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
 
@@ -183,6 +202,7 @@ const CardInitial = (props) => {
               src={props.urlname.EROSNOW ? icons.erosNowIcon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
 
@@ -200,6 +220,7 @@ const CardInitial = (props) => {
               src={props.urlname.VOOT ? icons.vootIcon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
 
@@ -217,6 +238,7 @@ const CardInitial = (props) => {
               src={props.urlname.VIU ? icons.viuIcon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
 
@@ -234,22 +256,31 @@ const CardInitial = (props) => {
               src={props.urlname.ALTBALAJI ? icons.altBalajiIcon : null}
               height="30px"
               alt=""
+              style={{ border: "1px solid white" }}
             />
           </a>
         </div>
       </div>
 
       <h1
-        id="heading1"
-        className="card-title"
+        // id="heading1"
+        // className="card-title"
         style={{
-          fontSize: "0.95em",
+          fontSize: "16px",
+          color: "white",
+          textAlign: "center",
+          marginTop: "5px",
+          //overflow: "hidden",
+          // maxWidth: "280px",
+          // display: "block",
+          // blockSize: "50px",
+          // textAlign: "center",
+          // textOverflow: "hidden",
+          // overflow: "hidden",
+          // marginTop: "12px",
+          textOverflow: "ellipsis",
           overflow: "hidden",
-          maxWidth: "280px",
-          padding: "10px",
-          display: "block",
-          blockSize: "50px",
-          textAlign: "center"
+          whiteSpace: "nowrap",
         }}
       >
         {props.title}

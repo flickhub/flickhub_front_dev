@@ -1,0 +1,65 @@
+.hover__trailer {
+  height: 100%;
+  transition: 0.4s all ease-in-out;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  overflow: hidden;
+  color: white;
+}
+
+.hover__trailer:hover {
+  height: 400px;
+  width: 370px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+.title {
+  margin: 0 !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.more__btn {
+  color: #ffa500;
+  text-decoration: none;
+  transition: 0.4s all ease;
+}
+
+.more__btn:hover {
+  color: #f39c12;
+  text-decoration: none;
+}
+
+.youtube__trailer {
+  height: 300px;
+  width: 100%;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 2px 14px;
+}
+
+.platform__icon {
+  padding-left: 4px;
+}
+
+.platform__icon > img {
+  width: 35px;
+  height: 35px;
+  border: 1px solid white;
+}

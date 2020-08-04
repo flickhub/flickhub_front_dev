@@ -1,11 +1,9 @@
 import React from "react";
 
 import { theWitcherCommentsArray } from "./utils/response";
-import { commentsObj } from "./utils/network";
 import "./App.css";
 import { useMediaQuery } from "react-responsive";
 import { icons } from "./constants/icons";
-import { Route, BrowserRouter as Router } from "react-router-dom";
 
 const InfoPage = (props) => {
   const { item } = props;

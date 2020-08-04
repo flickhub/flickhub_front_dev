@@ -1,0 +1,38 @@
+.about__holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+  flex-wrap: wrap;
+  padding: 0 170px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.header {
+  color: white;
+  font-size: 60px;
+  text-align: center;
+}
+
+.content {
+  margin-top: 50px;
+  text-align: justify;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+}
+
+.contact__header {
+  margin-bottom: 20px;
+}
+
+.contact__details {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+}
+
+.orange {
+  color: #ffa500;
+}

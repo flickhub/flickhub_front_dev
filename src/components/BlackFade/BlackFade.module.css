@@ -1,0 +1,10 @@
+.black__fade {
+  height: 7.4rem;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(20, 20, 20, 0.61),
+    #141414
+  );
+  width: 100vw;
+}

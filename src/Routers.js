@@ -1,21 +1,16 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import Flickhub, { SearchItem } from "./Flickhub";
-import Feedback from "./Feedback";
-import About, { Contact } from "./About";
-import flickhub from "./assets/images/logo3.jpg";
-import Filter2 from "./Filter2";
-import InfoPage from "./InfoPage";
-import Shimmer from "./Shimmer";
-import MobileHover from "./mobile/MobileHover";
-import Hover from "./Hover";
-import { responseObj } from "./utils/network";
-import { useMediaQuery } from "react-responsive";
+import Index, { SearchItem } from "./pages/Index/Index";
+import Feedback from "./pages/Feedback/Feedback";
+import About from "./pages/About/About";
+import FilteredSearch from "./pages/FilteredSearch/FilteredSearch";
+//import InfoPage from "./InfoPage";
 import MobileSpinner from "./mobile/MobileSpinner";
 import PageNotFound from "./PageNotFound";
-import Faq from "./Faq";
+import Faq from "./pages/Faq/Faq";
+import NavBar from "./components/NavBar/NavBar";
 
 export const SearchScreen = (props) => {
   const [respObj, setRespObj] = React.useState(null);
@@ -23,7 +18,7 @@ export const SearchScreen = (props) => {
 
   // Link to server for making requests
   React.useEffect(() => {
-    fetch("http://flickhub.in/submit", {
+    fetch(`https://flickhub.in/submit2/${props.match.params.searchString}`, {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -36,18 +31,18 @@ export const SearchScreen = (props) => {
       .then((response) => {
         setRespObj(response);
         response.data.length === 0 ? setNotFound(true) : setNotFound(false);
-        response === null ? console.log("No results") : console.log("Success!");
-        console.log("Response", response);
       })
       .catch((error) => console.log("error", error));
-  }, []);
+  }, [props.match.params.searchString]);
+
   return (
     <div>
       {!notFound ? (
         <div
           style={{
-            margin: "100px",
+            marginTop: "100px",
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
           }}
@@ -61,7 +56,7 @@ export const SearchScreen = (props) => {
             </div>
           ) : (
             <div>
-              <Shimmer />
+              <MobileSpinner />
             </div>
           )}
         </div>
@@ -72,136 +67,34 @@ export const SearchScreen = (props) => {
   );
 };
 
-export const Info = (props) => {
-  const [respObj, setRespObj] = React.useState(null);
-  const mobile = useMediaQuery({ minWidth: 850 });
-
-  console.log("id", props.match.params.id);
-  React.useEffect(() => {
-    fetch(`http://flickhub.in/title/${props.match.params.id}`, {
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setRespObj(response);
-        console.log(response);
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
-
-  return (
-    <div>
-      {respObj ? (
-        <InfoPage item={respObj.data[0]} />
-      ) : (
-        <div
-          style={{
-            height: "100vh",
-            width: "100vw",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {mobile ? <Shimmer /> : <MobileSpinner />}
-        </div>
-      )}
-    </div>
-  );
-};
-
 function Routers(props) {
-  const [search, setSearch] = React.useState(false);
-  const [find, setFind] = React.useState("marvel");
-  const [respObj, setRespObj] = React.useState(null);
+  // const [navBarColor, setNavBarColor] = React.useState("transparent");
+  // const [navBarFontColor, setNavBarFontColor] = React.useState("white");
+  // const [navBarShadow, setNavBarShadow] = React.useState("none");
 
-  const aboutRef = React.useRef();
-
-  const searchBar = (
-    <input
-      type="text"
-      placeholder="Search"
-      autoFocus={true}
-      style={{
-        transition: "all 0.5s ease",
-        width: "0px",
-        background: "rgba(50,50,50)",
-        border: "none",
-        borderRadius: "15px",
-        padding: "10px",
-        color: "white",
-        marginLeft: "550px",
-      }}
-      onFocus={(e) => {
-        e.target.style.width = "300px";
-      }}
-      onChange={(e) => {
-        onChange(e);
-      }}
-    />
-  );
-
-  const onChange = (e) => {
-    setFind(e.target.value);
-  };
+  // document.addEventListener("scroll", () => {
+  //   if (window.scrollY < 100) {
+  //     setNavBarColor("transparent");
+  //     setNavBarFontColor("white");
+  //     setNavBarShadow("none");
+  //   } else {
+  //     setNavBarColor("rgba(255,165,0,0.7)");
+  //     setNavBarFontColor("black");
+  //     setNavBarShadow(
+  //       "rgba(0, 0, 0, 0.16) 0px 2px 5px 0px, rgba(0, 0, 0, 0.12) 0px 2px 10px 0px"
+  //     );
+  //   }
+  // });
 
   return (
     <Router>
-      <ul>
-        <li id="leftBtn" style={{ color: "white" }}>
-          <Link to="/">
-            <div style={{ display: "flex", transition: "all 1s ease" }}>
-              <img
-                alt=""
-                src={flickhub}
-                height="45px"
-                width="45px"
-                style={{ padding: "5px" }}
-              />
-            </div>
-          </Link>
-        </li>
-        <li id="leftBtn" style={{ color: "white" }}></li>
-        <div id="navRight">
-          <li>
-            <a href="/about/#contactInfo">
-              <button className="btn btn-link">Contact</button>
-            </a>
-          </li>
-          <li>
-            <Link to="/faq">
-              <button className="btn btn-link">FAQs</button>
-            </Link>
-          </li>
-          <li>
-            <Link to="/about">
-              <button className="btn btn-link">About</button>
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/filter">
-              <button className="btn btn-link">Filtered Search</button>
-            </Link>
-          </li>
-          <li>
-            <Link to="/feedback">
-              <button className="btn btn-link">Feedback</button>
-            </Link>
-          </li>
-        </div>
-      </ul>
-
+      <NavBar />
       <Switch>
-        <Route path="/feedback">
+        <Route exact path="/feedback">
           <Feedback />
         </Route>
-        <Route path="/filter">
-          <Filter2 />
+        <Route exact path="/filter">
+          <FilteredSearch />
         </Route>
         <Route exact path="/about">
           <About />
@@ -209,11 +102,11 @@ function Routers(props) {
         <Route exact path="/faq">
           <Faq />
         </Route>
-        <Route path="/search/:searchString" component={SearchScreen} />
-        <Route path="/title/:id" component={Info} />
+        <Route exact path="/search/:searchString" component={SearchScreen} />
+        {/* <Route path="/title/:id" component={Info} /> */}
 
-        <Route path="/">
-          <Flickhub />
+        <Route exact path="/">
+          <Index />
         </Route>
       </Switch>
     </Router>

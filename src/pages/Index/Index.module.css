@@ -1,0 +1,28 @@
+.hero__section {
+  margin: 70px 0 100px 0;
+}
+
+.flickhub__banner {
+  font-size: 100px;
+  text-align: center;
+  color: #fff;
+}
+
+.orange {
+  color: #ffa500;
+}
+
+.tagline {
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  margin-top: -24px;
+}
+
+.instruction {
+  font-size: 24px;
+  color: #fff;
+  margin-top: 30px;
+  text-align: center;
+  font-style: italic;
+}

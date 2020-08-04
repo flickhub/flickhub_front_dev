@@ -1,0 +1,22 @@
+.faq__holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 110px 20px 150px 20px;
+  flex-direction: column;
+}
+
+.orange {
+  color: #ffa500;
+}
+
+.white {
+  color: #fff;
+}
+
+.card {
+  width: 65vw;
+  padding: 25px;
+  margin: 20px;
+  background: rgba(0, 0, 0, 0.7);
+}

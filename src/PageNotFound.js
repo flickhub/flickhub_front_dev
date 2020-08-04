@@ -1,66 +1,95 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 
-const PageNotFound = () => {
-  const mobile = useMediaQuery({ minWidth: 600 });
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import ErrorOutlineOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import {
+  createMuiTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 
-  return mobile ? (
-    <div
-      className="card"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        margin: "100px 20px 20px 20px",
-        color: "white",
-        padding: "30px 50px",
-        background: "rgba(50,50,50)",
-      }}
-    >
-      <h3>
-        Uh oh! Couldn't find what you were looking for.
-        <br />
-        Try searching with another keyword.
-      </h3>
-      <br />
-      <div style={{ alignSelf: "flex-start" }}>
-        <Link to="/">
-          <button className="btn btn-primary">Go back to home</button>
-        </Link>
-      </div>
-    </div>
-  ) : (
-    <div>
-      <div
-        className="card"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          margin: "150px 50px",
-          color: "white",
-          padding: "30px 50px",
-          background: "rgba(50,50,50)",
-        }}
-      >
-        <h5>
-          Uh oh! Couldn't find what you were looking for.
-          <br />
-          <br />
-          Try searching with another keyword.
-        </h5>
-        <br />
-        <div style={{ alignSelf: "flex-start" }}>
-          <Link to="/">
-            <button className="btn btn-primary">Go back to home</button>
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
+
+const useStyles = makeStyles({
+  errorHolder: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%,-50%)",
+  },
+  root: {
+    maxWidth: 650,
+    backgroundColor: "rgba(0,0,0,0.7)",
+    color: "white",
+    boxShadow: "none",
+  },
+  content: {
+    pointerEvents: "none",
+  },
+  media: {
+    height: 140,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  errorIcon: {
+    fontSize: "100px",
+  },
+  button: {
+    color: "orange",
+  },
+});
+
+export default function MediaCard() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.errorHolder}>
+      <Card className={classes.root}>
+        <CardActionArea className={classes.content}>
+          <CardMedia
+            className={classes.media}
+            children={
+              <ErrorOutlineOutlinedIcon
+                color="error"
+                className={classes.errorIcon}
+              />
+            }
+          />
+          <ThemeProvider theme={theme}>
+            <CardContent>
+              <Typography variant="h5">
+                Oops! Couldn't find what you were looking for.
+              </Typography>
+              <Typography component="p">
+                Try searching with another keyword.
+              </Typography>
+            </CardContent>
+          </ThemeProvider>
+        </CardActionArea>
+        <CardActions>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button
+              className={classes.button}
+              startIcon={<ArrowBackIcon />}
+              size="small"
+              color="primary"
+            >
+              Go Back
+            </Button>
           </Link>
-        </div>
-      </div>
+        </CardActions>
+      </Card>
     </div>
   );
-};
-
-export default PageNotFound;
+}

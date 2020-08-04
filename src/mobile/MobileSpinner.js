@@ -11,7 +11,7 @@ export const mobileSpinnerStyle = {
 };
 
 export const mobileSpinnerOuterStyle = {
-    padding: "50px",
+  padding: "50px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -19,22 +19,25 @@ export const mobileSpinnerOuterStyle = {
 };
 
 export const spinnerStyle = {
-         backgroundColor: "rgba(1,1,1,0.4)",
-         height: "100vh",
-         width: "100vw",
-         display: "flex",
-         justifyContent: "center",
-         alignItems: "center",
-         marginTop: "-75px"
-       };
+  backgroundColor: "rgba(1,1,1,0.4)",
+  height: "100vh",
+  width: "100vw",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  marginTop: "-75px",
+};
 
 const MobileSpinner = () => {
   return (
-      <div style={spinnerStyle}>
-    <div id="spinnerOuter" className="card" style={mobileSpinnerOuterStyle}>
-      <h1 id="spinnerInner" style={mobileSpinnerStyle}></h1>
-      <h3 style={{ color: "black", textAlign: "center", marginTop: "10px" }}>Loading . . .</h3>
-    </div></div>
+    <div style={spinnerStyle}>
+      <div id="spinnerOuter" className="card" style={mobileSpinnerOuterStyle}>
+        <span id="spinnerInner" style={mobileSpinnerStyle}></span>
+        <h3 style={{ color: "black", textAlign: "center", marginTop: "10px" }}>
+          Loading . . .
+        </h3>
+      </div>
+    </div>
   );
 };
 
