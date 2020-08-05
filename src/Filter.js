@@ -6,7 +6,7 @@ import PageNotFound from "./PageNotFound";
 import BlackFade from "./components/BlackFade/BlackFade";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Grid from "@material-ui/core/Grid";
-import Hover from "./components/CardContainer/CardContainer";
+import MobileHover from "./mobile/MobileHover";
 
 export const initState = {
   NETFLIX: false,
@@ -169,12 +169,15 @@ const Filter = () => {
                   <Grid
                     key={index}
                     item
-                    md={4}
-                    sm={4}
+                    md={3}
+                    sm={3}
                     xs={6}
                     style={{ height: "180px" }}
                   >
-                    <Hover item={item} />
+                    <MobileHover
+                      item={item}
+                      key={`search-result-${item.name}`}
+                    />
                   </Grid>
                 );
               })}
@@ -222,7 +225,7 @@ const Filter = () => {
             flexWrap: "wrap",
             justifyContent: "center",
             margin: filterByService ? "0px" : "0px",
-            height: filterByService ? "20vh" : "0vw",
+            height: filterByService ? "30vh" : "0vw",
             width: filterByService ? "70vw" : "0vw",
 
             transition: "all 0.5s ease",

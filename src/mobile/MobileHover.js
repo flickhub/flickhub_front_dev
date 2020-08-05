@@ -11,33 +11,40 @@ const MobileHover = (props) => {
   const closeBtnStyle = {
     right: useMediaQuery({ minWidth: 790 }) ? "5px" : "50px",
     top: useMediaQuery({ minWidth: 790 }) ? "175px" : "50px",
-    display: "block",
-    height: "60px",
-    width: "60px",
-    alignSelf: "flex-end",
-    margin: "0px 0px 160px 0px",
-    borderRadius: "50% 50%",
-    backgroundColor: "black",
-    border: "none",
+    textAlign: "center",
+    width: "90vw",
     color: "orange",
+    background: "transparent",
+    border: "none",
     fontSize: "30px",
   };
 
   const mobileWatchBackground = {
-    display: "flex",
-    alignItems: "flex-start",
-    marginTop: "50px",
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    border: "none",
-    height: "100vh",
-    width: "100vw",
-    padding: "20px 10px",
-    top: "0",
-    left: "0",
+    // display: "flex",
+    // alignItems: "flex-start",
+    // marginTop: "50px",
+    // justifyContent: "center",
+    // backgroundColor: "transparent",
+    // border: "none",
+    // height: "100vh",
+    // width: "100vw",
+    // padding: "20px 10px",
+    // top: "0",
+    // left: "0",
+    // position: "fixed",
+    // zIndex: 2,
+    // transition: "0.2s ease",
+    backgroundColor: "black",
     position: "fixed",
-    zIndex: 2,
-    transition: "0.2s ease",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%,-50%)",
+    zIndex: "999",
+    height: "65vh",
+    width: "90vw",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   };
 
   return (
@@ -45,16 +52,16 @@ const MobileHover = (props) => {
       {expandCard ? (
         <div style={mobileWatchBackground}>
           {/* <div> */}
+          <MobileWatch item={item} expandCard={expandCard} />
           <button
-            type="button"
-            className="btn btn-link"
+            // type="button"
+            // className="btn btn-link"
             style={closeBtnStyle}
             onClick={() => setExpandCard(false)}
           >
             X
           </button>
           {/* </div> */}
-          <MobileWatch item={item} expandCard={expandCard} />
         </div>
       ) : (
         <div onClick={() => setExpandCard(true)}>
@@ -402,17 +409,19 @@ export const MobileCardInitial = (props) => {
 };
 
 export const streamCardStyle = {
+  // display: "flex",
+  // borderRadius: "3px",
+  // width: "100%",
+  // padding: "10px",
+  // overflow: "scroll",
+  // backgroundColor: "rgba(0,0,0,0.7)",
+  // scrollbarWidth: "none",
+  // bottom: "0",
+  // left: "0",
+  // position: "absolute",
   display: "flex",
-  borderRadius: "3px",
-  width: "100%",
-  padding: "10px",
-  overflow: "scroll",
-  backgroundColor: "rgba(0,0,0,0.7)",
-  scrollbarWidth: "none",
-  bottom: "0",
-  left: "0",
-
-  position: "absolute",
+  padding: "15px",
+  alignItems: "center",
 };
 
 export const goToPageStyle = {
@@ -453,253 +462,243 @@ export const MobileWatch = (props) => {
   };
 
   return (
-    <div
-      className="card"
-      style={{
-        backgroundImage: "url(" + item.image + ")",
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        height: "60%",
-        width: "100%",
-        transition: "all 0.5s ease",
-        padding: "30px",
-        overflowX: "hidden",
-        backgroundColor: "#141414",
-        position: "fixed",
-        zIndex: 1,
-        display: "flex",
-        // flexDirection: "column",
-        overflowY: "auto",
-        justifyContent: "flex-start",
-        border: "none",
-        // alignItems: "stretch",
-      }}
-    >
+    <>
       <div
+        // style={{
+        //   display: "flex",
+        //   alignItems: "center",
+        //   margin: "-30px 0px 30px 0px",
+        //   width: "100%",
+        //   height: "100%",
+        // }}
         style={{
           display: "flex",
           alignItems: "center",
-          margin: "-30px 0px 30px 0px",
+          justifyContent: "space-between",
+          padding: "15px",
+          color: "white",
         }}
       >
-        <div
+        <h5
           style={{
-            flexWrap: "none",
-            color: "white",
-            writingMode: "horizontal-tb",
-            borderRadius: "5px",
-            display: "inline-block",
-            overflow: "auto",
-            whiteSpace: "nowrap",
-            padding: "5px",
-            width: "80%",
+            marginBottom: "0 !important",
+            padding: "0 !important",
+            overflow: "hidden",
+            textOverflow: "ellipses",
           }}
         >
-          <h1 style={titleCardStyle}>{item.name}</h1>
-        </div>
-
+          {item.name}
+        </h5>
         {/* <div>/ */}
-        <button
-          type="button"
-          className="btn btn-link card-body goToBtn"
-          style={goToPageStyle}
-          onClick={() => window.open(`/title/${item.id_mov}`)}
+        <a
+          // style={goToPageStyle}
+          href="https://www.flickhub.in/"
+          style={{ color: "orange" }}
         >
-          <strong>More</strong>
-        </button>
+          More
+        </a>
         {/* </div> */}
       </div>
 
       {/* Trailer */}
-      <div style={{ height: "35vh", width: "100%" }}>
-        {item.trailer !== "None" ? (
-          <iframe
-            title="youtubeTrailer"
-            src={item.trailer + "?autoplay=1&mute=1&enablejsapi=1"}
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen="true"
-            style={{
-              marginLeft: "-30px",
-              height: "100%",
-              width: "100%",
-              justifySelf: "flex-start",
-              // objectFit: "cover",
-              transition: "all 0.45s ease",
-            }}
-          ></iframe>
-        ) : (
-          <div>
-            <p style={trailerNAStyle}>Trailer coming soon</p>
-          </div>
-        )}
-      </div>
+      {/* <div style={{ height: "35vh", width: "100%" }}> */}
+      {item.trailer !== "None" ? (
+        <iframe
+          title="youtubeTrailer"
+          src={item.trailer + "?autoplay=1&mute=1&enablejsapi=1"}
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen="true"
+          style={{
+            //marginLeft: "-30px",
+            // height: "300px",
+            // width: "100vw",
+            // //justifySelf: "flex-start",
+            // objectFit: "cover",
+            // transition: "all 0.45s ease",
+            width: "100%",
+            height: "300px",
+          }}
+        ></iframe>
+      ) : (
+        <div>
+          <p style={trailerNAStyle}>Trailer coming soon</p>
+        </div>
+      )}
 
       {/* Streaming services */}
 
       <div style={streamCardStyle}>
-        <a
-          href={item.urlname.NETFLIX ? item.urlname.NETFLIX : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.NETFLIX ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.NETFLIX ? icons.netflixIcon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
-        <a
-          href={item.urlname.PRIME ? item.urlname.PRIME : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.PRIME ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.PRIME ? icons.primeVideoIcon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
-        <a
-          href={item.urlname.HOTSTAR ? item.urlname.HOTSTAR : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.HOTSTAR ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.HOTSTAR ? icons.hotstarIcon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
+        {item.urlname.NETFLIX ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.NETFLIX}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              alt="NETFLIX_ICON"
+              src={icons.netflixIcon}
+            />
+          </a>
+        ) : null}
+        {item.urlname.PRIME ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.PRIME}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              src={icons.primeVideoIcon}
+              alt="PRIMEVIDEO_ICON"
+            />
+          </a>
+        ) : null}
+        {item.urlname.HOTSTAR ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.HOTSTAR}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              src={icons.hotstarIcon}
+              alt="HOTSTAR_ICON"
+            />
+          </a>
+        ) : null}
 
-        <a
-          href={item.urlname.SONYLIV ? item.urlname.SONYLIV : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.SONYLIV ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.SONYLIV ? icons.sonyLivIcon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
+        {item.urlname.SONYLIV ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.SONYLIV}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              src={icons.sonyLivIcon}
+              alt="SONYLIV_ICON"
+            />
+          </a>
+        ) : null}
 
-        <a
-          href={item.urlname.ZEE5 ? item.urlname.ZEE5 : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.ZEE5 ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.ZEE5 ? icons.zee5Icon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
+        {item.urlname.ZEE5 ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.ZEE5}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              src={icons.zee5Icon}
+              alt="ZEE5_ICON"
+            />
+          </a>
+        ) : null}
 
-        <a
-          href={item.urlname.EROSNOW ? item.urlname.EROSNOW : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.EROSNOW ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.EROSNOW ? icons.erosNowIcon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
+        {item.urlname.EROSNOW ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.EROSNOW}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              src={icons.erosNowIcon}
+              alt="EROSNOW_ICON"
+            />
+          </a>
+        ) : null}
 
-        <a
-          href={item.urlname.VOOT ? item.urlname.VOOT : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.VOOT ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.VOOT ? icons.vootIcon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
+        {item.urlname.VOOT ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.VOOT}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              src={icons.vootIcon}
+              alt="VOOT_ICON"
+            />
+          </a>
+        ) : null}
 
-        <a
-          href={item.urlname.VIU ? item.urlname.VIU : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.VIU ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.VIU ? icons.viuIcon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
+        {item.urlname.VIU ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.VIU}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              src={icons.viuIcon}
+              alt="VIU_ICON"
+            />
+          </a>
+        ) : null}
 
-        <a
-          href={item.urlname.ALTBALAJI ? item.urlname.ALTBALAJI : null}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: item.urlname.ALTBALAJI ? "block" : "none",
-            margin: "3px",
-          }}
-        >
-          <img
-            id="thumbnail"
-            src={item.urlname.ALTBALAJI ? icons.altBalajiIcon : null}
-            height="40px"
-            width="40px"
-            alt=""
-          />
-        </a>
+        {item.urlname.ALTBALAJI ? (
+          <a
+            style={{ paddingRight: "4px" }}
+            href={item.urlname.ALTBALAJI}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "1px solid white",
+              }}
+              src={icons.altBalajiIcon}
+              alt="ALTBALAJI_ICON"
+            />
+          </a>
+        ) : null}
       </div>
-    </div>
+    </>
   );
 };
 

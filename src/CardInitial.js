@@ -61,14 +61,6 @@ const CardInitial = (props) => {
                 objectFit: "cover",
               }}
             />
-            {/* <h3
-              style={{
-                color: "white",
-                textAlign: "center",
-              }}
-            >
-              Image not available
-            </h3> */}
           </div>
         )}
       </div>

@@ -32,6 +32,7 @@ import LiveHelpOutlinedIcon from "@material-ui/icons/LiveHelpOutlined";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import FeedbackOutlinedIcon from "@material-ui/icons/FeedbackOutlined";
 import TuneIcon from "@material-ui/icons/Tune";
+import Typography from "@material-ui/core/Typography";
 
 export const ulRouter = {
   display: "flex",
@@ -91,6 +92,10 @@ const MobileRouters = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       display: "flex",
+    },
+    text: {
+      color: "#6c757d",
+      fontWeight: "bolder !important",
     },
     appBar: {
       transition: theme.transitions.create(["margin", "width"], {
@@ -182,6 +187,7 @@ const MobileRouters = (props) => {
                 edge="end"
                 onClick={handleDrawerOpen}
                 className={clsx(open && classes.hide)}
+                style={{ outline: "none" }}
               >
                 <MenuIcon style={{ color: "white" }} />
               </IconButton>
@@ -189,7 +195,9 @@ const MobileRouters = (props) => {
           </AppBar>
           <Drawer
             className={classes.drawer}
-            variant="persistent"
+            variant="temporary"
+            onEscapeKeyDown={handleDrawerClose}
+            onBackdropClick={handleDrawerClose}
             anchor="left"
             open={open}
             classes={{
@@ -217,7 +225,9 @@ const MobileRouters = (props) => {
                 <ListItemIcon style={{ color: "orange" }}>
                   <HomeOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText>Home</ListItemText>
+                <ListItemText>
+                  <Typography className={classes.text}>Home</Typography>
+                </ListItemText>
               </ListItem>
               <ListItem
                 button
@@ -229,7 +239,11 @@ const MobileRouters = (props) => {
                 <ListItemIcon style={{ color: "orange" }}>
                   <TuneIcon />
                 </ListItemIcon>
-                <ListItemText>Filtered Search</ListItemText>
+                <ListItemText>
+                  <Typography className={classes.text}>
+                    Filtered Search
+                  </Typography>
+                </ListItemText>
               </ListItem>
               <ListItem
                 button
@@ -241,7 +255,9 @@ const MobileRouters = (props) => {
                 <ListItemIcon style={{ color: "orange" }}>
                   <LiveHelpOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText>FAQs</ListItemText>
+                <ListItemText>
+                  <Typography className={classes.text}>FAQs</Typography>
+                </ListItemText>
               </ListItem>
               <ListItem
                 button
@@ -253,7 +269,9 @@ const MobileRouters = (props) => {
                 <ListItemIcon style={{ color: "orange" }}>
                   <InfoOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText>About</ListItemText>
+                <ListItemText>
+                  <Typography className={classes.text}>About</Typography>
+                </ListItemText>
               </ListItem>
               <ListItem
                 button
@@ -265,7 +283,9 @@ const MobileRouters = (props) => {
                 <ListItemIcon style={{ color: "orange" }}>
                   <FeedbackOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText>Feedback</ListItemText>
+                <ListItemText>
+                  <Typography className={classes.text}>Feedback</Typography>
+                </ListItemText>
               </ListItem>
             </List>
             <Divider />
