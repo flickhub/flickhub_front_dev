@@ -1,0 +1,39 @@
+/**Important for infinite scroll to work**/
+.result_holder {
+  min-height: 20vh;
+  padding-top: 20px;
+}
+
+.flickhub__banner__small {
+  font-size: 50px;
+  text-align: center;
+  color: #fff;
+  font-family: sans-serif !important;
+  margin-bottom: 10px;
+}
+
+.orange {
+  color: #ffa500;
+}
+
+.grid_item_height {
+  height: 180px;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.grid_container {
+  background-color: #141414;
+  padding: 30px 49px 150px 49px;
+}
+
+@media only screen and (max-width: 768px) {
+  .grid_container {
+    padding: 30px 10px 150px 10px;
+  }
+}

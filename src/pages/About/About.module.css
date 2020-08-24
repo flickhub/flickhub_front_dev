@@ -36,3 +36,28 @@
 .orange {
   color: #ffa500;
 }
+
+@media only screen and (max-width: 768px) {
+  .about__holder {
+    width: 100vw;
+    padding: 0;
+    font-size: 15px;
+    margin-top: 0;
+  }
+  .contact__details {
+    margin-bottom: 0;
+  }
+
+  .header {
+    font-size: 30px;
+    padding: 10px;
+  }
+
+  .content {
+    margin-top: 0;
+  }
+
+  .contact__header {
+    font-size: 30px;
+  }
+}

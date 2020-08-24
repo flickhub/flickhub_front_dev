@@ -1,0 +1,36 @@
+.goBack__container {
+  width: 100vw;
+  padding-left: 49px;
+  margin: 18px 0;
+}
+
+.goBack__btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  transition: 0.4s all ease;
+}
+
+.goBack__btn span {
+  line-height: 22px;
+}
+
+.goBack__btn:hover,
+.goBack__btn:active {
+  color: #ffa500;
+  border: none;
+}
+
+.goBack__btn:focus {
+  outline: none;
+}
+
+.black {
+  background-color: #000;
+  margin: 0;
+  padding-top: 10px;
+}

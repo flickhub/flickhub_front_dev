@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./Faq.module.css";
+import styles from './Faq.module.css';
 
 const Faq = () => {
   return (

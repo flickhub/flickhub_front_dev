@@ -1,57 +1,86 @@
-.hover__trailer {
-  height: 100%;
-  transition: 0.4s all ease-in-out;
-  z-index: 1;
+.trailer {
+  height: 128px;
+  transition: 0.3s all ease-in-out;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 999;
-  overflow: hidden;
+  z-index: 999 !important;
   color: white;
 }
 
-.hover__trailer:hover {
-  height: 400px;
+.trailer:hover {
+  height: 250px;
   width: 370px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999 !important;
 }
 
-.header {
+.trailer__holder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.volume__icon {
+  position: absolute;
+  top: 40%;
+  right: 2%;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 10px;
+  /* z-index: 1000; */
+  z-index: 1000;
+}
+
+.trailer__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 14px;
 }
 
-.title {
+.trailer__title {
   margin: 0 !important;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 300px;
 }
 
-.more__btn {
+.trailer__more_btn {
   color: #ffa500;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   text-decoration: none;
   transition: 0.4s all ease;
 }
 
-.more__btn:hover {
+.trailer__more_btn:hover {
   color: #f39c12;
   text-decoration: none;
 }
 
 .youtube__trailer {
-  height: 300px;
+  /* height: 100%; */
+  height: 60%;
   width: 100%;
+  object-fit: cover;
 }
 
-.footer {
+.trailer__footer {
   display: flex;
   align-items: center;
   padding: 2px 14px;
+  position: absolute;
+  bottom: 5px;
 }
 
 .platform__icon {
@@ -62,4 +91,11 @@
   width: 35px;
   height: 35px;
   border: 1px solid white;
+}
+
+.extension__link {
+  position: absolute;
+  right: 5%;
+  bottom: 20%;
+  cursor: pointer;
 }

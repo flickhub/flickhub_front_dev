@@ -1,0 +1,47 @@
+.card {
+  height: 180px;
+  width: 100%;
+  z-index: 1;
+  outline: none;
+  overflow: hidden;
+  text-overflow: ellipses;
+}
+
+.card__poster {
+  position: relative;
+}
+
+.card__poster__img {
+  height: 128px;
+  min-height: 128px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.platforms {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+  left: 2%;
+  position: absolute;
+  bottom: 3%;
+}
+
+.platforms__icon {
+  margin: 3px;
+}
+
+.platforms__icon img {
+  height: 30px;
+  border: 1px solid white;
+}
+
+.card__title {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

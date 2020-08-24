@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-import styles from "./NavBar.module.css";
-import flickhub from "./../../assets/images/logo3.jpg";
+import styles from './NavBar.module.css';
+import flickhub from './../../assets/images/logo3.jpg';
 
 const NavBar = () => {
   const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       window.scrollY > 100 ? setScroll(true) : setScroll(false);
     });
 
-    return () => window.removeEventListener("scroll", null);
+    return () => window.removeEventListener('scroll', null);
   }, []);
 
   return (
-    <nav className={`${styles.navbar} ${scroll ? styles.navbar__yellow : ""}`}>
+    <nav
+      className={`${
+        useLocation().pathname === '/' ? styles.navbar : styles.movie__navbar
+      } ${scroll ? styles.navbar__yellow : ''}`}
+    >
       <Link to="/">
         <img className={styles.flickhub__logo} alt="logo" src={flickhub} />
       </Link>

@@ -1,4 +1,6 @@
-.hover__container {
-  position: relative;
+.hover_container {
+  position: relative !important;
   height: 100%;
+  margin: 2px;
+  transition: 0.4s all ease;
 }

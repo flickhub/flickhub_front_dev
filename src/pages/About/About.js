@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./About.module.css";
+import styles from './About.module.css';
 
-const About = (props) => {
+const About = () => {
   return (
     <>
       <div className={styles.about__holder}>

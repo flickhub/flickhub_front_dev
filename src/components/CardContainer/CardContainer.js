@@ -1,17 +1,13 @@
-import React from "react";
+import React, { useState } from 'react';
 
-import styles from "./CardContainer.module.css";
+import styles from './CardContainer.module.css';
+import HoverTrailer from './../HoverTrailer/HoverTrailer.js';
+import Card from '../Card/Card.js';
 
-import Watch from "./../HoverTrailer/HoverTrailer.js";
-import CardInitial from "./../../CardInitial.js";
-import { useMediaQuery } from "react-responsive";
-
-export const CardContainer = (props) => {
-  const { item } = props;
-
-  const [hover, setHover] = React.useState(false);
-  const [delayMouseEntered, setDelayMouseEntered] = React.useState(null);
-  const [delayMouseExit, setDelayMouseExit] = React.useState(null);
+export const CardContainer = ({ movie_data }) => {
+  const [hover, setHover] = useState(false);
+  const [delayMouseEntered, setDelayMouseEntered] = useState(null);
+  const [delayMouseExit, setDelayMouseExit] = useState(null);
 
   const onMouseEnter = () => {
     clearTimeout(delayMouseExit);
@@ -33,25 +29,14 @@ export const CardContainer = (props) => {
 
   return (
     <div
-      className={styles.hover__container}
+      className={styles.hover_container}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {useMediaQuery({ maxWidth: 790 }) ? (
-        <CardInitial
-          title={item.name}
-          poster={item.image}
-          urlname={item.urlname}
-          mobile={true}
-        />
-      ) : hover ? (
-        <Watch item={item} />
+      {hover ? (
+        <HoverTrailer movie_data={movie_data} />
       ) : (
-        <CardInitial
-          title={item.name}
-          poster={item.image}
-          urlname={item.urlname}
-        />
+        <Card movie_data={movie_data} />
       )}
     </div>
   );

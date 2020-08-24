@@ -1,47 +1,52 @@
-import React from "react";
-import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
+import React from 'react';
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import flickhub from "../assets/images/logo3.jpg";
-import MobileFlickhub from "./MobileFlickhub";
-import About from "./../pages/About/About";
-import Filter from "../Filter";
-import MobileFeedback from "./MobileFeedback";
-import { SearchItem } from "./../pages/Index/Index";
-import MobileSpinner from "./MobileSpinner";
+import flickhub from '../assets/images/logo3.jpg';
+import MobileFlickhub from './MobileFlickHub/MobileFlickhub';
+import About from './../pages/About/About';
+import MobileFilter from './MobileFilter';
+import MobileFeedback from './MobileFeedback';
+import SearchResult from './../pages/SearchResult/SearchResult';
+import MobileSpinner from './MobileSpinner';
 //import { Info } from "../Routers";
-import PageNotFound from "../PageNotFound";
-import Faq from "./../pages/Faq/Faq";
+import PageNotFound from '../PageNotFound';
+import Faq from './../pages/Faq/Faq';
 
-import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
-import LiveHelpOutlinedIcon from "@material-ui/icons/LiveHelpOutlined";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
-import FeedbackOutlinedIcon from "@material-ui/icons/FeedbackOutlined";
-import TuneIcon from "@material-ui/icons/Tune";
-import Typography from "@material-ui/core/Typography";
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import LiveHelpOutlinedIcon from '@material-ui/icons/LiveHelpOutlined';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import FeedbackOutlinedIcon from '@material-ui/icons/FeedbackOutlined';
+import TuneIcon from '@material-ui/icons/Tune';
+import Typography from '@material-ui/core/Typography';
+
+import FilterResult from './../pages/FilterResult/FilterResult';
+import Movie from './../pages/Movie/Movie';
+import Footer from './../components/Footer/Footer';
+import MobileGoBack from './MobileGoBack/MobileGoBack';
 
 export const ulRouter = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  top: "0",
-  position: "fixed",
-  tansition: "all 0.3s ease",
-  padding: "10px 40px",
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  top: '0',
+  position: 'fixed',
+  tansition: 'all 0.3s ease',
+  padding: '10px 40px',
 };
 
 export const SearchMobile = (props) => {
@@ -51,10 +56,9 @@ export const SearchMobile = (props) => {
   // Link to server for making requests
   React.useEffect(() => {
     fetch(`https://flickhub.in/submit2/${props.match.params.searchString}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ mv_name: props.match.params.searchString }),
     })
@@ -64,15 +68,16 @@ export const SearchMobile = (props) => {
         setRespObj(response);
         response.data.length === 0 ? setNotFound(true) : setNotFound(false);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   }, [props.match.params.searchString]);
 
   return (
     <div>
       {!notFound ? (
         respObj ? (
-          <SearchItem
+          <SearchResult
             respObj={respObj.data}
+            similar={respObj.similar}
             mobileCard={true}
             searchFor={props.match.params.searchString}
           />
@@ -91,21 +96,21 @@ const MobileRouters = (props) => {
 
   const useStyles = makeStyles((theme) => ({
     root: {
-      display: "flex",
+      display: 'flex',
     },
     text: {
-      color: "#6c757d",
-      fontWeight: "bolder !important",
+      color: '#6c757d',
+      fontWeight: 'bolder !important',
     },
     appBar: {
-      transition: theme.transitions.create(["margin", "width"], {
+      transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
     },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(["margin", "width"], {
+      transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
@@ -113,10 +118,10 @@ const MobileRouters = (props) => {
     },
     title: {
       flexGrow: 1,
-      justifyContent: "flex-start",
+      justifyContent: 'flex-start',
     },
     hide: {
-      display: "none",
+      display: 'none',
     },
     drawer: {
       width: drawerWidth,
@@ -126,24 +131,24 @@ const MobileRouters = (props) => {
       width: drawerWidth,
     },
     drawerHeader: {
-      display: "flex",
-      alignItems: "center",
+      display: 'flex',
+      alignItems: 'center',
       padding: theme.spacing(0, 1),
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
-      justifyContent: "flex-start",
+      justifyContent: 'flex-start',
     },
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
-      transition: theme.transitions.create("margin", {
+      transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
       marginRight: -drawerWidth,
     },
     contentShift: {
-      transition: theme.transitions.create("margin", {
+      transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
@@ -182,14 +187,13 @@ const MobileRouters = (props) => {
                 </Link>
               </IconButton>
               <IconButton
-                color="white"
                 aria-label="open drawer"
                 edge="end"
                 onClick={handleDrawerOpen}
                 className={clsx(open && classes.hide)}
-                style={{ outline: "none" }}
+                style={{ outline: 'none' }}
               >
-                <MenuIcon style={{ color: "white" }} />
+                <MenuIcon style={{ color: 'white' }} />
               </IconButton>
             </Toolbar>
           </AppBar>
@@ -206,7 +210,7 @@ const MobileRouters = (props) => {
           >
             <div className={classes.drawerHeader}>
               <IconButton onClick={handleDrawerClose}>
-                {theme.direction === "rtl" ? (
+                {theme.direction === 'rtl' ? (
                   <ChevronRightIcon />
                 ) : (
                   <ChevronLeftIcon />
@@ -220,9 +224,9 @@ const MobileRouters = (props) => {
                 component={Link}
                 to="/"
                 onClick={handleDrawerClose}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: "orange" }}>
+                <ListItemIcon style={{ color: 'orange' }}>
                   <HomeOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -234,9 +238,9 @@ const MobileRouters = (props) => {
                 component={Link}
                 to="/filter"
                 onClick={handleDrawerClose}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: "orange" }}>
+                <ListItemIcon style={{ color: 'orange' }}>
                   <TuneIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -250,9 +254,9 @@ const MobileRouters = (props) => {
                 component={Link}
                 to="/faq"
                 onClick={handleDrawerClose}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: "orange" }}>
+                <ListItemIcon style={{ color: 'orange' }}>
                   <LiveHelpOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -264,9 +268,9 @@ const MobileRouters = (props) => {
                 component={Link}
                 to="/about"
                 onClick={handleDrawerClose}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: "orange" }}>
+                <ListItemIcon style={{ color: 'orange' }}>
                   <InfoOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -278,9 +282,9 @@ const MobileRouters = (props) => {
                 component={Link}
                 to="/feedback"
                 onClick={handleDrawerClose}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: "orange" }}>
+                <ListItemIcon style={{ color: 'orange' }}>
                   <FeedbackOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -291,6 +295,7 @@ const MobileRouters = (props) => {
             <Divider />
           </Drawer>
         </div>
+        <MobileGoBack />
         <Switch>
           <Route
             path={`/search/:searchString`}
@@ -299,24 +304,24 @@ const MobileRouters = (props) => {
           />
           {/* <Route path="/title/:id" component={Info} /> */}
           <Route path="/about">
-            <div style={{ margin: "-50px 0px 50px 0px" }}>
-              <About font="18px" headFontSize="35px" margin="10px" />
-            </div>
+            <About />
           </Route>
           <Route path="/faq">
             <Faq />
           </Route>
           <Route path="/filter">
-            <Filter />
+            <MobileFilter />
           </Route>
           <Route path="/feedback">
             <MobileFeedback />
           </Route>
-
+          <Route path="/filterResult" component={FilterResult} />
+          <Route path="/title/:id" component={Movie} />
           <Route path="/">
             <MobileFlickhub />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );

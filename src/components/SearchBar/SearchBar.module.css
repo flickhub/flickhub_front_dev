@@ -1,0 +1,39 @@
+.searchbar_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.autocomplete {
+  width: 50%;
+}
+
+.text_field {
+  color: white !important;
+  background-color: white !important;
+  outline: none !important;
+  padding: 5px 15px 5px 15px !important;
+  margin: 0 !important;
+  height: 40px !important;
+}
+
+.submit_btn {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 0px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  height: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+  .searchbar_container {
+    margin-top: 10px;
+  }
+
+  .autocomplete {
+    width: 70%;
+  }
+}

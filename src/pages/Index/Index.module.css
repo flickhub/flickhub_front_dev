@@ -6,6 +6,7 @@
   font-size: 100px;
   text-align: center;
   color: #fff;
+  font-family: sans-serif !important;
 }
 
 .orange {
@@ -25,4 +26,43 @@
   margin-top: 30px;
   text-align: center;
   font-style: italic;
+}
+
+.category__holder {
+  background-color: #141414;
+  padding-top: 40px;
+}
+
+.category__heading {
+  color: #fff;
+  position: relative;
+  margin: 0 0 5px 49px !important;
+}
+
+.category__heading::after {
+  position: absolute;
+  content: '';
+  height: 3px;
+  width: 4%;
+  background-color: orange;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px;
+}
+
+.skeleton__holder {
+  display: flex;
+  width: 100vw;
+  padding: 10px 40px;
+  z-index: 1;
+}
+
+.skeleton {
+  margin: 2px;
+}
+
+@media only screen and (max-width: 1050px) {
+  .category__heading {
+    margin: 0 0 5px 10px !important;
+  }
 }
