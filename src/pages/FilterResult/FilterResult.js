@@ -87,7 +87,7 @@ const FilterResult = ({ location: { filters } }) => {
           <h2 className={styles.flickhub__banner__small}>
             <strong>
               Flick
-              <span className={styles.orange}>Hub</span>
+              <span className={styles.primary}>Hub</span>
             </strong>
           </h2>
           <SearchBar width="90vw" marginTop="30px" mobile={true} />
@@ -97,7 +97,7 @@ const FilterResult = ({ location: { filters } }) => {
           <h2 className={styles.flickhub__banner__small}>
             <strong>
               Flick
-              <span className={styles.orange}>Hub</span>
+              <span className={styles.primary}>Hub</span>
             </strong>
           </h2>
           <SearchBar width="100vw" marginTop="30px" />

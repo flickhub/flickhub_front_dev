@@ -160,7 +160,9 @@ const Filter = () => {
   };
 
   const selectFilter = (e) => {
-    e.target.style.backgroundColor = 'rgba(255,134,20)';
+    e.target.style.backgroundColor = `${getComputedStyle(
+      document.documentElement
+    ).getPropertyValue('--primary')}`;
   };
 
   const unSelectFilter = (e) => {
@@ -310,7 +312,9 @@ const Filter = () => {
         </h5>
         <div
           style={{
-            background: 'rgba(255,255,255,0.2)',
+            background: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             padding: filterByService ? '20px' : '0px',
             display: 'flex',
             flexWrap: 'wrap',
@@ -496,7 +500,9 @@ const Filter = () => {
             justifyContent: 'center',
             flexWrap: 'wrap',
             padding: filterByRating ? '10px' : '0px',
-            backgroundColor: 'rgba(255,255,255,0.2)',
+            backgroundColor: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             margin: filterByRating ? '5px' : '0px',
             width: filterByRating ? '70vw' : '',
             transition: 'all 0.5s ease',
@@ -512,7 +518,9 @@ const Filter = () => {
                   transition: 'all 0.5s ease',
                   border: 'none',
                   background: selected.rating.includes(item)
-                    ? 'rgba(255,134,20)'
+                    ? `${getComputedStyle(
+                        document.documentElement
+                      ).getPropertyValue('--primary')}`
                     : '',
                   width: '100px',
                   display: filterByRating ? 'block' : 'none',
@@ -570,7 +578,9 @@ const Filter = () => {
             justifyContent: 'center',
             flexWrap: 'wrap',
             padding: filterByGenre ? '10px' : '0px',
-            backgroundColor: 'rgba(255,255,255,0.2)',
+            backgroundColor: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             margin: filterByGenre ? '5px' : '0px',
             transition: 'all 0.5s ease',
             width: filterByGenre ? '70vw' : '',
@@ -587,7 +597,9 @@ const Filter = () => {
                   transition: 'all 0.5s ease',
                   border: 'none',
                   background: selected.genre.includes(genreFilter[item])
-                    ? 'rgba(255,134,20)'
+                    ? `${getComputedStyle(
+                        document.documentElement
+                      ).getPropertyValue('--primary')}`
                     : '',
                   width: '100px',
                   display: filterByGenre ? '' : 'none',
@@ -641,7 +653,9 @@ const Filter = () => {
 
         <div
           style={{
-            backgroundColor: 'rgba(255,255,255,0.2)',
+            backgroundColor: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
@@ -661,7 +675,9 @@ const Filter = () => {
                   margin: '5px',
                   border: 'none',
                   background: selected.year.includes(item)
-                    ? 'rgba(255,134,20)'
+                    ? `${getComputedStyle(
+                        document.documentElement
+                      ).getPropertyValue('--primary')}`
                     : '',
                   width: '100px',
                   display: filterByYear ? 'block' : 'none',

@@ -75,7 +75,7 @@ const Footer = () => {
       </div>
 
       <div className={styles.copyright}>
-        &copy; 2020 Flick<span style={{ color: '#ffa500' }}>Hub</span>
+        &copy; 2020 Flick<span className={styles.primary}>Hub</span>
       </div>
     </div>
   ) : null;

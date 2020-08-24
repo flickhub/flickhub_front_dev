@@ -12,8 +12,8 @@
   margin-bottom: 10px;
 }
 
-.orange {
-  color: #ffa500;
+.primary {
+  color: var(--primary);
 }
 
 .grid_item_height {

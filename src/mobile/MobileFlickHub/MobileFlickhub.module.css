@@ -25,7 +25,7 @@
   content: '';
   height: 3px;
   width: 10%;
-  background-color: orange;
+  background-color: var(--primary);
   left: 0;
   bottom: 0;
   border-radius: 10px;
@@ -54,8 +54,12 @@
   justify-content: center;
 }
 
+.primary {
+  color: var(--primary);
+}
+
 .see__more {
-  color: orange;
+  color: var(--primary);
   text-decoration: none;
   font-weight: bold;
   display: flex;
@@ -64,12 +68,12 @@
 }
 
 .see__more:hover {
-  color: orange;
+  color: var(--primary);
   text-decoration: none;
 }
 
 .more__icon {
   border-radius: 100%;
-  border: 1px solid orange;
+  border: 1px solid var(--primary);
   margin-left: 10px;
 }

@@ -226,7 +226,13 @@ const MobileRouters = (props) => {
                 onClick={handleDrawerClose}
                 style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: 'orange' }}>
+                <ListItemIcon
+                  style={{
+                    color: `${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue('--primary')}`,
+                  }}
+                >
                   <HomeOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -240,7 +246,13 @@ const MobileRouters = (props) => {
                 onClick={handleDrawerClose}
                 style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: 'orange' }}>
+                <ListItemIcon
+                  style={{
+                    color: `${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue('--primary')}`,
+                  }}
+                >
                   <TuneIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -256,7 +268,13 @@ const MobileRouters = (props) => {
                 onClick={handleDrawerClose}
                 style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: 'orange' }}>
+                <ListItemIcon
+                  style={{
+                    color: `${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue('--primary')}`,
+                  }}
+                >
                   <LiveHelpOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -270,7 +288,13 @@ const MobileRouters = (props) => {
                 onClick={handleDrawerClose}
                 style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: 'orange' }}>
+                <ListItemIcon
+                  style={{
+                    color: `${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue('--primary')}`,
+                  }}
+                >
                   <InfoOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText>
@@ -284,7 +308,13 @@ const MobileRouters = (props) => {
                 onClick={handleDrawerClose}
                 style={{ textDecoration: 'none', color: 'black' }}
               >
-                <ListItemIcon style={{ color: 'orange' }}>
+                <ListItemIcon
+                  style={{
+                    color: `${getComputedStyle(
+                      document.documentElement
+                    ).getPropertyValue('--primary')}`,
+                  }}
+                >
                   <FeedbackOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText>

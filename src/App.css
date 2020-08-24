@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+:root {
+  --primary: #2ec5c5;
+}
+
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;

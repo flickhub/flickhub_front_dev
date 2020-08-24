@@ -19,7 +19,7 @@
 }
 
 .submit_btn {
-  background-color: orange;
+  background-color: var(--primary);
   color: white;
   border: none;
   padding: 0px 15px;

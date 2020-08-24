@@ -6,8 +6,8 @@
   flex-direction: column;
 }
 
-.orange {
-  color: #ffa500;
+.primary {
+  color: var(--primary);
 }
 
 .white {

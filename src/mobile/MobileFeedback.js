@@ -82,9 +82,13 @@ const MobileFeedback = () => {
 
   const onFocus = (e, ref) => {
     ref.current.style.transform = 'translate(10px,-1px)';
-    ref.current.style.color = 'rgba(255,134,20)';
+    ref.current.style.color = `${getComputedStyle(
+      document.documentElement
+    ).getPropertyValue('--primary')}`;
     ref.current.style.fontSize = '10px';
-    e.target.style.border = '2px solid rgba(255,134,20)';
+    e.target.style.border = `2px solid ${getComputedStyle(
+      document.documentElement
+    ).getPropertyValue('--primary')}`;
     e.target.style.outline = 'none';
   };
 
@@ -101,7 +105,9 @@ const MobileFeedback = () => {
   const onClick = (e, ref) => {
     e.target.style.fontSize = '10px';
     e.target.style.transform = 'translate(-3px, 0px)';
-    e.target.style.color = 'rgba(255,134,20)';
+    e.target.style.color = `${getComputedStyle(
+      document.documentElement
+    ).getPropertyValue('--primary')}`;
     ref.current.focus();
     ref.current.select();
   };
@@ -156,7 +162,12 @@ const MobileFeedback = () => {
           >
             <i
               className="fa fa-facebook"
-              style={{ fontSize: '40px', color: 'rgba(255,134,20)' }}
+              style={{
+                fontSize: '40px',
+                color: `${getComputedStyle(
+                  document.documentElement
+                ).getPropertyValue('--primary')}`,
+              }}
             ></i>
           </a>
           <a
@@ -167,7 +178,12 @@ const MobileFeedback = () => {
           >
             <i
               className="fa fa-twitter"
-              style={{ fontSize: '40px', color: 'rgba(255,134,20)' }}
+              style={{
+                fontSize: '40px',
+                color: `${getComputedStyle(
+                  document.documentElement
+                ).getPropertyValue('--primary')}`,
+              }}
             ></i>
           </a>
           <a
@@ -178,7 +194,12 @@ const MobileFeedback = () => {
           >
             <i
               className="fa fa-instagram"
-              style={{ fontSize: '40px', color: 'rgba(255,134,20)' }}
+              style={{
+                fontSize: '40px',
+                color: `${getComputedStyle(
+                  document.documentElement
+                ).getPropertyValue('--primary')}`,
+              }}
             ></i>
           </a>
         </div>
@@ -349,7 +370,9 @@ export const Modal = (props) => {
           zIndex: '2',
           height: '100px',
           width: '300px',
-          background: 'orange',
+          background: `${getComputedStyle(
+            document.documentElement
+          ).getPropertyValue('--primary')}`,
         }}
       >
         MODAL

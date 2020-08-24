@@ -21,7 +21,7 @@
 
 .goBack__btn:hover,
 .goBack__btn:active {
-  color: #ffa500;
+  color: var(--primary);
   border: none;
 }
 

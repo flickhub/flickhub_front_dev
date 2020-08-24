@@ -51,12 +51,12 @@ const About = () => {
           <br />
           <br />
           <b>Mail us at - </b>
-          <a className={styles.orange} href="mailto:info.flickhub@gmail.com">
+          <a className={styles.primary} href="mailto:info.flickhub@gmail.com">
             info.flickhub@gmail.com
           </a>
           <br />
           <b>Call/Whatsapp - </b>
-          <span className={styles.orange}>8989882529</span>
+          <span className={styles.primary}>8989882529</span>
         </p>
       </div>
     </>

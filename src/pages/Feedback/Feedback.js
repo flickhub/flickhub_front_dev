@@ -89,7 +89,9 @@ const Feedback = (props) => {
           onClick={(e) => {
             e.target.style.fontSize = '10px';
             e.target.style.transform = 'translate(-3px, 0px)';
-            e.target.style.color = 'rgba(255,134,20)';
+            e.target.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             inputRef1.current.focus();
             inputRef1.current.select();
           }}
@@ -113,8 +115,12 @@ const Feedback = (props) => {
           onFocus={(e) => {
             textRef1.current.style.fontSize = '10px';
             textRef1.current.style.transform = 'translate(-3px, 0px)';
-            textRef1.current.style.color = 'rgba(255,134,20)';
-            e.target.style.border = '2px solid orange';
+            textRef1.current.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
+            e.target.style.border = `2px solid ${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             e.target.style.outline = 'none';
           }}
           onBlur={(e) => {
@@ -144,7 +150,9 @@ const Feedback = (props) => {
           onClick={(e) => {
             e.target.style.fontSize = '10px';
             e.target.style.transform = 'translate(-3px, 0px)';
-            e.target.style.color = 'rgba(255,134,20)';
+            textRef2.current.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             inputRef2.current.focus();
             inputRef2.current.select();
           }}
@@ -168,8 +176,12 @@ const Feedback = (props) => {
           onFocus={(e) => {
             textRef2.current.style.fontSize = '10px';
             textRef2.current.style.transform = 'translate(-3px, 0px)';
-            textRef2.current.style.color = 'rgba(255,134,20)';
-            e.target.style.border = '2px solid orange';
+            textRef2.current.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
+            e.target.style.border = `2px solid ${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             e.target.style.outline = 'none';
           }}
           onBlur={(e) => {
@@ -201,7 +213,9 @@ const Feedback = (props) => {
           onClick={(e) => {
             e.target.style.fontSize = '10px';
             e.target.style.transform = 'translate(-3px, 0px)';
-            e.target.style.color = 'rgba(255,134,20)';
+            e.target.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             inputRef3.current.focus();
             inputRef3.current.select();
           }}
@@ -225,8 +239,12 @@ const Feedback = (props) => {
           onFocus={(e) => {
             textRef3.current.style.fontSize = '10px';
             textRef3.current.style.transform = 'translate(-3px, 0px)';
-            textRef3.current.style.color = 'rgba(255,134,20)';
-            e.target.style.border = '2px solid orange';
+            textRef3.current.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
+            e.target.style.border = `2px solid ${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             e.target.style.outline = 'none';
           }}
           onBlur={(e) => {
@@ -257,7 +275,9 @@ const Feedback = (props) => {
           onClick={(e) => {
             e.target.style.fontSize = '10px';
             e.target.style.transform = 'translate(-3px, 0px)';
-            e.target.style.color = 'rgba(255,134,20)';
+            e.target.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             inputRef4.current.focus();
             inputRef4.current.select();
           }}
@@ -281,8 +301,12 @@ const Feedback = (props) => {
           onFocus={(e) => {
             textRef4.current.style.fontSize = '10px';
             textRef4.current.style.transform = 'translate(-3px, 0px)';
-            textRef4.current.style.color = 'rgba(255,134,20)';
-            e.target.style.border = '2px solid orange';
+            textRef4.current.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
+            e.target.style.border = `2px solid ${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             e.target.style.outline = 'none';
           }}
           onBlur={(e) => {
@@ -313,7 +337,9 @@ const Feedback = (props) => {
           onClick={(e) => {
             e.target.style.fontSize = '10px';
             e.target.style.transform = 'translate(-3px, 0px)';
-            e.target.style.color = 'rgba(255,134,20)';
+            e.target.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             inputRef5.current.focus();
             inputRef5.current.select();
           }}
@@ -338,9 +364,13 @@ const Feedback = (props) => {
           onFocus={(e) => {
             textRef5.current.style.fontSize = '10px';
             textRef5.current.style.transform = 'translate(-3px, 0px)';
-            textRef5.current.style.color = 'rgba(255,134,20)';
+            textRef5.current.style.color = `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
             e.target.style.outline = 'none';
-            e.target.style.border = '2px solid orange';
+            e.target.style.border = `2px solid ${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`;
           }}
           onBlur={(e) => {
             if (e.target.value === '') {
@@ -357,7 +387,9 @@ const Feedback = (props) => {
       <button
         type="button"
         style={{
-          backgroundColor: 'rgba(255,134,20)',
+          backgroundColor: `${getComputedStyle(
+            document.documentElement
+          ).getPropertyValue('--primary')}`,
           border: 'none',
           width: '15%',
           marginTop: '30px',
@@ -405,7 +437,12 @@ const Feedback = (props) => {
         >
           <i
             className="fa fa-facebook"
-            style={{ fontSize: '40px', color: 'rgba(255,134,20)' }}
+            style={{
+              fontSize: '40px',
+              color: `${getComputedStyle(
+                document.documentElement
+              ).getPropertyValue('--primary')}`,
+            }}
           ></i>
         </a>
         <a
@@ -416,7 +453,12 @@ const Feedback = (props) => {
         >
           <i
             className="fa fa-twitter"
-            style={{ fontSize: '40px', color: 'rgba(255,134,20)' }}
+            style={{
+              fontSize: '40px',
+              color: `${getComputedStyle(
+                document.documentElement
+              ).getPropertyValue('--primary')}`,
+            }}
           ></i>
         </a>
         <a
@@ -426,7 +468,12 @@ const Feedback = (props) => {
         >
           <i
             className="fa fa-instagram"
-            style={{ fontSize: '40px', color: 'rgba(255,134,20)' }}
+            style={{
+              fontSize: '40px',
+              color: `${getComputedStyle(
+                document.documentElement
+              ).getPropertyValue('--primary')}`,
+            }}
           ></i>
         </a>
       </div>

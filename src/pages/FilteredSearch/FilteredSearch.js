@@ -373,7 +373,11 @@ const FilteredSearch = (props) => {
               key={'filter-button-rating' + item}
               className={styles.filter_btn}
               style={{
-                background: selected.rating.includes(item) ? '#ffa500' : '#fff',
+                background: selected.rating.includes(item)
+                  ? getComputedStyle(document.documentElement).getPropertyValue(
+                      '--primary'
+                    )
+                  : '#fff',
               }}
               onClick={(e) => {
                 if (selected.rating.includes(item)) {
@@ -441,7 +445,11 @@ const FilteredSearch = (props) => {
               key={'filter-button-year ' + index}
               className={styles.filter_btn}
               style={{
-                background: selected.year.includes(item) ? '#ffa500' : '#fff',
+                background: selected.year.includes(item)
+                  ? getComputedStyle(document.documentElement).getPropertyValue(
+                      '--primary'
+                    )
+                  : '#fff',
               }}
               onClick={(e) => {
                 if (selected.year.includes(item)) {

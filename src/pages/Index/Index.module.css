@@ -10,7 +10,7 @@
 }
 
 .orange {
-  color: #ffa500;
+  color: var(--primary);
 }
 
 .tagline {
@@ -44,7 +44,7 @@
   content: '';
   height: 3px;
   width: 4%;
-  background-color: orange;
+  background-color: var(--primary);
   left: 0;
   bottom: 0;
   border-radius: 10px;

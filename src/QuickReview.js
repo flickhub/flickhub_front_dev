@@ -20,7 +20,9 @@ const QuickReview = (props) => {
           style={{
             fontSize: mobile ? '75px' : '30px',
             transition: 'all 0.5s ease',
-            color: 'rgba(255,134,20)',
+            color: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             padding: '10px',
           }}
           onClick={(e) => {
@@ -35,7 +37,9 @@ const QuickReview = (props) => {
           style={{
             fontSize: mobile ? '75px' : '30px',
             transition: 'all 0.5s ease',
-            color: 'rgba(255,134,20)',
+            color: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             padding: '10px',
           }}
           onClick={(e) => {
@@ -50,7 +54,9 @@ const QuickReview = (props) => {
           style={{
             fontSize: mobile ? '75px' : '30px',
             transition: 'all 0.5s ease',
-            color: 'rgba(255,134,20)',
+            color: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             padding: '10px',
           }}
           onClick={(e) => {
@@ -65,7 +71,9 @@ const QuickReview = (props) => {
           style={{
             fontSize: mobile ? '75px' : '30px',
             transition: 'all 0.5s ease',
-            color: 'rgba(255,134,20)',
+            color: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             padding: '10px',
           }}
           onClick={(e) => {
@@ -80,7 +88,9 @@ const QuickReview = (props) => {
           style={{
             fontSize: mobile ? '75px' : '30px',
             transition: 'all 0.5s ease',
-            color: 'rgba(255,134,20)',
+            color: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
             padding: '10px',
           }}
           onClick={(e) => {

@@ -17,7 +17,7 @@ const SearchResult = ({ respObj, similar, searchFor }) => {
       <h2 className={styles.flickhub__banner__small}>
         <strong>
           Flick
-          <span className={styles.orange}>Hub</span>
+          <span className={styles.primary}>Hub</span>
         </strong>
       </h2>
       <SearchBar />

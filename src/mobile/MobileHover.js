@@ -13,7 +13,9 @@ const MobileHover = ({ movie_data }) => {
     top: useMediaQuery({ minWidth: 790 }) ? '175px' : '50px',
     textAlign: 'center',
     width: '90vw',
-    color: 'orange',
+    color: `${getComputedStyle(document.documentElement).getPropertyValue(
+      '--primary'
+    )}`,
     background: 'transparent',
     border: 'none',
     fontSize: '30px',
@@ -424,7 +426,9 @@ export const streamCardStyle = {
 };
 
 export const goToPageStyle = {
-  color: 'orange',
+  color: `${getComputedStyle(document.documentElement).getPropertyValue(
+    '--primary'
+  )}`,
   fontSize: '16px',
   right: '10px',
   position: 'absolute',
@@ -493,7 +497,11 @@ export const MobileWatch = ({
         <Link
           // style={goToPageStyle}
           to={`/title/${movie_id}`}
-          style={{ color: 'orange' }}
+          style={{
+            color: `${getComputedStyle(
+              document.documentElement
+            ).getPropertyValue('--primary')}`,
+          }}
         >
           More
         </Link>

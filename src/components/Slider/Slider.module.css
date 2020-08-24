@@ -24,7 +24,7 @@
 }
 
 .see__more {
-  color: orange;
+  color: var(--primary);
   text-decoration: none;
   font-weight: bold;
   display: flex;
@@ -33,12 +33,12 @@
 }
 
 .see__more:hover {
-  color: orange;
+  color: var(--primary);
   text-decoration: none;
 }
 
 .more__icon {
   border-radius: 100%;
-  border: 1px solid orange;
+  border: 1px solid var(--primary);
   margin-left: 10px;
 }

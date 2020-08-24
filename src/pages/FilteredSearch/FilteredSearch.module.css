@@ -32,7 +32,7 @@
 }
 
 .filter__action:hover {
-  color: #ffa500;
+  color: var(--primary);
   text-decoration: none;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .filter_btn:hover {
-  background-color: #ffa500 !important;
+  background-color: var(--primary) !important;
   color: #fff;
 }
 

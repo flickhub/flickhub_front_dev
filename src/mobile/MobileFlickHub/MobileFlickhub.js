@@ -38,7 +38,7 @@ const MobileFlickhub = (props) => {
       <div style={logoStlye}>
         <h1 className={styles.flickhub__banner}>
           <strong>
-            Flick<span style={{ color: 'orange' }}>Hub</span>
+            Flick<span className={styles.primary}>Hub</span>
           </strong>
         </h1>
         <span style={{ fontSize: '18px', marginTop: '-10px' }}>
