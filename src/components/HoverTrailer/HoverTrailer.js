@@ -139,14 +139,14 @@ const HoverTrailer = ({
             </a>
           ) : null}
         </div>
-        <a
-          href={`http://localhost:3001?${y_src.substring(y_src.length - 11)}`}
+        {/* <a
+          href={`http://localhost:3000?${y_src.substring(y_src.length - 11)}`}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.extension__link}
         >
           <img src={flickhub} width="25" height="25" />
-        </a>
+        </a> */}
       </div>
     </div>
   );

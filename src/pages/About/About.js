@@ -55,8 +55,6 @@ const About = () => {
             info.flickhub@gmail.com
           </a>
           <br />
-          <b>Call/Whatsapp - </b>
-          <span className={styles.primary}>8989882529</span>
         </p>
       </div>
     </>

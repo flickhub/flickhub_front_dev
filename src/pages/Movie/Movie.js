@@ -201,7 +201,7 @@ const Movie = ({ match: { params } }) => {
               </span>
             </h3>
           </div> */}
-          {movieData ? (
+          {/* {movieData ? (
             <div className={styles.extension__link}>
               <h4>Party with friends</h4>
               <a
@@ -215,7 +215,7 @@ const Movie = ({ match: { params } }) => {
                 <img src={flickhub} width="35" height="35" />
               </a>
             </div>
-          ) : null}
+          ) : null} */}
         </div>
         <div className={styles.movie__poster}>
           <Tooltip title={mute ? 'Unmute' : 'Mute'}>

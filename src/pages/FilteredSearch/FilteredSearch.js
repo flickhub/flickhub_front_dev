@@ -411,7 +411,9 @@ const FilteredSearch = (props) => {
               className={styles.filter_btn}
               style={{
                 background: selected.genre.includes(genreFilter[item])
-                  ? '#ffa500'
+                  ? getComputedStyle(document.documentElement).getPropertyValue(
+                      '--primary'
+                    )
                   : '#fff',
               }}
               onClick={(e) => {
